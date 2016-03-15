@@ -1,0 +1,140 @@
+﻿@{
+    ViewBag.Title = "Places";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section title
+{
+    <title>Площадки для свадебных церемоний - @(ViewBag.Partner != null ? ViewBag.Partner.Name.ToLower() : "все площадки") - свадьба за границей | RitaIslands</title>
+   
+    <meta name="description" content="Лучшие площадки для свадебных церемоний за границей и рестораны на нашем сайте! А также свадебный калькулятор - подбери индивидуальный свадебный пакет!" />
+
+    <meta property="og:url" content="http://ritaislands.ru/svadba-za-granicey/places" />
+    <meta property="og:title" content="Площадки для свадебных церемоний - свадьба за границей | RitaIslands" />
+    <meta property="og:description" content="Лучшие площадки для свадебных церемоний за границей и рестораны на нашем сайте! А также свадебный калькулятор - подбери индивидуальный свадебный пакет!" />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+    <meta name="keywords" content="площадки для церемоний, рестораны, свадебный калькулятор, свадебный пакет" />
+}
+
+
+
+<section class="main-content   large-padding shadow-off" style="background-color: #F2F5F8; padding: 0px;">
+    <div class="container">
+        <div id="portfolio-filter" class="row">
+
+            <p style="margin: 5px;"></p>
+
+            <div class="span3" style="margin-bottom: 30px; margin-top: 30px;">
+                <ul class="nav nav-tabs">
+                    @if (ViewBag.IsPl && ViewBag.IsRest)
+                    {
+                        <li class="@(ViewBag.Type == 1 ? "active" : "")"><a href="@Url.Action("Places", "svadba-za-granicey", new { id = ViewBag.Id, type = 1 })">Площадки</a></li>
+                        <li class="@(ViewBag.Type == 2 ? "active" : "")"><a href="@Url.Action("Places", "svadba-za-granicey", new { id = ViewBag.Id, type = 2 })">Рестораны</a></li>
+                    }
+
+                </ul>
+            </div>
+
+
+            <div class="span7" style="margin-left: 0px;">
+                <p style="margin-bottom: 30px; margin-top: 30px; margin-right: 50px; " align="center">
+                    Подберите площадку для свадебной церемонии и прикиньте свадебный бюджет
+                    <br />
+                    <strong>Пишите нам на <a href="mailto:rita@ritaislands.ru">rita@ritaislands.ru</a></strong> или <strong>звоните 8-926-176-86-60</strong>
+                </p>
+
+            </div>
+
+            <div class="span2">
+                <div class="dropdown"  style="left: 30px;" >
+                    <div class="dropmenu">
+                        <p class="selected">@(ViewBag.Partner != null ? ViewBag.Partner.Name : "Все")</p>
+                        <i class="font-icon-arrow-down-simple-thin-round"></i>
+                    </div>
+                    <div class="dropmenu-active">
+                        <ul class="option-set" data-option-key="filter">
+                            @foreach (rita.Models.Direction pr in ViewBag.PartnerCategories)
+                            {
+                                <li><a onclick="document.location.href = '/svadba-za-granicey/places/@pr.TrName';" >@pr.Name</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="span12">
+                <div class="row masonry-blog no-sortable" style="margin-top: 0px;">
+                    <ul id="latest-posts" class="masonry-area">
+                        @foreach (rita.Models.Places partner in ViewBag.List)
+                        {
+                            if (partner.IsEnabled == false && !rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Places))
+                            {
+                                continue;
+                            }
+                            <li class="item-blog span4">
+                                <div class="item-container-post animated-content little_bounce hentry">
+                                    <article class="post">
+                                        <div class="post-thumb">
+                                            <a title="" href="@Url.Action("PlaceIndex", "svadba-za-granicey", new { id = partner.TrName })" class="hover-wrap">
+                                                <img src="@Url.Action("GetImagePlace", "svadba-za-granicey", new { id = partner.SmallImage })" width="800" height="600" alt="" />
+                                                <div class="overlay"></div>
+                                                <i class="font-icon-plus-3"></i>
+                                            </a>
+                                        </div>
+                                        <h2 class="entry-title">
+                                            <a href="@Url.Action("PlaceIndex", "svadba-za-granicey", new { id = partner.TrName })" title="">@partner.Name</a>
+                                        </h2>
+                                        <div class="entry-meta entry-header">
+
+                                            <span class="updated">
+                                                @partner.PlaceType.Name @(partner.Pack.Where(x => x.Price != null).Count() > 0 ? "/ от " + partner.Direction.Сurrency + " " + ((int)partner.Pack.Where(x => x.Price != null).Min(x => x.Price)).ToString() : "") @*&nbsp; / &nbsp;*@
+
+                                            </span>
+                                            <div class="vcard"><span class="fn" style="display: none;">Ritaislands</span></div>
+
+
+                                        </div>
+                                        <div class="entry-content">
+                                            <p>@partner.ShortDescription</p>
+                                        </div>
+                                        @if (rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Places))
+                                        {
+                                            <a class="more-link" href="@Url.Action("UpdatePlace", "Admin", new { id = partner.Id })">Изменить</a>
+                                            <a class="more-link" href="@Url.Action("DelPlace", "Admin", new { id = partner.Id })">Удалить</a>
+                                        }
+                                        @if (partner.ActionPlace.Where(x => x.Actions.IsVisible == true).Count() > 0)
+                                        {
+                                            <div class="partner_in1" style="left: -5px;">
+                                                <a class="link_in1" href="@Url.Action("ActionPlace", "svadba-za-granicey", new {id = partner.TrName})">
+                                                    <span class="short-tag_in1" style="display: block;">Акция</span>
+                                                    <span style="display: none;" class="long-description_in1">Получи скидку</span>
+                                                </a>
+                                            </div>
+                                        }
+                                        else if (partner.Direction.ActionDirection.Where(x => x.Actions.IsVisible == true).Count() > 0)
+                                        {
+                                            <div class="partner_in1" style="left: -5px;">
+                                                <a class="link_in1" href="@Url.Action("Action", "svadba-za-granicey", new {id = partner.Direction.TrName})">
+                                                    <span class="short-tag_in1" style="display: block;">Акция</span>
+                                                    <span style="display: none;" class="long-description_in1">Получи скидку</span>
+                                                </a>
+                                            </div>
+                                        }
+                                    </article>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+

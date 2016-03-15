@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="user1109194_bdEntities10-Web.config Connection String" description="user1109194_bdEntities10 Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ejd8adr7ql.database.windows.net;initial catalog=user1109194_bd;persist security info=True;user id=coolsr;password=Srp4866543;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Львиный\ путь\\1\.\ Проекты\\3\.\ Бизнес\\7\.\ Свадьбы\\2\.2\ КОД\\ritaSiteUpdate\\rita\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='user1109194_bdEntities10']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,91 @@
+﻿@using System.Web.UI.WebControls
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    <title>Заказать звонок  
+    @if (ViewBag.Packet != null)
+    {
+        @ViewBag.Packet.ToLower()
+    }
+        
+    - свадьба за границей | Ritaislands</title>
+
+    <meta name="description" content="Форма обратной связи с выбранным свадебным пакетом @ViewBag.Packet . Пишите нам!" />
+    <meta property="og:url" content="@Request.Url.AbsoluteUri" />
+    <meta property="og:title" content="@ViewBag.Packet - свадьба за границей | Ritaislands" />
+    <meta property="og:description" content="Форма обратной связи с выбранным свадебным пакетом @ViewBag.Packet . Пишите нам!" />
+    <meta property="og:site_name" content="Ritaislands - свадьба за границей" />
+    <meta property="og:image" content="~/img/packets/service%20(1).jpg" />
+    <meta name="keywords" content="@ViewBag.Packet, свадьба за границей, свадьба в Греции, свадьба в Италии, пишите нам" />
+    
+    <link rel="image_src" href="~/img/packets/service%20(1).jpg" />
+}
+
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-10" style="margin-top: 20px;">
+            <div class="span12">
+                <br />
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span7">
+                <h4>Оставьте свои контакты, и мы свяжемся с Вами!</h4>
+                <div id="wpcf7-f507-p308-o1" class="wpcf7">
+                    <form id="contact-form" class="contact-form" method="POST" action="/Admin/SendPacket">
+                        <input type="hidden" value="@ViewBag.Packet" name="packet"/>
+                        <input type="hidden" value="@ViewBag.Text" name="calc"/>
+                        <p>
+                            Email или телефон<br>
+                            <span class="wpcf7-form-control-wrap your-name">
+                                <input type="text" aria-required="true" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" size="40" value="" name="contact">
+                            </span>
+                        </p>
+                        <p>
+                            Комментарий<br>
+                            <span class="wpcf7-form-control-wrap your-message">
+                                <textarea class="wpcf7-form-control wpcf7-textarea" rows="10" cols="40" name="comment"></textarea>
+                            </span>
+                        </p>
+                        <p>
+                            <input type="submit" onclick="yaCounter21623986.reachGoal('ORDER'); return true;" class="wpcf7-form-control wpcf7-submit" value="Получить подарок">
+                        </p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="span5">
+                <div class="contact-details" style="margin-left: 30px; margin-top: 20px; text-align: justify;">
+                    <h4 style="margin-left: 0px;">@ViewBag.Packet</h4>                 
+
+                    <p><b>Свадьба за границей</b> - по-настоящему современно и модно.  
+                    Мы знаем процесс организации свадьбы от А до Я. Напишите нам, и мы расскажем вам о том, как сделать ВАШ праздник незабываемым! 
+                    <br><br> 
+                    А после разговора с нами по скайпу, вы получите замечательный <b>подарок</b>!  Хотите узнать какой? <b>Заполните форму слева!</b>
+    <br><br>
+    Или звоните: <b>+7-926-176-86-60</b>
+</p>
+          
+                    <img src="~/img/Present.jpg" />
+
+                </div>
+            </div>
+            <!-- End Contact Details -->
+
+        </div>
+        <!-- End Contact Form -->
+    </div>
+</section>
+<!-- End Contact Section -->

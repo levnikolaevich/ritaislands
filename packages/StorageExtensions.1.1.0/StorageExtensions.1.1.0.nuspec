@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>StorageExtensions</id>
+    <version>1.1.0</version>
+    <title>Azure Storage Extension for StorageClient V2.0</title>
+    <authors>Wilfried Woivré</authors>
+    <owners>Wilfried Woivré</owners>
+    <licenseUrl>http://storageextensions.codeplex.com/license</licenseUrl>
+    <projectUrl>http://storageextensions.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provide Linq Support to TableQuery.Where method</description>
+    <releaseNotes>See the page : http://storageextensions.codeplex.com</releaseNotes>
+    <copyright>Copyright 2012</copyright>
+    <language />
+    <tags>WindowsAzure Azure Linq</tags>
+    <dependencies>
+      <dependency id="WindowsAzure.Storage" version="2.0" />
+    </dependencies>
+  </metadata>
+</package>

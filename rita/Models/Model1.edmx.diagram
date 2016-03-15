@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a03be4933d964e92a0d64504f78ace7c" Name="Diagram1">
+        <EntityTypeShape EntityType="user1109194_bdModel.ActionDirection" Width="1.5" PointX="5.25" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.ActionPack" Width="1.5" PointX="13.5" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.ActionPartner" Width="1.5" PointX="14.25" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.ActionPlace" Width="1.5" PointX="14.25" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Actions" Width="1.5" PointX="3" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.ActionType" Width="1.5" PointX="0.75" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Cookie" Width="1.5" PointX="10.5" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.CookieLog" Width="1.5" PointX="12.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Currency" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Notification" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Packet" Width="1.5" PointX="11.25" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.PacketService" Width="1.5" PointX="13.5" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.PartnersRating" Width="1.5" PointX="8.25" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Permission" Width="1.5" PointX="12.75" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.PlaceService" Width="1.5" PointX="16.25" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Role" Width="1.5" PointX="10.5" PointY="40" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Service" Width="1.5" PointX="11.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.ServiceCategory" Width="1.5" PointX="9" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.ServiceType" Width="1.5" PointX="9" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.UrlRecoveryPassword" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.User" Width="1.5" PointX="8.25" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Wedding" Width="1.5" PointX="11.25" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Blog" Width="1.5" PointX="3" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Country" Width="1.5" PointX="4.5" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Direction" Width="1.5" PointX="6.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Gallery" Width="1.5" PointX="9" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Image" Width="1.5" PointX="0.75" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Logs" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.MainImages" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Pack" Width="1.5" PointX="11.25" PointY="43" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Partner_old" Width="1.5" PointX="6.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.PartnerCategory" Width="1.5" PointX="8.25" PointY="41.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Partners" Width="1.5" PointX="6" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.PartnersImage" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Places" Width="1.5" PointX="9" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.PlacesImage" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.PlaceType" Width="1.5" PointX="6.75" PointY="44.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Portfolio" Width="1.5" PointX="9" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Slider" Width="1.5" PointX="9" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="user1109194_bdModel.FK_ActionDirection_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_ActionDirection_1" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_ActionPack_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_ActionPack_1" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_ActionPartner_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_ActionPartner_1" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_ActionPlace_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_ActionPlace_1" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Actions_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Actions_1" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Cookie_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_CookieLog_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Packet_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_PacketService_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_PacketService_1" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_PartnersRating_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_PlaceService_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_PlaceService_1" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Service_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Service_1" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_User_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Wedding_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Blog_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Blog_1" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Blog_10" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Blog_2" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Blog_3" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Blog_4" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Blog_5" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Blog_6" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Blog_7" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Blog_8" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Blog_9" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Direction_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Gallery_Direction" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Places_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Portfolio_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Slider_Direction" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Partners_1" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Partners_2" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Partners_3" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Places_1" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Places_2" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Portfolio_1" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Portfolio_10" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Portfolio_11" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Portfolio_2" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Portfolio_3" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Portfolio_4" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Portfolio_5" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Portfolio_6" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Portfolio_7" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Portfolio_8" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Portfolio_9" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Pack_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Portfolio_12" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Partners_0" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.FK_Places_3" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.PartnerCategorys" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.RolePermission" ManuallyRouted="false" />
+        <AssociationConnector Association="user1109194_bdModel.UserRole" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="user1109194_bdModel.Feedback" Width="1.5" PointX="0.75" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

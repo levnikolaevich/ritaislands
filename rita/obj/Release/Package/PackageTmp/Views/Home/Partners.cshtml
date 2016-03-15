@@ -1,0 +1,168 @@
+﻿@using rita.Models
+@{
+    ViewBag.Title = "Partners";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    <title>Партнеры - @(ViewBag.Partner != null ? ViewBag.Partner.Name.ToLower() : "все партнеры") - свадьба за границей | RitaIslands</title>
+
+    <meta name="description" content="Подберите фотографа, видеографа, визажиста и других лучших специалистов прямо у нас на сайте!" />
+    <meta property="og:url" content="http://ritaislands.ru/svadba-za-granicey/partners" />
+    <meta property="og:title" content="Партнеры - свадьба за границей | RitaIslands" />
+    <meta property="og:description" content="Подберите фотографа, видеографа, визажиста и других лучших специалистов прямо у нас на сайте!" />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+    <meta name="keywords" content="свадебный фотограф, свадебный видеограф, фотограф на свадьбу, визажист на свадьбу, дизайнер, свадьба за границей" />
+
+}
+
+<section class="main-content large-padding shadow-off" style="background-color: #F2F5F8; padding: 0px;">
+    <div class="container">
+        <div id="portfolio-filter" class="row">
+
+            <p style="margin: 5px;"></p>
+
+            <div class="span2" style="margin-bottom: 30px; margin-top: 30px;">
+
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a href="@Url.Action("LogOn", "svadba-za-granicey")" class="button-main button-small">Личный кабинет</a>
+                }
+                else if (ViewBag.User.PartnerId == null)
+                {
+                    <a href="@Url.Action("Main", "Admin")" class="button-main button-small" style="padding-left: 40px; padding-right: 40px;">Админка</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("PartnerIndex", "svadba-za-granicey", new {id = ViewBag.User.Partners.TrName})" class="button-main button-small">Мой профиль</a>
+                }
+
+            </div>
+
+
+            <div class="span8" style="margin-left: 10px;">
+                <p style="margin-bottom: 30px; margin-top: 27px; margin-right: 50px;" align="center">
+                    Желаете стать нашим партнером? Готовы к плодотворному сотрудничеству?
+                    <br />
+                    Пишите на <b><a href="mailto:rita@ritaislands.ru">rita@ritaislands.ru</a></b>, звоните <b>8-926-176-86-60</b> или <b><a href="@Url.Action("Registration", "svadba-za-granicey")">регистрируйтесь!</a></b>
+                </p>
+
+            </div>
+
+            <div class="span2">
+                <div class="dropdown" style="left: 20px;">
+                    <div class="dropmenu">
+                        @*<p class="selected">@ViewBag.FirstCategory.Name</p>*@
+                        <p class="selected">@(ViewBag.Partner != null ? ViewBag.Partner.Name : "Фотограф")</p>
+                        @*<p class="selected">@(ViewBag.PartnerCategories != null ? ViewBag.PartnerCategories.Name : "Фотограф")</p>*@
+                        <i class="font-icon-arrow-down-simple-thin-round"></i>
+                    </div>
+                    <div class="dropmenu-active">
+                        <ul class="option-set" data-option-key="filter">
+                            @foreach (rita.Models.PartnerCategory pr in ViewBag.PartnerCategories)
+                            {
+                                <li><a onclick="document.location.href = '/svadba-za-granicey/partners/@pr.TrName';">@pr.Name</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="span12">
+                <div class="row masonry-blog no-sortable" style="margin-top: 0px;">
+                    <ul id="latest-posts" class="masonry-area">
+                        @foreach (rita.Models.Partners partner in ViewBag.List)
+                        {
+                            if (partner.IsEnabled == false && !rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Partners))
+                            {
+                                continue;
+                            }
+                            <li class="item-blog span4 hentry">
+                                <div class="item-container-post animated-content little_bounce">
+                                    <article class="post">
+                                        <div class="post-thumb">
+                                            <a title="" href="@Url.Action("PartnerIndex", "svadba-za-granicey", new { id = partner.TrName })" class="hover-wrap">
+                                                <img src="@Url.Action("GetImagePartner", "svadba-za-granicey", new { id = partner.Image })" width="800" height="600" alt="" />
+                                                <div class="overlay"></div>
+                                                <i class="font-icon-plus-3"></i>
+                                            </a>
+                                        </div>
+                                        <h2 class="entry-title">
+                                            <a href="@Url.Action("PartnerIndex", "svadba-za-granicey", new { id = partner.TrName })" title="">@partner.FirstName @partner.LastName</a>
+                                        </h2>
+                                        <div class="entry-meta entry-header">
+
+
+                                            @if (partner.IsEnabled == true)
+                                            {
+                                                <span class="published">
+                                                    @partner.PartnerCategory.Name &nbsp; / &nbsp;
+
+
+                                                    @if (partner.Price != null)
+                                                    {
+                                                        @String.Concat("День - ", ((int)partner.Price), " €");
+                                                    }
+
+                                                    else
+                                                    {
+                                                        @String.Concat("Цена по запросу");
+                                                    }
+                                                </span>
+                                            }
+                                            else
+                                            {
+
+                                                if (partner.Moderated == 1)
+                                                {
+                                                    <span style="color: green; font-weight: 600; ">
+                                                        @String.Concat("На модерации")
+                                                    </span>
+                                                }
+                                                else if (partner.Moderated == 0)
+                                                {
+                                                    <span style="color: red; font-weight: 600; ">
+                                                        @String.Concat("Только создан")
+                                                    </span>
+                                                }
+
+                                            }
+
+                                        </div>
+                                        <div class="vcard"><span class="fn" style="display: none;">Ritaislands</span></div>
+                                        <div class=""><span class="updated" style="display: none;">@partner.CreationDate</span></div>
+                                        <div class="entry-content" style="margin: 0px;">
+                                            <p style="margin: 0px;">@partner.ShortDescription</p>
+                                        </div>
+                                        @if (rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Partners))
+                                        {
+                                            <div style="margin-left: 30px; margin-bottom: 10px;">
+                                                <a class="more-link" href="@Url.Action("UpdatePartner", "Admin", new { id = partner.Id })">Изменить</a>
+                                                <a class="more-link" href="@Url.Action("DelPartner", "Admin", new { id = partner.Id })">Удалить</a>
+                                            </div>
+                                        }
+                                        @if (partner.ActionPartner.Where(x => x.Actions.IsVisible == true).Count() > 0)
+                                        {
+                                            <div class="partner_in1" style="left: -5px;">
+                                                <a class="link_in1" href="@Url.Action("ActionPartner", "svadba-za-granicey", new {id = partner.TrName})">
+                                                    <span class="short-tag_in1" style="display: block;">Акция</span>
+                                                    <span style="display: none;" class="long-description_in1">Получи скидку</span>
+                                                </a>
+                                            </div>
+                                        }
+                                    </article>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

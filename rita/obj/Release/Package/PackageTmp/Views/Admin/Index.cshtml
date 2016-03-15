@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+<!-- Start Section Title -->
+ <section style="border: 0px; height: 300px; background-position: center top; background-repeat: no-repeat; background-size: cover; background-image:url('@Url.Content("../../img/fon/UsFon.jpg")');" class="banner-image" id="title-page">
+     <div class="container pagize" style="padding: 96px; margin: 0px;">
+         <div class="row" style="margin-left: 0px;">
+             <div class="span12 textaligncenter levh1" style="padding: 0px; margin-left: 0px; margin-top: 13px;">
+                 <h1>Меню</h1>
+             </div>
+         </div>
+     </div>
+    </section>
+<!-- End Section Ttile -->
+
+<div class="container"><br/><br/>
+    <a href="@Url.Action("AddAction","Admin")">Добавить Акцию</a> <br /><br />
+    <a href="@Url.Action("AddGallery","Admin")">Добавить фото в ГАЛЕРЕЮ</a> <br/><br/>
+    <a href="@Url.Action("AddPortfolio","Admin")">Добавить в ПОРТФОЛИО</a> <br/><br/>
+    <a href="@Url.Action("AddSanta","Admin")">Добавить в БЛОГ</a> <br/><br/>
+    <a href="@Url.Action("AddPartner","Admin")">Добавить в ПАРТНЕРЫ</a> <br/><br/>
+    <a href="@Url.Action("AddPlace","Admin")">Добавить МЕСТО</a> <br/><br/>
+    <a href="@Url.Action("AddFeedback","Admin")">Добавить ОТЗЫВ</a> <br /><br />
+    <a href="@Url.Action("Services", "Admin")">Редактирование услуг</a> <br /><br />
+    <a href="@Url.Action("Packets", "Admin")">Пакеты</a> <br /><br />
+    <a href="@Url.Action("Search", "Home")">Поиск пакетов</a> <br /><br />
+    <a href="@Url.Action("LogOff","Home")">ВЫХОД</a><br/><br/>
+</div>

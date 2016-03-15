@@ -1,0 +1,96 @@
+﻿@using rita.Models
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    <title>Изменение профиля партнера - свадьба за границей | RitaIslands</title>
+
+    <meta name="description" content="Подберите фотографа, видеографа, визажиста и других лучших специалистов прямо у нас на сайте!" />
+    <meta property="og:url" content="http://ritaislands.ru/svadba-za-granicey/updatepartner" />
+    <meta property="og:title" content="Изменение профиля партнера - свадьба за границей | RitaIslands" />
+    <meta property="og:description" content="Подберите фотографа, видеографа, визажиста и других лучших специалистов прямо у нас на сайте!" />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+    <meta name="keywords" content="изменение профиля, свадебный видеограф, фотограф на свадьбу, визажист на свадьбу, дизайнер, свадьба за границей" />
+}
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <br />
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span11 no-animation-effects" style="margin-left: 30px !important; background-color: #FFFFFF; width: 1170px; margin-right: 0px; margin-left: 0px; padding-top: 10px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; box-shadow: #888888 1px 1px 2px 0px;">
+                @if (ViewBag.ListError != null)
+                {
+                    <div class="span11 alert alert-warning">
+                        <strong>Произошли ошибки</strong>
+                        @foreach (string str in ViewBag.ListError)
+                        {
+                            <p style="margin-bottom: 0px;">@str</p>
+                        }
+                    </div>
+                }
+               
+                    <div style="margin-left: 50px; margin-bottom: 50px; ">
+                    <h3 style="margin-top: 20px !important; margin-bottom: 0px !important;">Редактирование фотоленты <b>@ViewBag.Partner.FirstName @ViewBag.Partner.LastName</b></h3>
+                    <p style="margin: 0px;">Размер фотографий - 720 на 480 пикселей</p>
+                    
+                        <form id="contact-form" class="contact-form" action="/Home/AddPartnerPhotos" method="POST" enctype="multipart/form-data">
+                        <p class="contact-email">
+                            <input id="contact_email" type="file" name="file" multiple />
+                        </p>
+                        <p class="contact-email">
+                            <input id="contact_email" type="text" placeholder="Video url" name="video" />
+                        </p>
+                        <button class="submit" type="submit">Добавить</button>
+                    </form>
+
+
+                    @if (ViewBag.PartnerImages != null && ViewBag.PartnerImages.Count > 0)
+                    {
+                        <a class="project-name fancybox" style="margin-bottom: 15px;" href="/Home/DelPartnerAllPhoto">
+                            Удалить все фото
+                        </a>
+                    }
+
+
+                    <ul id="projects" style="margin-top: 20px;">
+                        @foreach (PartnersImage partnerImage in ViewBag.PartnerImages)
+                        {
+
+                            <li class="item-project span3" style="margin-left: 17px;">
+                                <div class="item-container animated-content fade_in">
+                                    <a class="hover-wrap fancybox" href="/Home/GetImagePartnerPhoto?id=@(partnerImage.Image + "&amp;p=1.jpg")" data-fancybox-group="gallery">
+                                        <img src="/Home/GetImagePartnerPhoto/@partnerImage.Image" width="400" height="300" /><div class="overlay"></div>
+                                        <i class="font-icon-plus-3"></i>
+                                    </a>
+                                    <p>@partnerImage.VideoUrl</p>
+                                    <a class="project-name fancybox" href="/Home/DelPartnerPhoto?id=@(partnerImage.id)">
+                                        Удалить
+                                    </a>
+                                </div>
+                            </li>
+
+                        }
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- End Contact Form -->
+    </div>
+</section>
+<!-- End Contact Section -->

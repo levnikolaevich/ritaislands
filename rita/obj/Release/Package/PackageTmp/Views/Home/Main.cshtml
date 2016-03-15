@@ -1,0 +1,276 @@
+﻿@using rita.Models
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*no-animation-effects*@
+@section title
+{
+    <title>Главная - свадьба за границей | RitaIslands</title>
+
+    <meta name="description" content="Организация официальных и символических свадебных церемоний, венчаний в церкви, романтических туров (медового месяца) и просто приятного отдыха за границей. Направления: Доминикана, Санторини, Крит, Италия." />
+
+    <meta property="og:url" content="http://ritaislands.ru/" />
+    <meta property="og:title" content="Главная - свадьба за границей | RitaIslands" />
+    <meta property="og:description" content="Организация официальных и символических свадебных церемоний, венчаний в церкви, романтических туров (медового месяца) и просто приятного отдыха за границей. Направления: Доминикана, Санторини, Крит, Италия." />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+    <meta name="keywords" content="свадьба на санторини, свадьба на крите, свадьба за границей, официальная свадьба, символическая свадьба, венчание" />
+
+}
+
+<section style="background-color: #F2F5F8; padding: 0px; padding-top: 20px !important;" class="main-content   large-padding shadow-off no-animation-effects">
+    <div class="container no-animation-effects">
+        <div class="row no-animation-effects">
+            <div class="span12 no-animation-effects">
+
+                <div class="row">
+                    <div class="span6">
+                        <div style="padding-bottom: 0px;" class="special-heading textalignleft default no-animation-effectsd-content move_left no-animation-effects mainh1">
+                            <h1>Свадьба за границей</h1>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        @*<p style="text-align: right; margin: 0px !important; margin-top: 6px !important; ">
+                            <a href="@Url.Action("sendChimpEmail", "Admin", new { packet = "" })" style="padding: 6px 20px !important;" class="button-main button-medium" >Узнать про подарок</a>
+
+                        </p>*@
+
+                        <p style="text-align: right; margin: 0px !important; margin-top: 6px !important; ">
+                            <a href="@Url.Action("ContactServices", "svadba-za-granicey", new { packet = "" })" style="padding: 6px 20px !important;" class="button-main button-medium">Узнать про подарок</a>
+
+                        </p>
+
+                    </div>
+                </div>
+                <section id="slider-header" style="padding-top: 20px !important;">
+
+                    <div class=" ">
+                        <div class=" flexslider levslider">
+                            <ul class="slides" style="width: 100%;">
+
+                                <li data-thumb="/img/mainslider/mainslide1.jpg">
+                                    <img src="/img/mainslider/mainslide1.jpg" alt="Свадьба за границей" />
+                                </li>
+                                <li data-thumb="/img/mainslider/mainslide2.jpg">
+                                    <img src="/img/mainslider/mainslide2.jpg" alt="Свадьба за границей" />
+                                </li>
+                                <li data-thumb="/img/mainslider/mainslide3.jpg">
+                                    <img src="/img/mainslider/mainslide3.jpg" alt="Свадьба за границей" />
+                                </li>
+                                <li data-thumb="/img/mainslider/mainslide4.jpg">
+                                    <img src="/img/mainslider/mainslide4.jpg" alt="Свадьба за границей" />
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <div class="row no-animation-effects">
+                    <div class="no-sortable grid-portfolio no-animation-effects" id="portfolio-projects" style="position: relative; overflow: hidden; height: 1152px;">
+                        <ul id="projects" class="no-animation-effects">
+                            @foreach (Direction direction in ViewBag.Directions)
+                            {                             
+
+                                <li class="item-project span4 apps video hentry" style="margin-left: 25px; padding-left: 5px; position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);">
+                                    <div class="item-container no-animation-effectsd-content little_bounce no-animation-effects">
+                                        <a href="/svadba-za-granicey/index/@direction.TrName" class="hover-wrap fancybox-media">
+                                            <img width="370" height="278" alt="@direction.Title" src=@direction.UrlImg><div class="overlay"></div>
+                                        </a>
+                                        <a title="@direction.Title" href="/svadba-za-granicey/index/@direction.TrName" class="project-name">
+                                            <div class="entry-title directionname"><h2>@direction.Title</h2> </div>
+                                            <hr style="margin-bottom: 10px; margin-top: 10px;" />
+                                            <h4 style="color: rgb(86, 100, 111); font-family: 'Open Sans', sans-serif; font-size: 15px; font-weight: normal; line-height: 24px; text-transform: none;">
+                                                @Html.Raw(direction.Description)
+
+                                            </h4>
+                                        </a>
+
+                                  
+
+                                        <div class=""><span class="updated" style="display: none;">@direction.CreationDate</span></div>
+                                        <div class="vcard"><span class="fn" style="display: none;">Ritaislands</span></div>
+                                        @if (direction.ActionDirection.Where(x => x.Actions.IsVisible == true).Count() > 0)
+                                        {
+                                            <div class="partner_in1">
+                                                <a class="link_in1" href="@Url.Action("Action","svadba-za-granicey", new {id = direction.TrName})">
+                                                    <span class="short-tag_in1" style="display: block;">Акция</span>
+                                                    <span style="display: none;" class="long-description_in1">Получи скидку</span>
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background-color: #ffffff; padding: 10px 0px !important;" class="main-content   large-padding shadow-off">
+
+    <section style="display: none;">
+        <a href="https://plus.google.com/112623268668565272485" rel="publisher">Мы в Google+</a>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="span12" style="margin-left: 0px !important;">      
+                <div class="row-fluid" style="padding-top: 10px; margin-left: 40px;">
+                    <div class="span5" style="margin-left: 50px;">
+
+                        <div class="text-block no-animation-effectsd-content move_left no-animation-effects">
+
+                            <p>
+                                <img class="aligncenter size-full wp-image-543" alt="Агентство РитаАйлендс RitaIslands" src="~/img/fon/Main2.jpg" width="400" height="422" style="margin-top: 17px;">
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="span6" style="margin-left: 0px !important;">
+
+                        <p style=" margin-top: 5px; margin-right: 30px; text-align:justify; ">
+                            Привет!  Меня зовут Рита, я – <b>свадебный организатор</b> и создатель свадебного агентства «РитаАйлендс». В команде с талантливыми фотографами, музыкантами и стилистами, креативными оформителями и флористами, я создаю свадебные церемонии за границей, полные душевности, тепла и уюта. Мы любим свою работу и верим: день рождения семьи – важнейший день в жизни влюбленных, и он должен стать незабываемым.
+                        </p>
+                        <p style=" margin-right: 30px;  text-align:justify; ">
+                            В разделе <a href="@Url.Action("Feedback", "svadba-za-granicey")">«ОТЗЫВЫ»</a> на нашем сайте собраны отзывы наших клиентов – они расскажут о нас больше нас самих. Также посмотрите <a href="@Url.Action("portfolio", "svadba-za-granicey")">«ПОРТФОЛИО»</a> – яркие улыбки влюбленных молодожен на фоне фантастических пейзажей раскроют всю прелесть <b>свадьбы за границей</b>.
+                        </p>
+                        <p style=" margin-right: 30px; text-align:justify; ">
+                            Честность, ответственность и индивидуальный подход – мои принципы в работе с клиентами. Любите друг друга и предвкушайте сказку, а я позабочусь об остальном. Мы поможем вам организовать незабываемый праздник для себя и ваших гостей.
+                        </p>
+                        <p style=" margin-right: 30px; text-align:justify; ">
+                            Искренне ваша, Маргарита!
+                        </p>
+
+
+
+                        @*<h2>Наши преимущества:</h2>
+                    
+                        <a href="@Url.Action("About", "Home")" class="box listed-left">
+                            <div class="icon"><span class="circle"></span><i class="font-icon-thumbs-up"></i></div>
+                            <div class="box-text">
+                                <h4>Высокое качество услуг</h4>
+                                <p>
+                                    Организация церемоний для нас – не хобби. Мы занимаемся свадьбами 24 часа в сутки. Наша цель – сделать Вашу свадьбу по-настоящему сказочной.
+                                </p>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("About", "Home")" class="box listed-left no-animation-effectsd-content move_right no-animation-effects">
+                            <div class="icon"><span class="circle"></span><i class="font-icon-group"></i></div>
+                            <div class="box-text">
+                                <h4>Проверенные партнёры</h4>
+                                <p>
+                                    Мы работаем за границей только с теми, кого знаем лично. Наши партнёры – приятные в общении профессионалы, которые помогут Вам  в любом вопросе.
+                                </p>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("About", "Home")" class="box listed-left no-animation-effectsd-content move_right no-animation-effects">
+                            <div class="icon"><span class="circle"></span><i class="font-icon-tag"></i></div>
+                            <div class="box-text">
+                                <h4>Фиксированная цена</h4>
+                                <p>
+                                    Вы нам платите фикс, а мы предоставляем Вам услуги по минимальной стоимости с максимальными скидками. Самая прозрачная система оплаты!
+                                </p>
+                            </div>
+                        </a>*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="main-content   large-padding shadow-off" style="background-color: #F2F5F8; padding: 0px; padding-top: 30px; padding-bottom: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="special-heading textalignleft default no-animation-effectsd-content move_left" style="padding-bottom: 0px;">
+                    <h2>НОВОЕ НА САЙТЕ</h2>
+                </div>
+                <div class="row masonry-blog no-sortable">
+                    <ul id="latest-posts" class="masonry-area">
+
+                        @foreach (rita.Controllers.MainFrame mf in ViewBag.ListF)
+                        {
+                            <li class="item-blog span4 hentry">
+                                <div class="item-container-post no-animation-effectsd-content little_bounce">
+                                    <article class="post">
+                                        <div class="post-thumb">
+                                            <a href="@mf.AUrl" class="hover-wrap">
+                                                <img src="@mf.AUrlImg" width="800" height="600" alt="@mf.Name" />
+                                                <div class="overlay"></div>
+                                                <i class="font-icon-plus-3"></i>
+                                            </a>
+                                        </div>
+                                        <h2 class="entry-title">
+                                            <a href="@mf.AUrl">@mf.Name</a>
+                                        </h2>
+                                        <div class="entry-meta entry-header">
+                                            <span class="updated">@mf.Date</span>
+                                        </div>
+                                        <div class="vcard"><span class="fn" style="display: none;">Ritaislands</span></div>
+                                        <div class="entry-content">
+                                            <p>@mf.Text</p>
+                                        </div>
+                                    </article>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+
+                    <div style="width: 50px; margin: 0px auto; padding-left: 0px;" class="pagination pagination-large">
+                        <ul>
+                            <li><a href="@Url.Action("Blog", "svadba-za-granicey")">Еще </a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="main-content   default-padding shadow-off" style="background-color: #ffffff; padding: 0px; padding-top: 30px; padding-bottom: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h3>Напишите нам:</h3>
+                <div id="wpcf7-f507-p308-o1" class="wpcf7">
+                    <form novalidate="novalidate" class="wpcf7-form" action="/Admin/Send">
+                        <p class="animated-content move_up">
+                            Email или телефон<br>
+                            <span class="wpcf7-form-control-wrap your-name">
+                                <input type="email" name="contact" value="" aria-required="true" placeholder="" id="contact_name" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form_my2" style="border-color: #97ADBF;">
+                            </span>
+                        </p>
+                        <p class="animated-content move_up">
+                            Комментарий<br>
+                            <span class="wpcf7-form-control-wrap your-message">
+                                <textarea id="contact_email" class="wpcf7-form-control wpcf7-textarea form_my2" rows="10" cols="40" name="comment" style="border-color: #97ADBF;"></textarea>
+                            </span>
+                        </p>
+                        <p class="animated-content move_up">
+                            <input type="submit" onclick="yaCounter21623986.reachGoal('ORDER'); return true;" class="wpcf7-form-control wpcf7-submit" value="Узнать про подарок">
+                        </p>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

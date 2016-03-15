@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    <title>Партнеры - регистрация в личном кабинете | RitaIslands</title>
+
+    <meta name="description" content="Станьте нашим партнером! Зарегистрируйтесь и получите профиль, который позволит вам делиться своими работами и привлекать клиентов!" />
+    <meta property="og:url" content="http://ritaislands.ru/svadba-za-granicey/registration" />
+    <meta property="og:title" content="Партнеры - регистрация в личном кабинете | RitaIslands" />
+    <meta property="og:description" content="Станьте нашим партнером! Зарегистрируйтесь и получите профиль, который позволит вам делиться своими работами и привлекать клиентов!" />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+    <meta name="keywords" content="регистрация свадебного фотографа, видеографа, ведущего на свадьбу, свадьба за границей" />
+
+}
+
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span11 no-animation-effects" style="margin-left: 30px !important; background-color: #FFFFFF; width: 1170px; margin-top: 50px; padding-top: 10px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; box-shadow: #888888 1px 1px 2px 0px;">
+
+                <form id="contact-form" class="form-horizontal" action="/Home/Registration" method="POST" enctype="multipart/form-data">
+                    <div class="row margin-50">
+                        <div class="span12" style="border-bottom-width: 5px; margin-bottom: 15px; margin-top: 10px;">
+                            <h3 style="padding-left: 50px; margin-left: 70px;"><b>Регистрация пользователя</b></h3>
+                            <hr />
+                        </div>
+                        <div class="span6" style="width: 550px !important; ">
+
+                            <fieldset>
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" style="width: 100px;" for="input_email">E-mail</label>
+                                    <div class="controls">
+                                        <input id="email" name="email" @*pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"*@ class="input-xlarge texta" style="width: 410px;" value="" type="email" maxlength="200" required>
+                                        <label id="labelinput_email" class="error alert alert-error hidden" for="input_email" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" style="width: 100px;" for="input_password">Пароль</label>
+                                    <div class="controls">
+                                        <input id="password" name="password" class="input-xlarge texta" style="width: 410px;" value="" type="password" maxlength="200" required>
+                                        <label id="labelinput_password" class="error alert alert-error hidden" for="input_password" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+                                
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" style="width: 100px;" for="input_firstName">Имя</label>
+                                    <div class="controls">
+                                        <input id="firstName" name="firstName" class="input-xlarge texta" style="width: 410px;" type="text" maxlength="200" required>
+                                        <label id="labelinput_firstName" class="error alert alert-error hidden" for="input_firstName" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" style="width: 100px;" for="input_lastName">Фамилия</label>
+                                    <div class="controls">
+                                        <input id="lastName" name="lastName" class="input-xlarge texta" style="width: 410px;" type="text" maxlength="200" required>
+                                        <label id="labelinput_lastName" class="error alert alert-error hidden" for="input_lastName" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <a href="@Url.Action("LogOn", "Home")" class="submit button-main button-small" style="margin-left: 120px; padding: 7px !important; color: #B2B2B6; border-color: #B2B2B6; background-color: white; ">Войти</a>
+                                <a href="@Url.Action("RecoveryPassword", "Home")" class="submit button-main button-small" style="margin-left: 0px; padding: 7px !important; color: #B2B2B6; border-color: #B2B2B6; background-color: white; ">Восстановить пароль</a>
+                                <button class="submit button-main button-small" type="submit" style="margin-left: 0px; height: 42px; padding: 7px;">Зарегистрироваться</button>
+                                @*<br>*@
+                            </fieldset>
+                        </div>
+
+                        @*Вторая половина страницы*@
+                        <div class="span6" style="margin-left: 0px; padding-left: 30px;">
+
+
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+
+
+            </div>
+
+
+        </div>
+        <!-- End Contact Form -->
+    </div>
+</section>
+<!-- End Contact Section -->

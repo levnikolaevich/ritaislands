@@ -1,0 +1,139 @@
+﻿@{
+    ViewBag.Title = "AddPortfolio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+
+<!-- Start Section Title -->
+ <section style="border: 0px; height: 300px; background-position: center top; background-repeat: no-repeat; background-size: cover; background-image:url('@Url.Content("../../img/fon/UsFon.jpg")');" class="banner-image" id="title-page">
+     <div class="container pagize" style="padding: 96px; margin: 0px;">
+         <div class="row" style="margin-left: 0px;">
+             <div class="span12 textaligncenter levh1" style="padding: 0px; margin-left: 0px; margin-top: 13px;">
+                 <h1>Добавление портфолио</h1>
+             </div>
+         </div>
+     </div>
+    </section>
+<!-- End Section Ttile -->
+
+
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <br/>
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span9">
+            
+                <form id="contact-form" class="contact-form" action="/Admin/AddPortfolio" method="POST" enctype="multipart/form-data">
+                    
+                        <p>Название поста </p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Имя" value="" name="name" required />
+                    </p>
+                    
+                    <p>Теги</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Tags" value="" name="tag" required />
+                    </p>
+                    
+                     <p>Выбрать направление</p>
+                    @*<p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="DirectionId" value="1" name="dir" />
+                    </p>*@
+
+                    <select name="dir">
+                        @foreach (rita.Models.Direction dir in ViewBag.AllDirection)
+                        {
+                            <option value="@dir.Id">@dir.Name</option>
+                        }
+                    </select>
+                    
+                    <p class="contact-name">
+                        <label>Отображать <input style="width: 50px;" type="checkbox" name="vis" /></label>
+                    </p>
+                    
+                    <p class="contact-name lev">
+                        <textarea name="shortText" placeholder="Короткий текст для главной страницы" required></textarea>
+                    </p>
+                    
+                    <p class="contact-name lev">
+                        <textarea name="longText" placeholder="Короткий текст для страницы портфолио" required></textarea>
+                    </p>
+
+                    <p >Основной текст. Картинки вставлять 800 X 600 px </p>
+                    <p>
+                        <textarea id="textRed" name="text" style="display: inline-block; height: 220px !important;" required></textarea>
+                    </p>
+
+                    <p class="contact-email">
+                        <label>Картинка 1.  По умолчанию. Обязательно указать. Все 1920 x 700 px</label>
+                        <input id="contact_email" type="file" name="file" required />
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 2.</label>
+                        <input id="contact_email" type="file" name="file1" />
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 3.</label>
+                        <input id="contact_email" type="file" name="file2" />
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 4.</label>
+                        <input id="contact_email" type="file" name="file3" />
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 5.</label>
+                        <input id="contact_email" type="file" name="file4" />
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 6.</label>
+                        <input id="contact_email" type="file" name="file5" />
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 7.</label>
+                        <input id="contact_email" type="file" name="file6" />
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 8.</label>
+                        <input id="contact_email" type="file" name="file7" />
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 9.</label>
+                        <input id="contact_email" type="file" name="file8" />
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 10.</label>
+                        <input id="contact_email" type="file" name="file9" />
+                    </p>
+                    
+                    <p class="contact-email">
+                        <label>Картинка для главной странице. 400 x 300</label>
+                        <input id="contact_email" type="file" name="smallFile" required />
+                    </p>
+
+                    <button class="submit" type="submit">Добавить</button>
+                </form>
+             
+            </div>
+           
+            
+        </div>
+        <!-- End Contact Form -->
+	</div>
+</section>
+<!-- End Contact Section -->

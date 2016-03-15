@@ -1,0 +1,348 @@
+﻿@using rita.Models
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    <title>@ViewBag.Direction.Title | RitaIslands</title>
+
+    <meta name="description" content="@ViewBag.Direction.ShortDescription" />
+
+    <meta property="og:url" content="@Request.Url.AbsoluteUri" />
+    <meta property="og:title" content="@ViewBag.Direction.Title" />
+    <meta property="og:description" content="@ViewBag.Direction.ShortDescription" />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+    <meta name="keywords" content="@ViewBag.Direction.KeyWords" />
+}
+
+<section id="slider-header">
+    <!-- START REVOLUTION SLIDER 3.0.5 fullwidth mode -->
+    <div id="rev_slider_1_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" style="margin: 0px auto; padding: 0px; margin-top: 0px; margin-bottom: 0px; max-height: 700px;">
+        <div id="rev_slider_1_1" class="rev_slider fullwidthabanner" style="display: none; max-height: 700px;">
+            <ul>
+                @foreach (Slider slider in ViewBag.Slider)
+                {
+                    @Html.Raw(slider.HTML);
+                }
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        var tpj = jQuery;
+
+        tpj.noConflict();
+
+        var revapi1;
+
+        tpj(document).ready(function () {
+
+            if (tpj.fn.cssOriginal != undefined)
+                tpj.fn.css = tpj.fn.cssOriginal;
+
+            if (tpj('#rev_slider_1_1').revolution == undefined)
+                revslider_showDoubleJqueryError('#rev_slider_1_1');
+            else
+                revapi1 = tpj('#rev_slider_1_1').show().revolution(
+                 {
+                     delay: 9000,
+                     startwidth: 1800,
+                     startheight: 700,
+                     hideThumbs: 200,
+
+                     thumbWidth: 100,
+                     thumbHeight: 50,
+                     thumbAmount: 3,
+
+                     navigationType: "bullet",
+                     navigationArrows: "solo",
+                     navigationStyle: "round",
+
+                     touchenabled: "on",
+                     onHoverStop: "on",
+
+                     navigationHAlign: "center",
+                     navigationVAlign: "bottom",
+                     navigationHOffset: 0,
+                     navigationVOffset: 20,
+
+                     soloArrowLeftHalign: "left",
+                     soloArrowLeftValign: "center",
+                     soloArrowLeftHOffset: 20,
+                     soloArrowLeftVOffset: 0,
+
+                     soloArrowRightHalign: "right",
+                     soloArrowRightValign: "center",
+                     soloArrowRightHOffset: 20,
+                     soloArrowRightVOffset: 0,
+
+                     shadow: 0,
+                     fullWidth: "on",
+                     fullScreen: "off",
+
+                     stopLoop: "off",
+                     stopAfterLoops: -1,
+                     stopAtSlide: -1,
+
+                     shuffle: "off",
+
+                     hideSliderAtLimit: 0,
+                     hideCaptionAtLimit: 0,
+                     hideAllCaptionAtLilmit: 0,
+                     startWithSlide: 0,
+                     //videoJsPath: "http://demo.alessioatzeni.com/banshee/wp-content/plugins/revslider/rs-plugin/videojs/",
+                     fullScreenOffsetContainer: "header"
+                 });
+
+        });	//ready
+
+    </script>
+
+    <!-- END REVOLUTION SLIDER -->
+</section>
+
+<section class="main-content   large-padding shadow-off" style="background-color: #F2F5F8; padding-top: 20px; padding-bottom: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="special-heading textalignleft default animated-content move_left" style="padding-bottom: 0px;">
+
+
+                    <div class="text-block animated-content move_up partnerindexh1 hentry">
+                        <div class="entry-title"><h1>@ViewBag.Direction.Title</h1></div>
+                        <div class="vcard"><span class="fn" style="display: none;">Ritaislands</span></div>
+                        <div class=""><span class="updated" style="display: none;">@ViewBag.Updated</span></div>
+                        <p style="margin: 0px; text-align: justify;">@ViewBag.Direction.ShortDescription</p>
+
+                        <div style="height: 20px;" class="blank_divider"></div>
+                        @if (ViewBag.ListPlaces.Count > 0)
+                        {
+                            
+                            <p style="text-align: center;">
+                                <a target="_blank" href="@Url.Action("ContactServices", "Home", new {packet = ""})" class="button-main button-medium">Узнать больше</a>
+                            </p>
+                        }
+                    </div>
+
+                    @if (ViewBag.ListPlaces.Count > 0)
+                    {
+                        <h2 style="margin-top: 30px;">Площадки для церемоний</h2>
+                    }
+                </div>
+
+
+                @*Стрелки по бокам*@
+                @*<div class="navigation-projects">
+
+                        <div class="prev"><a href="@Url.Action("Index", "Home", new { id = ViewBag.prevdirection.TrName })" rel="prev" title="@ViewBag.prevdirection.Title"><i class=" font-icon-arrow-left-simple-round"></i></a></div>
+                        <div class="next"><a href="@Url.Action("Index", "Home", new { id = ViewBag.nextdirection.TrName })" rel="next" title="@ViewBag.nextdirection.Title"><i class="font-icon-arrow-right-simple-round"></i></a></div>
+
+                    </div>*@
+@if (ViewBag.ListPlaces.Count > 0) {
+                <div class="row masonry-blog no-sortable">
+                    <ul id="latest-posts" name="listPlaces" class="masonry-area">
+
+                        @foreach (rita.Models.Places partner in ViewBag.ListPlaces)
+                        {
+
+                            if (partner.IsEnabled == false && !rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Places))
+                            {
+                                continue;
+                            }
+                            <li class="item-blog span4">
+                                <div class="item-container-post animated-content little_bounce">
+                                    <article class="post">
+                                        <div class="post-thumb">
+                                            <a title="" href="@Url.Action("PlaceIndex", "Home", new { id = partner.TrName })" class="hover-wrap">
+                                                <img src="@Url.Action("GetImagePlace", "Home", new { id = partner.SmallImage })" width="800" height="600" alt="" />
+                                                <div class="overlay"></div>
+                                                <i class="font-icon-plus-3"></i>
+                                            </a>
+                                        </div>
+                                        <h2 class="entry-title">
+                                            <a href="@Url.Action("PlaceIndex", "Home", new { id = partner.TrName })" title="">@partner.Name</a>
+                                        </h2>
+                                        <div class="entry-meta entry-header">
+                                            <span class="published">
+                                                @(partner.Pack.Where(x => x.Price != null).Count() > 0 ? "Свадебные пакеты от: €" + ((int)partner.Pack.Where(x => x.Price != null).Min(x => x.Price)).ToString() : "Свадебные пакеты в разработке") @*&nbsp; / &nbsp;*@
+
+                                            </span>
+                                        </div>
+                                        <div class="entry-content">
+                                            <p>@partner.ShortDescription</p>
+                                        </div>
+
+                                        @if (rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Places))
+                                        {
+                                            <a class="more-link" href="@Url.Action("UpdatePlace", "Admin", new { id = partner.Id })">Изменить</a>
+                                            <a class="more-link" href="@Url.Action("DelPlace", "Admin", new { id = partner.Id })">Удалить</a>
+                                        }
+                                    </article>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                    @if (ViewBag.ListPlaces.Count > 0)
+                    {
+                        <div style="width: 50px; margin: 0px auto; padding-left: 0px;" class="pagination pagination-large">
+                            <ul>
+                                <li><a href="@Url.Action("Places", "Home", new {id = ViewBag.Direction.TrName})">Еще </a></li>
+                            </ul>
+                        </div>
+                    }
+                </div>
+}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background-color: #ffffff; padding: 25px;" class="main-content shadow-off">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="text-block animated-content move_up partnerindexh1">
+                    <p style="text-align: center;">
+                        <a target="_blank" href="@Url.Action("ContactServices", "Home", new { packet = "" })" class="button-main button-medium">Узнать больше</a>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="main-content   large-padding shadow-off" style="background-color: #F2F5F8; padding-top: 50px; padding-bottom: 50px;">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="special-heading textalignleft default animated-content move_left" style="padding-bottom: 0px;">
+                    <h2>Портфолио</h2>
+                </div>
+                <div class="blank_divider " style="height: 20px;"></div>
+                <div class="row masonry-blog no-sortable">
+                    <ul id="latest-posts" class="masonry-area">
+                        @foreach (rita.Models.Portfolio portfolio in ViewBag.List)
+                        {
+                            <li class="item-blog span4">
+                                <div class="item-container-post animated-content little_bounce">
+                                    <article class="post">
+                                        <div class="post-thumb">
+                                            <a href="@Url.Action("PortFolioIndex", "Home", new { id = portfolio.TranslitName })" class="hover-wrap">
+                                                <img src="@Url.Action("GetImagePortfolio", "Home", new { id = portfolio.SmallImage })" width="800" height="600" alt="" />
+                                                <div class="overlay"></div>
+                                                <i class="font-icon-plus-3"></i>
+                                            </a>
+                                        </div>
+                                        <h2 class="entry-title">
+                                            <a href="@Url.Action("PortFolioIndex", "Home", new { id = portfolio.TranslitName })" title="">@portfolio.Name</a>
+                                        </h2>
+                                        <div class="entry-meta entry-header">
+                                            <span class="published">@portfolio.CreationDate.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("ru-RU"))</span>
+                                        </div>
+                                        <div class="entry-content">
+                                            <p>@portfolio.ShortText</p>
+                                        </div>
+                                    </article>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                    <div style="width: 50px; margin: 0px auto; padding-left: 0px;" class="pagination pagination-large">
+                        <ul>
+                            <li><a href="@Url.Action("Portfolio", "Home")">Еще </a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="main-content   default-padding shadow-off" style="background-color: #ffffff;">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                @if (!string.IsNullOrEmpty(ViewBag.Direction.UrlVideo))
+                {
+                    <iframe width="1105" height="622" frameborder="0" allowfullscreen="" webkitallowfullscreen="" src="@ViewBag.Direction.UrlVideo" style="margin-left: 35px;"></iframe>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="main-content   default-padding shadow-off" style="">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h3>Напишите нам:</h3>
+                <div id="wpcf7-f507-p308-o1" class="wpcf7">
+                    <form novalidate="novalidate" class="wpcf7-form" action="/Admin/Send">
+                        <p class="animated-content move_up">
+                            Email или телефон<br>
+                            <span class="wpcf7-form-control-wrap your-name">
+                                <input type="email" name="contact" value="" aria-required="true" placeholder="" id="contact_name" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required">
+                            </span>
+                        </p>
+                        <p class="animated-content move_up">
+                            Комментарий<br>
+                            <span class="wpcf7-form-control-wrap your-message">
+                                <textarea id="contact_email" class="wpcf7-form-control wpcf7-textarea" rows="10" cols="40" name="comment"></textarea>
+                            </span>
+                        </p>
+                        <p class="animated-content move_up">
+                            <input type="submit" onclick="yaCounter21623986.reachGoal('ORDER'); return true;" class="wpcf7-form-control wpcf7-submit" value="Организовать свадьбу">
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+
+    function LoadPlaces() {
+        alert('0');
+        jQuery.ajax({
+            //$.ajax({
+            url: '@Url.Action("LoadPlaces", "Home")',
+            data:
+                    {
+                        count: '1',
+                        placeId: '1'
+                    },
+            type: 'POST',
+            success: function (result) {
+                alert('1');
+                jQuery("[name=listPlaces]").append(result);
+            }
+
+        });
+
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

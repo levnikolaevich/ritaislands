@@ -1,0 +1,302 @@
+﻿@using rita.Models
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+<title>Изменение профиля партнера - свадьба за границей | RitaIslands</title>
+
+<meta name="description" content="Подберите фотографа, видеографа, визажиста и других лучших специалистов прямо у нас на сайте!" />
+<meta property="og:url" content="http://ritaislands.ru/svadba-za-granicey/updatepartner" />
+<meta property="og:title" content="Изменение профиля партнера - свадьба за границей | RitaIslands" />
+<meta property="og:description" content="Подберите фотографа, видеографа, визажиста и других лучших специалистов прямо у нас на сайте!" />
+<meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+<meta property="og:image" content="~/img/direct/Santorin.jpg" />
+<meta name="keywords" content="изменение профиля, свадебный видеограф, фотограф на свадьбу, визажист на свадьбу, дизайнер, свадьба за границей" />
+}
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <br />
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span11 no-animation-effects" style="margin-left: 30px !important; background-color: #FFFFFF; width: 1170px; margin-right: 0px; margin-left: 0px; padding-top: 10px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; box-shadow: #888888 1px 1px 2px 0px;">
+                @if (ViewBag.ListError != null)
+                {
+                    <div class="span5 alert alert-warning">
+                        <strong>Произошли ошибки</strong>
+                        @foreach (string str in ViewBag.ListError)
+                        {
+                            <p style="margin-bottom: 0px;">@str</p>
+                        }
+                    </div>
+                }
+
+                <form id="contact-form" class="form-horizontal" action="/Home/UpdatePartner" method="POST" enctype="multipart/form-data">
+                    <div class="row margin-50">
+                        <div class="span12" style="border-bottom-width: 5px; margin-bottom: 15px; margin-top: 10px;">
+                            <h3 style="padding-left: 50px; margin-bottom: 0px;">Изменение профиля <b>@ViewBag.Partner.FirstName @ViewBag.Partner.LastName</b></h3>
+                            
+                            <p style="padding-left: 50px; margin-top: 0px; margin-bottom: 0px;">Изменив профиль, вы снимите его с публикации. Для появления на сайте профиль должен пройти проверку. Узнайте статус, написав на <a href="mailto:rita@ritaislands.ru">rita@ritaislands.ru</a></p>
+                            
+                            <hr />
+                        </div>
+                        <div class="span6" style="width: 530px !important; ">
+
+                            <fieldset style="margin-left: 30px !important;">
+                                @*<input type="hidden" name="id" value="@ViewBag.Partner.Id" />*@
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" for="input_prId">Выберите категорию</label>
+                                    <div class="controls">
+                                        <select name="prId">
+                                            @foreach (rita.Models.PartnerCategory pr in ViewBag.PartnerCategories)
+                                            {
+                                                if (ViewBag.Partner.CategoryId == pr.Id)
+                                                {
+                                                    <option selected value="@pr.Id">@pr.Name</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@pr.Id">@pr.Name</option>
+                                                }
+
+                                            }
+                                        </select>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" for="input_name">Название компании</label>
+                                    <div class="controls">
+                                        <input id="name" name="name" class="input-xlarge texta" value="@ViewBag.Partner.Name" type="text" maxlength="200">
+                                        <label id="labelinput_name" class="error alert alert-error hidden" for="input_name" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" for="input_firstName">Имя</label>
+                                    <div class="controls">
+                                        <input id="firstName" name="firstName" class="input-xlarge texta" value="@ViewBag.Partner.FirstName" type="text" maxlength="200" required>
+                                        <label id="labelinput_firstName" class="error alert alert-error hidden" for="input_firstName" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" for="input_lastName">Фамилия</label>
+                                    <div class="controls">
+                                        <input id="lastName" name="lastName" class="input-xlarge texta" type="text" value="@ViewBag.Partner.LastName" maxlength="200" required>
+                                        <label id="labelinput_lastName" class="error alert alert-error hidden" for="input_lastName" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+                                
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" for="input_TrName">Адрес   страницы</label>
+                                    <div class="controls">
+                                        <input id="TrName" name="TrName" class="input-xlarge texta" type="text" value="@ViewBag.Partner.TrName" maxlength="200" required>
+                                        <label id="labelinput_TrName" class="error alert alert-error hidden" for="input_TrName" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" for="input_price">Цена за день (евро)</label>
+                                    <div class="controls">
+                                        <input id="price" name="price" class="input-xlarge texta" value="@ViewBag.Partner.Price" type="text" maxlength="200">
+                                        <label id="labelinput_price" class="error alert alert-error hidden" for="input_price" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" for="input_city">Свой город</label>
+                                    <div class="controls">
+                                        <input id="city" name="city" class="input-xlarge texta" type="text" value="@ViewBag.Partner.City" maxlength="200">
+                                        <label id="labelinput_city" class="error alert alert-error hidden" for="input_city" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" for="input_viezd">Страны выезда</label>
+                                    <div class="controls">
+                                        <input id="viezd" name="viezd" class="input-xlarge texta" type="text" value="@ViewBag.Partner.Viezd" maxlength="200">
+                                        <label id="labelinput_viezd" class="error alert alert-error hidden" for="input_viezd" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" for="input_phone">Телефон</label>
+                                    <div class="controls">
+                                        <input id="phone" name="phone" class="input-xlarge texta" value="@ViewBag.Partner.Phone" type="text" maxlength="200">
+                                        <label id="labelinput_phone" class="error alert alert-error hidden" for="input_phone" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" for="input_site">Сайт</label>
+                                    <div class="controls">
+                                        <input id="site" name="site" class="input-xlarge texta" type="text" value="@ViewBag.Partner.Site" maxlength="200">
+                                        <label id="labelinput_site" class="error alert alert-error hidden" for="input_site" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" for="input_email">Электронная почта</label>
+                                    <div class="controls">
+                                        <input id="email" name="email" class="input-xlarge texta" type="text" value="@ViewBag.Partner.Email" maxlength="200" required>
+                                        <label id="labelinput_email" class="error alert alert-error hidden" for="input_email" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" for="input_skype">Скайп</label>
+                                    <div class="controls">
+                                        <input id="skype" name="skype" class="input-xlarge texta" value="@ViewBag.Partner.Skype" type="text" maxlength="200">
+                                        <label id="labelinput_skype" class="error alert alert-error hidden" for="input_skype" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" for="input_facebook">facebook.com/</label>
+                                    <div class="controls">
+                                        <input id="facebook" name="facebook" class="input-xlarge texta" type="text" value="@ViewBag.Partner.Facebook" maxlength="200">
+                                        <label id="labelinput_facebook" class="error alert alert-error hidden" for="input_facebook" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" for="input_vk">vk.com/</label>
+                                    <div class="controls">
+                                        <input id="vk" name="vk" class="input-xlarge texta" type="text" value="@ViewBag.Partner.Vk" maxlength="200">
+                                        <label id="labelinput_vk" class="error alert alert-error hidden" for="input_vk" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+
+                                <div class="control-group" style="margin-bottom: 15px;">
+                                    <label class="control-label" for="textarea_shortText">Кратко о себе (до 300 символов)</label>
+                                    <div class="controls">
+                                        <textarea name="shortText" placeholder="" required>@ViewBag.Partner.ShortDescription</textarea>
+                                        <label id="labeltextarea_shortText" class="error alert alert-error hidden" for="textarea_shortText" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                @*<div class="control-group" style="margin-bottom: 15px; margin-left: 285px;">
+                                    <label>
+                                        Отображать профиль
+                                        <input style="width: 50px;" type="checkbox" name="isEnabled" @(ViewBag.Partner.IsEnabled == true ? "checked" : "") />
+                                    </label>
+                                </div>*@
+
+                                <button class="submit button-main button-small" type="submit" style="margin-left:355px;">Изменить</button>
+                                @*<br>*@
+                            </fieldset>
+                        </div>
+
+                        @*Вторая половина страницы*@
+                        <div class="span6" style="margin-left: 0px; padding-left: 30px;">
+
+                            <fieldset>
+
+                                <p class="contact-email" style="margin-top: 0px;">
+                                    <label>Картинка для закладки "партнеры". 370 x 278 px</label>
+                                    <input id="contact_email" type="file" name="file" />
+                                </p>
+                                <p class="contact-email">
+                                    <label>Аватарка пользователя или логотип компании. 200 x 200 px</label>
+                                    <input id="contact_email" type="file" name="file1" />
+                                </p>
+                                <p class="contact-email" style="margin-bottom: 25px;">
+                                    <label>Фоновая картинка в профиле. 1170 x 430 px</label>
+                                    <input id="contact_email" type="file" name="file2" />
+                                </p>
+
+                            </fieldset>
+
+                            <div class="contact-name">
+                                <p style="margin-bottom: 10px;"> О себе</p>
+                                <textarea id="textRed" name="longText">@ViewBag.Partner.Description</textarea>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+                @*<div style="margin-left: 50px; margin-bottom: 50px; ">
+                    <h3>Добавление в фотогалерею. 720 на 480 пикселей</h3>
+                    <form id="contact-form" class="contact-form" action="/Home/AddPartnerPhotos" method="POST" enctype="multipart/form-data">
+                        <p class="contact-email">
+                            <input id="contact_email" type="file" name="file" multiple />
+                        </p>
+                        <p class="contact-email">
+                            <input id="contact_email" type="text" placeholder="Video url" name="video" />
+                        </p>
+                        <button class="submit" type="submit">Добавить</button>
+                    </form>
+                    
+               
+                        @if (ViewBag.PartnerImages != null && ViewBag.PartnerImages.Count > 0)
+                        {
+                            <a class="project-name fancybox" style="margin-bottom: 15px;" href="/Home/DelPartnerAllPhoto">
+                                Удалить все фото
+                            </a>
+                        }
+                  
+
+                    <ul id="projects" style="margin-top: 20px;">
+                        @foreach (PartnersImage partnerImage in ViewBag.PartnerImages)
+                        {
+
+                            <li class="item-project span3" style="margin-left: 17px;">
+                                <div class="item-container animated-content fade_in">
+                                    <a class="hover-wrap fancybox" href="/Home/GetImagePartnerPhoto?id=@(partnerImage.Image + "&amp;p=1.jpg")" data-fancybox-group="gallery">
+                                        <img src="/Home/GetImagePartnerPhoto/@partnerImage.Image" width="400" height="300" /><div class="overlay"></div>
+                                        <i class="font-icon-plus-3"></i>
+                                    </a>
+                                    <p>@partnerImage.VideoUrl</p>
+                                    <a class="project-name fancybox" href="/Home/DelPartnerPhoto?id=@(partnerImage.id)">
+                                        Удалить
+                                    </a>
+                                </div>
+                            </li>
+
+                        }
+                    </ul>
+
+                </div>*@
+
+            </div>
+
+
+        </div>
+        <!-- End Contact Form -->
+    </div>
+</section>
+<!-- End Contact Section -->

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="D:\Львиный путь\1. Проекты\3. Бизнес\7. Свадьбы\2.2 КОД\ritaSiteUpdate\rita\obj\Release\Package\PackageTmp" />
+  <setAcl path="D:\Львиный путь\1. Проекты\3. Бизнес\7. Свадьбы\2.2 КОД\ritaSiteUpdate\rita\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="D:\Львиный путь\1. Проекты\3. Бизнес\7. Свадьбы\2.2 КОД\ritaSiteUpdate\rita\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <setAcl path="D:\Львиный путь\1. Проекты\3. Бизнес\7. Свадьбы\2.2 КОД\ritaSiteUpdate\rita\obj\Release\Package\PackageTmp\App_Data" setAclResourceType="Directory" setAclAccess="Write" />
+</sitemanifest>

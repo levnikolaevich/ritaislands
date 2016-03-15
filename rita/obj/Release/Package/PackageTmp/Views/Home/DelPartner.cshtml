@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "DelPartner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+<title>Удаление профиля - свадьба за границей | RitaIslands</title>
+
+<meta name="description" content="Подберите фотографа, видеографа, визажиста и других лучших специалистов прямо у нас на сайте!" />
+<meta property="og:url" content="http://ritaislands.ru/svadba-za-granicey/delpartner" />
+<meta property="og:title" content="Удаление профиля - свадьба за границей | RitaIslands" />
+<meta property="og:description" content="Вы уверены, что хотите уйти? Не забудьте оставить отзыв!" />
+<meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+<meta property="og:image" content="~/img/direct/Santorin.jpg" />
+<meta name="keywords" content="удаление профиля, свадебный видеограф, фотограф на свадьбу, визажист на свадьбу, дизайнер, свадьба за границей" />
+}
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span11 no-animation-effects" style="margin-left: 30px !important; background-color: #FFFFFF; width: 1170px; margin-top: 50px; padding-top: 10px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; box-shadow: #888888 1px 1px 2px 0px;">
+
+                <form id="contact-form" class="form-horizontal" action="/Home/DelPartner" method="POST" enctype="multipart/form-data">
+                    @*<input type="hidden" name="returnUrl" value="@ViewBag.Ret" />*@
+                    <div class="row margin-50">
+                        <div class="span12" style="border-bottom-width: 5px; margin-bottom: 15px; margin-top: 10px;">
+                            <h3 style="padding-left: 50px; margin-left: 70px;"><b>Удаление профиля</b></h3>
+                            <hr />
+                        </div>
+                        <div class="span6" style="width: 550px !important; ">
+
+                            <fieldset>
+
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" style="width: 100px;" for="input_password">Пароль</label>
+                                    <div class="controls">
+                                        <input id="password" name="oldpassword" class="input-xlarge texta" style="width: 410px;" value="" type="password" maxlength="200" required>
+                                        <label id="labelinput_password" class="error alert alert-error hidden" for="input_password" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                
+                                <button class="submit button-main button-small" type="submit" style="margin-left: 120px; height: 42px; padding: 7px;">Удалить</button>
+                                @*<br>*@
+                            </fieldset>
+                        </div>
+
+                        @*Вторая половина страницы*@
+                        <div class="span6" style="margin-left: 0px; padding-left: 30px;">
+
+
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+
+
+            </div>
+
+
+        </div>
+        <!-- End Contact Form -->
+    </div>
+</section>
+<!-- End Contact Section -->

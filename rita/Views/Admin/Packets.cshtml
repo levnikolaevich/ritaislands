@@ -1,0 +1,59 @@
+﻿@using rita.Models
+@{
+    ViewBag.Title = "Packets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+<div id="main">
+    <section id="title-page">
+        <div class="container pagize">
+            <div class="row">
+                <div class="span12 textaligncenter">
+                    <h3>Пакеты</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="content">
+        <section class="main-content large-padding shadow-off">
+            <div class="container">
+                <div class="row">
+                    <div class="span12 entry-content-archives">
+                        @foreach (Direction direction in ViewBag.List)
+                        {
+                            if (!direction.IsVisible)
+                            {
+                                continue;
+                            }
+                            <h3>@direction.Name</h3>
+
+                            <section class="widget widget_archives">
+                                @foreach (Places places in direction.Places)
+                                {
+                                    <div class="widget_title">
+                                        <h4>@places.Name (<span style="text-transform: lowercase">кол-во услуг: @places.PlaceService.Count()</span>) <a href="@Url.Action("AddPacket","Admin", new { id = places.Id })" style="font-size: 12px">Добавить пакет</a> / <a href="@Url.Action("PlaceService","Admin", new { id = places.Id })" style="font-size: 12px">Добавить услуги</a></h4>
+                                    </div>
+                                    <ul>
+                                        @foreach (Packet packet in places.Packet)
+                                        {
+                                            <li>@packet.Name (цена пакета: @((int)packet.Price); кол-во услуг: @packet.PacketService.Count()) <a href="@Url.Action("EditPacket","Admin", new { id = packet.Id })">Изменить</a> / <a href="@Url.Action("DelPacket","Admin", new { id = packet.Id })">Удалить</a></li>
+                                        }
+                                    </ul>
+                                    <br/>
+                                }
+                            </section>
+                            <br/>
+                            <br/>
+                            <br/>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+﻿@using rita.Models
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+<!-- Start Section Title -->
+<section style="border: 0px; height: 300px; background-position: center top; background-repeat: no-repeat; background-size: cover; background-image:url('@Url.Content("../../img/fon/UsFon.jpg")');" class="banner-image" id="title-page">
+    <div class="container pagize" style="padding: 96px; margin: 0px;">
+        <div class="row" style="margin-left: 0px;">
+            <div class="span12 textaligncenter levh1" style="padding: 0px; margin-left: 0px; margin-top: 13px;">
+                <h1>Изменение в партнере</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Section Ttile -->
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <br />
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span11 no-animation-effects" style="margin-left: 30px !important; background-color: #FFFFFF; width: 1170px; margin-right: 0px; margin-left: 0px; padding-top: 10px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; box-shadow: #888888 1px 1px 2px 0px;">
+
+           
+
+                <div style="margin-left: 30px;">
+                    <h3>Добавление в фотогалерею. 720 на 480 пикселей</h3>
+                    <form id="contact-form" class="contact-form" action="/Admin/AddPartnerPhoto" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="@ViewBag.Partner.Id" />
+                        <p class="contact-email">
+                            <input id="contact_email" type="file" name="file" multiple />
+                        </p>
+                        <p class="contact-email">
+                            <input id="contact_email" type="text" placeholder="Video url" name="video" />
+                        </p>
+                        <button class="submit" type="submit">Добавить</button>
+                    </form>
+
+                    <a class="project-name fancybox" style="margin-bottom: 15px; margin-left: 15px;" href="/Admin/DelPartnerAllPhoto?partnerId=@ViewBag.Partner.Id">
+                        Удалить все фото
+                    </a>
+
+                    <ul id="projects" style="">
+                        @foreach (PartnersImage partnerImage in ViewBag.PartnerImages)
+                        {
+
+                            <li class="item-project span3" style="margin-left: 17px;">
+                                <div class="item-container animated-content fade_in">
+                                    <a class="hover-wrap fancybox" href="/Home/GetImagePartnerPhoto?id=@(partnerImage.Image + "&amp;p=1.jpg")" data-fancybox-group="gallery">
+                                        <img src="/Home/GetImagePartnerPhoto/@partnerImage.Image" width="400" height="300" /><div class="overlay"></div>
+                                        <i class="font-icon-plus-3"></i>
+                                    </a>
+                                    <p>@partnerImage.VideoUrl</p>
+                                    <a class="project-name fancybox" href="/Admin/DelPartnerPhoto?id=@(partnerImage.id + "&partnerId=" + partnerImage.PartnerId)">
+                                        Удалить
+                                    </a>
+                                </div>
+                            </li>
+
+                        }
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- End Contact Form -->
+    </div>
+</section>
+<!-- End Contact Section -->

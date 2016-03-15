@@ -1,0 +1,37 @@
+﻿@using rita.Models
+@{
+    ViewBag.Title = "PlaceService";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title
+{
+    @Html.Partial("_title")
+}
+<div class="container">
+    <h2>@ViewBag.Place.Name</h2>
+    
+    <h3>Добавленные услуги</h3>
+    @foreach (PlaceService service in ViewBag.PlaceService)
+    {
+        <p>
+            @service.Service.Name @((int)service.Price) <a href="@Url.Action("DelPlaceService", "Admin", new { placeId = ViewBag.Place.Id, serviceId = service.Service.Id })">Удалить</a>
+        </p>
+    }
+
+    <br />
+    <br />
+
+    <h3>Доступные услуги</h3>
+    @foreach (Service service in ViewBag.Service)
+    {
+        <p>
+            <form action="@Url.Action("AddPlaceService", "Admin")" method="POST">
+                <input name="placeId" type="hidden" value="@ViewBag.Place.Id" />
+                <input name="serviceId" type="hidden" value="@service.Id" />
+                <input style="width: 50px;" name="price" type="text" value="" placeholder="Цена" />
+                @service.Name <button type="submit">Добавить</button>
+            </form>
+        </p>
+    }
+
+</div>

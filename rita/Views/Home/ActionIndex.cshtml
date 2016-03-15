@@ -1,0 +1,154 @@
+﻿@using rita.Models
+@{
+    ViewBag.Title = "ActionIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+
+    <title>@ViewBag.Actions.Name - акция - свадьба за границей | RitaIslands</title>
+
+    <meta name="description" content="@ViewBag.Actions.ShortDescription" />
+    <meta name="keywords" content="@ViewBag.Actions.Tag" />
+
+    <meta property="og:url" content="@Request.Url.AbsoluteUri" />
+    <meta property="og:title" content="@ViewBag.Actions.Name - акция - свадьба за границей | RitaIslands" />
+    <meta property="og:description" content="@ViewBag.Actions.ShortDescription" />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+}
+
+<div id="content">
+    <section id="blog" class="large-padding standard-blog" style="padding-bottom: 50px; padding-top: 50px;">
+        <div class="container">
+            <div class="row">
+
+                <div id="post-area" class="span12">
+
+
+                    <article class="post-358 post type-post status-publish format-standard hentry category-standard tag-sketch item-blog" id="post-358">
+
+                        <div class="post-thumb actionindex">
+
+
+
+                            <div class="entry-title">
+                                <h1>@ViewBag.Actions.Name</h1>
+                            </div>
+
+                            <table>
+
+                                @if (ViewBag.Actions.ActionTypeId == 3)
+                                {
+                                    <tr>
+                                        <td style="padding-left: 40px; padding-right: 25px; padding-top: 15px;">Получи в подарок <b>@ViewBag.Actions.Gift</b> !</td>
+                                    </tr>
+                                }
+                                else if (ViewBag.Actions.ActionTypeId == 1)
+                                {
+                                    <tr>
+                                        <td style="padding-left: 40px; padding-right: 25px; padding-top: 15px;">Получи скидку на <b>@Math.Round(ViewBag.Actions.Percent) %</b> !</td>
+                                    </tr>
+                                }
+                                else if (ViewBag.Actions.ActionTypeId == 2)
+                                {
+                                    <tr>
+                                        <td style="padding-left: 40px; padding-right: 25px; padding-top: 15px;">Получи скидку на <b>@Math.Round(ViewBag.Actions.Cost) рублей </b> !</td>
+                                    </tr>
+                                }
+
+                                <tr>
+                                    <td style="padding-left: 40px; padding-right: 25px;">
+                                        Распространяется на церемонии, организованные <b>с @ViewBag.Actions.DateFrom.ToString("dd.MM.yy", new System.Globalization.CultureInfo("ru-RU")) по @ViewBag.Actions.DateTo.ToString("dd.MM.yy", new System.Globalization.CultureInfo("ru-RU")) года</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 40px; padding-right: 25px; padding-bottom: 15px; ">Успей заключить контракт до <b>@ViewBag.Actions.ActionDateTo.ToString("dd.MM.yy", new System.Globalization.CultureInfo("ru-RU")) г</b></td>
+                                </tr>
+
+                            </table>
+
+
+
+                            <div class="entry-meta entry-header vcard" style="display: none;">
+
+                                <span class="updated">@ViewBag.Actions.CreationDate.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("ru-RU"))</span>
+                                <span class="fn">Ritaislands</span>
+                            </div>
+                            <div class="entry-content" style="text-align: justify; padding-left: 40px; padding-right: 40px; ">
+                                <p>@Html.Raw(ViewBag.Actions.Description)</p>
+                            </div>
+
+                            @*<p>Акция распространяется на:</p>*@
+
+                            @*<p style="margin: 5px;"></p>*@
+                            <table>
+                                <tr><td style="padding: 10px;"></tr>
+                                <tr><td style="padding-left: 40px; padding-right: 40px;"><b>Акция распространяется на</b></tr>
+                                @if (ViewBag.ActionDirectionCount > 0)
+                                {
+                                    <tr>
+                                        <td style="padding-left: 40px; padding-right: 40px;">
+                                            Направления:
+
+                                            <b>
+                                                @foreach (ActionDirection dir in ViewBag.Actions.ActionDirection)
+                                                {
+                                                    <a href="/home/index/@dir.Direction.TrName" style="color: #979292 !important; ">@(dir.Direction.Name + " / ")</a>
+                                                }
+                                            </b>
+
+                                        </td>
+                                    </tr>
+                                }
+
+                                @if (ViewBag.ActionPlaceCount > 0)
+                                {
+                                    <tr>
+                                        <td style="padding-left: 40px; padding-right: 40px;">
+                                            Площадки:
+
+                                            <b>
+                                                @foreach (ActionPlace dir in ViewBag.Actions.ActionPlace)
+                                                {
+                                                    <a href="/home/index/@dir.Places.TrName" style="color: #979292 !important; ">@(dir.Places.Name + " / ")</a>
+                                                }
+                                            </b>
+                                        </td>
+                                    </tr>
+                                }
+
+                                @if (ViewBag.ActionPackCount > 0)
+                                {
+                                    <tr>
+                                        <td style="padding-left: 40px; padding-right: 40px;">
+                                            Свадебные пакеты:
+
+                                            <b>
+                                                @foreach (ActionPack dir in ViewBag.Actions.ActionPack)
+                                                {
+                                                    @(dir.Pack.Name + " / ")
+                                                }
+                                            </b>
+                                        </td>
+                                    </tr>
+                                }
+                                
+                                <tr><td style="padding: 10px;"></tr>
+                            </table>
+                            
+                        </div>
+                    </article>
+
+                    @*<div class="separator2"></div>*@
+
+
+
+
+                </div>
+                <!-- End Container Span -->
+            </div>
+        </div>
+    </section>
+</div>

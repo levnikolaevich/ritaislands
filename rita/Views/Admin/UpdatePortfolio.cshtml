@@ -1,0 +1,141 @@
+﻿@{
+    ViewBag.Title = "UpdatePortfolio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+<!-- Start Section Title -->
+ <section style="border: 0px; height: 300px; background-position: center top; background-repeat: no-repeat; background-size: cover; background-image:url('@Url.Content("../../img/fon/UsFon.jpg")');" class="banner-image" id="title-page">
+        <div class="container pagize" style="padding: 96px; margin: 0px;";>
+            <div class="row" style="margin-left: 0px;">
+                <div class="span12 textaligncenter levh1" style="padding: 0px; margin-left: 0px; margin-top: 13px;">
+                <h1>Изменение в портфолио</h1>
+            </div>
+        </div>
+    </section>
+<!-- End Section Ttile -->
+
+
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <br/>
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span9">
+            
+                <form id="contact-form" class="contact-form" action="/Admin/UpdatePortfolio" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="@ViewBag.Portfolio.Id"/>
+                    
+                        <p>Название поста </p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Имя" value="@ViewBag.Portfolio.Name" name="name" />
+                    </p>
+                    
+                      <p>Теги</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Tags" value="@ViewBag.Portfolio.Tag" name="tag" />
+                    </p>
+                    
+                       <p>Номер направления</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="DirectionId" value="1" name="dir" />
+                    </p>
+                    
+
+                    <p class="contact-name">
+                        <label>Отображать <input style="width: 50px;" type="checkbox" name="vis" @(ViewBag.Portfolio.IsVisible == true ? "checked" : "")/></label>
+                    </p>
+                    
+                    <p class="contact-name">
+                        <textarea name="shortText" placeholder="Короткий текст для раздела блог">@ViewBag.Portfolio.ShortText</textarea>
+                    </p>
+                    
+                    <p class="contact-name">
+                        <textarea name="longText" placeholder="Короткий текст для раздела блог">@ViewBag.Portfolio.LongText</textarea>
+                    </p>
+                    
+                     <p> Картинки вставлять 800 X 600 px </p>
+                    <p>
+                        <textarea id="textRed" name="text">@ViewBag.Portfolio.Text</textarea>
+                    </p>
+
+                    <p class="contact-email">
+                        <label>Картинка 1.  По умолчанию. Обязательно указать.</label>
+                        <input id="contact_email" type="file" name="file" />
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 2.</label>
+                        <input id="contact_email" type="file" name="file1" />
+                        <label>Удалить <input style="width: 50px;" type="checkbox" name="filedel1" /></label>
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 3.</label>
+                        <input id="contact_email" type="file" name="file2" />
+                        <label>Удалить <input style="width: 50px;" type="checkbox" name="filedel2" /></label>
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 4.</label>
+                        <input id="contact_email" type="file" name="file3" />
+                        <label>Удалить <input style="width: 50px;" type="checkbox" name="filedel3" /></label>
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 5.</label>
+                        <input id="contact_email" type="file" name="file4" />
+                        <label>Удалить <input style="width: 50px;" type="checkbox" name="filedel4" /></label>
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 6.</label>
+                        <input id="contact_email" type="file" name="file5" />
+                        <label>Удалить <input style="width: 50px;" type="checkbox" name="filedel5" /></label>
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 7.</label>
+                        <input id="contact_email" type="file" name="file6" />
+                        <label>Удалить <input style="width: 50px;" type="checkbox" name="filedel6" /></label>
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 8.</label>
+                        <input id="contact_email" type="file" name="file7" />
+                        <label>Удалить <input style="width: 50px;" type="checkbox" name="filedel7" /></label>
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 9.</label>
+                        <input id="contact_email" type="file" name="file8" />
+                        <label>Удалить <input style="width: 50px;" type="checkbox" name="filedel8" /></label>
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка 10.</label>
+                        <input id="contact_email" type="file" name="file9" />
+                        <label>Удалить <input style="width: 50px;" type="checkbox" name="filedel9" /></label>
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка для главной страницы.</label>
+                        <input id="contact_email" type="file" name="smallFile" />
+                        <label>Удалить <input style="width: 50px;" type="checkbox" name="smallFiledel" /></label>
+                    </p>
+
+                    <button class="submit" type="submit">Изменить</button>
+                </form>
+             
+            </div>
+           
+            
+        </div>
+        <!-- End Contact Form -->
+	</div>
+</section>
+<!-- End Contact Section -->

@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "LogOn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    <title>Партнеры - вход в личный кабинет | RitaIslands</title>
+
+    <meta name="description" content="Вход в личный кабинет партнёра: для свадебных фотографов и видеооператоров, ведущих и других представителей свадебного бизнеса." />
+    <meta property="og:url" content="http://ritaislands.ru/svadba-za-granicey/logon" />
+    <meta property="og:title" content="Партнеры - вход в личный кабинет | RitaIslands" />
+    <meta property="og:description" content="Вход в личный кабинет партнёра: для свадебных фотографов и видеооператоров, ведущих и других представителей свадебного бизнеса." />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+    <meta name="keywords" content="вход в личный кабинет, свадебный фотограф, свадебный видеограф, свадьба за границей" />
+
+}
+
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span11 no-animation-effects" style="margin-left: 30px !important; background-color: #FFFFFF; width: 1170px; margin-top: 50px; padding-top: 10px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; box-shadow: #888888 1px 1px 2px 0px;">
+
+
+
+                <form id="contact-form" class="form-horizontal" action="/Home/LogOn" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="returnUrl" value="@ViewBag.Ret" />
+                    <div class="row margin-50">
+
+
+                        @if (ViewBag.ListError != null)
+                        {
+                            <div class="span12" style="border-bottom-width: 5px; margin-bottom: 0px; margin-top: 10px;">
+                                <h3 style="padding-left: 50px; margin-left: 70px;"><b>Вход в личный кабинет</b></h3>
+                                <hr />
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="span12" style="border-bottom-width: 5px; margin-bottom: 15px; margin-top: 10px;">
+                                <h3 style="padding-left: 50px; margin-left: 70px;"><b>Вход в личный кабинет</b></h3>
+                                <hr />
+                            </div>
+                        }
+
+
+                        <div class="span6" style="width: 550px !important; ">
+
+                            <fieldset @*style="margin-left: 30px !important;"*@>
+
+                                @if (ViewBag.ListError != null)
+                                {
+                                    <div class="span4 alert alert-warning" style="margin-left: 120px; margin-bottom: 5px; padding-bottom: 0px; padding-top: 0px; width: 373px;">
+                                        <p style="margin-bottom: 0px; margin-top: 0px;">@ViewBag.ListError</p>
+                                    </div>
+                                }
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" style="width: 100px;" for="input_email">E-mail</label>
+                                    <div class="controls">
+                                        <input id="email" name="email" class="input-xlarge texta" style="width: 410px;" value="" type="text" maxlength="200" required>
+                                        <label id="labelinput_email" class="error alert alert-error hidden" for="input_email" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="control-group" style="margin-bottom: 20px;">
+                                    <label class="control-label" style="width: 100px;" for="input_password">Пароль</label>
+                                    <div class="controls">
+                                        <input id="password" name="password" class="input-xlarge texta" style="width: 410px;" value="" type="password" maxlength="200" required>
+                                        <label id="labelinput_password" class="error alert alert-error hidden" for="input_password" style="margin-bottom: 0px; margin-top: 10px; width: 229px;"></label>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <a href="@Url.Action("Registration", "Home")" class="submit button-main button-small" style="margin-left: 120px; padding: 5px !important; color: #B2B2B6; border-color: #B2B2B6; background-color: white; ">Зарегистрироваться</a>
+                                <a href="@Url.Action("RecoveryPassword", "Home")" class="submit button-main button-small" style="margin-left: 0px; padding: 5px !important; color: #B2B2B6; border-color: #B2B2B6; background-color: white; ">Восстановить пароль</a>
+                                <button class="submit button-main button-small" type="submit" style="margin-left: 0px; height: 42px; padding: 5px;">Войти</button>
+                                @*<br>*@
+                            </fieldset>
+                        </div>
+
+                        @*Вторая половина страницы*@
+                        <div class="span6" style="margin-left: 0px; padding-left: 30px;">
+
+
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+
+
+            </div>
+
+
+        </div>
+        <!-- End Contact Form -->
+    </div>
+</section>
+<!-- End Contact Section -->

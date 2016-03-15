@@ -1,0 +1,191 @@
+﻿@using rita.Models
+@{
+    ViewBag.Title = "UpdatePlace";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+<!-- Start Section Title -->
+ <section style="border: 0px; height: 300px; background-position: center top; background-repeat: no-repeat; background-size: cover; background-image:url('@Url.Content("../../img/fon/UsFon.jpg")');" class="banner-image" id="title-page">
+        <div class="container pagize" style="padding: 96px; margin: 0px;";>
+            <div class="row" style="margin-left: 0px;">
+                <div class="span12 textaligncenter levh1" style="padding: 0px; margin-left: 0px; margin-top: 13px;">
+                <h1>Изменение в месте</h1>
+            </div>
+        </div>
+    </section>
+<!-- End Section Ttile -->
+
+
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <br/>
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span9">
+            
+                <form id="contact-form" class="contact-form" action="/Admin/UpdatePlace" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="@ViewBag.Partner.Id"/>
+                    
+                    <p>URL</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="" value="@ViewBag.Partner.TrName" name="trName" />
+                    </p>
+
+                    <p>Название</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Название" value="@ViewBag.Partner.Name" name="name" />
+                    </p>
+                    
+                    <p>Рейтинг</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="number" placeholder="Название" value="@ViewBag.Partner.Rate" name="rate" />
+                    </p>
+
+                    <p>Кол-во гостей</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Кол-во гостей" value="@ViewBag.Partner.CountGuests" name="countGuests" />
+                    </p>
+                    <p>Дни проведения</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Дни проведения" value="@ViewBag.Partner.DaysWedding" name="daysWedding" />
+                    </p>
+                    
+                    <p>Вид с площадки</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Вид с площадки" value="@ViewBag.Partner.PlaceView" name="PlaceView" />
+                    </p>
+
+                    <p>Банкет</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Банкет" value="@ViewBag.Partner.Banket" name="Banket" />
+                    </p>
+                    
+                    <p>Ближайший город</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Ближайший город" value="@ViewBag.Partner.City" name="City" />
+                    </p>
+                    
+                    <p>Ссылка на карту Google</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Ссылка на карту Google" value="@ViewBag.Partner.Map" name="Map" />
+                    </p>
+                    
+                    <p>Ссылка на панораму</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Ссылка на панораму" value="@ViewBag.Partner.Panorama" name="Panorama" />
+                    </p>
+                    
+                    
+                    <p>Тип места <br/>
+                        1. Место проведения церемонии<br/>
+                        2. Ресторан
+                    </p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Тип места" value="@ViewBag.Partner.PlaceTypeId" name="Type" />
+                    </p>
+
+
+                    
+                    @foreach (rita.Models.Direction pr in ViewBag.PartnerCategories)
+                    {
+                        <p>
+                            @pr.Id @pr.Name
+                        </p>
+                    }
+                    
+                    
+                    <p>Выбери направление</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="id направления" value="@ViewBag.Partner.DirectionId" name="dirId" />
+                    </p>
+                    
+                    <p>Короткое описание на страницу "услуги"</p>
+                    <p class="contact-name">
+                        <textarea name="shortText">@ViewBag.Partner.ShortDescription</textarea>
+                    </p>
+                    
+                    <p>Описание</p>
+                    <p>
+                        <textarea id="textRed" name="text">@ViewBag.Partner.Description</textarea>
+                    </p>
+
+                    <p class="contact-email">
+                       <label>Картинка отображается в профиле "места". 1170 x 430</label>
+                        <input id="contact_email" type="file" name="file" />
+                    </p>
+
+                    <p class="contact-email">
+                              <label>Картинка отображается в закладке "услуги". 640 x 480</label>
+                        <input id="contact_email" type="file" name="file1" />
+                    </p>
+                    
+                    <p class="contact-name">
+                        <label>Наличие пляжа<input style="width: 50px;" type="checkbox" name="isBeach" @(ViewBag.Partner.IsBeach == true ? "checked" : "") /></label>
+                    </p>
+
+                    <p class="contact-name">
+                        <label>Отображать профиль места<input style="width: 50px;" type="checkbox" name="isEnabled" @(ViewBag.Partner.IsEnabled == true ? "checked" : "")/></label>
+                    </p>
+
+                    <button class="submit" type="submit">Изменить</button>
+                </form>
+                <br/> <br/>
+                <h3>Добавление в фотогалерею. 720 на 480 пикселей</h3>
+                
+                <form id="contact-form" class="contact-form" action="/Admin/AddPlacePhoto" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="@ViewBag.Partner.Id"/>
+                    <p class="contact-email">
+                        <input id="contact_email" type="file" name="file" multiple />
+                    </p>
+                    <p class="contact-email">
+                        <input id="contact_email" type="text" placeholder="Video url" name="video" />
+                    </p>
+                    <button class="submit" type="submit">Добавить</button>
+                </form>
+                
+                <a class="project-name fancybox" href="/Admin/DelPlaceAllPhoto?partnerId=@ViewBag.Partner.Id">
+                    Удалить все фото
+                </a>
+                
+                <ul id="projects" style="">
+                @foreach (PlacesImage partnerImage in ViewBag.PartnerImages)
+                {
+                    
+                        <li class="item-project span3" style="margin-left: 17px;">
+                            <div class="item-container animated-content fade_in">
+                                <a class="hover-wrap fancybox" href="/Home/GetImagePlacePhoto?id=@(partnerImage.Image + "&amp;p=1.jpg")" data-fancybox-group="gallery">
+                                    <img src="/Home/GetImagePlacePhoto/@partnerImage.Image" width="400" height="300" /><div class="overlay"></div>
+                                    <i class="font-icon-plus-3"></i>
+                                </a>
+                                <p>@partnerImage.VideoUrl</p>
+                                <a class="project-name fancybox" href="/Admin/DelPlacePhoto?id=@(partnerImage.Id + "&partnerId=" + partnerImage.PlaceId)" >
+                                    Удалить
+                                </a>
+                            </div>
+                        </li>
+                    
+                }
+                </ul>
+            </div>
+           
+            
+        </div>
+        <!-- End Contact Form -->
+	</div>
+</section>
+<!-- End Contact Section -->

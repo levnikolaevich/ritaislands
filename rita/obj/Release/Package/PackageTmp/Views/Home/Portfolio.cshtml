@@ -1,0 +1,157 @@
+﻿@using System.Text
+@{
+    ViewBag.Title = "Portfolio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    <title>Портфолио - свадьба за границей | RitaIslands</title>
+
+    <meta name="description" content="В портфолио Вы можете прочитать о свадебных церемоних за границей, организованными компанией Ritaislands. Пишите нам, и мы устроим Вам незабываемый праздник!" />
+
+    <meta property="og:url" content="http://ritaislands.ru/svadba-za-granicey/portfolio" />
+    <meta property="og:title" content="Портфолио - свадьба за границей | RitaIslands" />
+    <meta property="og:description" content="В портфолио Вы можете прочитать о свадебных церемоних за границей, организованными компанией Ritaislands. Пишите нам, и мы устроим Вам незабываемый праздник!" />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+    <meta name="keywords" content="свадебное портфолио, свадьба за границей, истории о свадьбах, свадебные фотографии" />
+}
+
+    <div id="content">
+        <section id="blog" class="large-padding standard-blog" style="padding-bottom: 10px; padding-top: 50px;">
+            <div class="container">
+                <div class="row">
+
+                    <div id="post-area" class="span12">
+
+                        @foreach (rita.Models.Portfolio portfolio in ViewBag.List)
+                        {
+                            <article class="post-358 post type-post status-publish format-standard hentry category-standard tag-sketch item-blog" id="post-358">
+
+                                <div class="post-thumb">
+                                    <a  href="@Url.Action("PortFolioIndex", "svadba-za-granicey", new { id = portfolio.TranslitName })" class="hover-wrap">
+                                        <img src="@Url.Action("GetImagePortfolio", "svadba-za-granicey", new { id = portfolio.Image })" class="attachment-post-thumbnail wp-post-image" alt="@portfolio.Name" />
+                                        <div class="overlay"></div>
+                                        <i class="font-icon-plus-3"></i>
+                                    </a>
+                                </div>
+
+                                <h2 class="entry-title">
+                                    <a href="@Url.Action("PortFolioIndex", "svadba-za-granicey", new { id = portfolio.TranslitName })" title="@portfolio.Name">@portfolio.Name</a>
+                                </h2>
+
+                                <div class="entry-meta entry-header">
+                                    <span class="updated">@portfolio.CreationDate.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("ru-RU"))</span>
+                                </div>
+                                <div class="vcard"><span class="fn" style="display: none;">Ritaislands</span></div>
+                                <div class="entry-content">
+                                    <p>@portfolio.LongText</p>
+                                    <p><a href="@Url.Action("PortFolioIndex", "svadba-za-granicey", new { id = portfolio.TranslitName })" class="more-link">Читать дальше&#8230;</a></p>
+                                    @if (rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Portfolio))
+                                    {
+                                        <a class="more-link" href="@Url.Action("UpdatePortfolio","Admin", new {id = portfolio.Id})">Изменить</a>
+                                        <a class="more-link" href="@Url.Action("DelPortfolio","Admin", new {id = portfolio.Id})">Удалить</a>
+                                    }
+                                </div>
+                            </article>
+
+                            <div class="separator2"></div>
+
+                        }
+
+
+                    </div>
+                    <!-- End Container Span -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+@if(ViewBag.PageCount > 1)
+{
+    double sum = 0;
+    System.Text.StringBuilder html = new StringBuilder(); 
+
+    if (ViewBag.SelectPage > 1)
+    {
+        html.Append(@"
+        <li><a href=""" + Url.Action("Portfolio", "svadba-za-granicey", new {page = 1}) + @"""> &lt;&lt; </a></li>
+        <li><a href=""" + Url.Action("Portfolio", "svadba-za-granicey", new {page = ViewBag.SelectPage - 1}) + @"""> &lt; </a></li>");
+    }
+    for (int i = 1; i <= ViewBag.PageCount; i++)
+    {
+        if (i == ViewBag.SelectPage)
+        {
+            html.Append(@"<li><a style=""background-color: #F5F5F5;"" href=""" + Url.Action("Portfolio", "svadba-za-granicey", new {page = i}) + @""">" + i + @"</a></li>");
+            if (ViewBag.SelectPage >= 5 && (ViewBag.SelectPage + 1) != ViewBag.PageCount)
+            {
+                if (ViewBag.SelectPage != ViewBag.PageCount)
+                {
+                    html.Append(@"<li><span style=""background-color: #F5F5F5; color: #323A45;"" href="""">...</span></li>");
+                }
+            }
+        }
+        else if (i == ViewBag.PageCount)
+        {
+            html.Append(@"<li><a href=""" + Url.Action("Portfolio", "svadba-za-granicey", new {page = i}) + @""">" + i + @"</a></li>");
+        }
+        else
+        {
+            if (i > 4)
+            {
+                if (i == 5)
+                {
+                    html.Append(@"<li><span style=""background-color: #F5F5F5; color: #323A45;"" href="""">...</span></li>");
+                }
+                continue;
+            }
+            else
+            {
+                html.Append(@"<li><a href=""" + Url.Action("Portfolio", "svadba-za-granicey", new {page = i}) + @""">" + i + @"</a></li>");
+            }
+        }
+
+    }
+    if (ViewBag.PageCount > ViewBag.SelectPage)
+    {
+        html.Append(@"<li><a href=""" + Url.Action("Portfolio", "svadba-za-granicey", new {page = ViewBag.SelectPage + 1}) + @"""> &gt; </a></li>
+        <li><a href=""" + Url.Action("Portfolio", "svadba-za-granicey", new {page = ViewBag.PageCount }) + @"""> &gt;&gt; </a></li>");
+    }
+
+    string Input = html.ToString();
+    string search = "<li>";
+    int length = search.Length;
+    int howmanytimes = Input.Length - length;
+    int result = 0;
+    for (int index = 0; index < howmanytimes; index++)
+    {
+        string theSubString = Input.Substring(index, length);
+        if (theSubString.ToLower() == search.ToLower())
+        {
+            result++;
+        }
+    }
+
+    sum = result*50 + 40;
+    int pad = 20;
+    if (ViewBag.SelectPage == 1)
+    {
+        pad = 50;
+    }
+    if (ViewBag.SelectPage > 1)
+    {
+        pad = 40;
+    }
+                
+    <section class="container" style="padding-bottom: 35px; ">
+        <div class="pagination pagination-large" style="width: @((int)sum)px; margin: 0px auto; padding-left: @(pad)px;">
+            <ul>
+                
+                @Html.Raw(html.ToString())
+            
+            </ul>
+        </div>
+    </section>
+}

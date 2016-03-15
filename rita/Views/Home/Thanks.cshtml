@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "thanks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    <title>Спасибо - свадьба за границей | RitaIslands</title>
+  
+    <meta name="description" content="Спасибо, что обратились к нам! Мы свяжемся с вами в течение суток! Мы организуем лучшую свадебную церемонию за границей!" />
+
+    <meta property="og:url" content="http://ritaislands.ru/svadba-za-granicey/thanks" />
+    <meta property="og:title" content="Спасибо - свадьба за границей | RitaIslands" />
+    <meta property="og:description" content="Спасибо, что обратились к нам! Мы свяжемся с вами в течение суток! Мы организуем лучшую свадебную церемонию за границей!" />
+
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+    <meta name="keywords" content="страница благодарности, свадьба за границей, организация свадебных церемоний" />
+
+}
+
+
+    <div class="container">
+        <div  class="row" style="margin-top: 50px; margin-bottom: 50px;">
+            <div class="span12" >
+                
+                @*<p style="text-align: center;"><strong>Спасибо за то, что обратились к нам! Мы свяжемся с Вами в течение 24 часов.</strong>  </p> 
+                <p style="text-align: center; color: red;"><strong>Если нет - требуйте скидку 50% на организацию свадьбы!</strong></p>*@
+                
+                <img src="~/img/Thanks.jpg" alt="Спасибо за заказ свадьбы за границей"/>
+
+                <p style="text-align: center; margin-top: 30px;">
+                   <a href="@Url.Action("Main", "Home")" class="button-main button-large">Продолжить подбор свадебной церемонии</a>
+                </p>
+                
+
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,520 @@
+﻿@using rita.Models
+@{
+    ViewBag.Title = "PlaceIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section title
+{
+    <title>@ViewBag.Portfolio.PlaceType.Name @ViewBag.Portfolio.Name - @ViewBag.Portfolio.Direction.Name | RitaIslands</title>
+
+    <meta name="description" content="@ViewBag.Portfolio.ShortDescription" />
+    <meta property="og:url" content="@Request.Url.AbsoluteUri" />
+    <meta property="og:title" content="@ViewBag.Portfolio.Name - @ViewBag.Portfolio.Direction.Name | RitaIslands" />
+    <meta property="og:description" content="@ViewBag.Portfolio.ShortDescription" />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="@Url.Action("GetImagePlace", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image }, this.Request.Url.Scheme)" />
+    <meta name="keywords" content="ресторан, площадка для свадебной церемонии за границей, свадебные пакеты, свадебный калькулятор" />
+    <link rel="image_src" href="@Url.Action("GetImagePlace", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image }, this.Request.Url.Scheme)" />
+}
+
+<div id="content">
+    <section id="blog" class="large-padding standard-blog" style="padding-bottom: 10px; padding-top: 50px;">
+        <div class="container">
+            <div class="row">
+
+                <div id="post-area" class="span12">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (Session["User"] == null)
+                        {
+                            Session["User"] = new BdData().GetUser(User.Identity.Name);
+                        }
+                        rita.Models.User user = (rita.Models.User)Session["User"];
+
+                        if (user.PartnerId == null)
+                        {
+                            <div class="row" style="margin-bottom: 6px !important; margin-left: 0px;">
+                                
+                                            <div class="span6 alert alert-warning" style="margin-bottom: 0px !important; margin-left: 0px !important; padding: 3px !important; padding-left: 40px !important; width: 590px !important;"><b>Вы администратор и можете вносить изменения на сайте</b></div>
+                                            <div class="span3" style="margin-left: 10px; float: right; width: 250px !important;"><a href="@Url.Action("DelPlace", "Admin", new { id = ViewBag.Portfolio.Id })" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 60px; padding-right: 60px;">Удалить место</a></div>
+                                            <div class="span3" style="margin-left: 10px; float: right; width: 250px !important;"><a href="@Url.Action("UpdatePlace", "Admin", new { id = ViewBag.Portfolio.Id })" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 40px; padding-right: 40px; margin-right: 0px;">Редактировать место</a></div>
+
+                            </div>
+
+                        }
+                        
+
+                    }
+
+                    <article class="post-358 post type-post status-publish format-standard hentry category-standard tag-sketch item-blog" style="margin-bottom: 15px; border: 1px solid #E6E6E6;" id="post-358">
+
+                        <div class="post-thumb">
+
+                            <img src="@Url.Action("GetImagePlace", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image })" class="attachment-post-thumbnail wp-post-image" alt="" />
+                            <div class="overlay"></div>
+                            <i class="font-icon-plus-3"></i>
+
+                        </div>
+
+                        <div class="row" style="padding-bottom: 0px; padding-left: 30px; padding-right: 30px; padding-top: 20px; padding-bottom: 20px; margin: 0px;">
+
+                            <div class="span12 placeindexh1 entry-title" style="margin-left: 0px; padding-left: 0px;  padding-top: 0px; padding-bottom: 0px;">
+                                <h1>
+                                    @if (@ViewBag.Portfolio.PlaceType.Id == 2)
+                                    {@ViewBag.Portfolio.PlaceType.Name} @ViewBag.Portfolio.Name / @ViewBag.Portfolio.Direction.Name
+                                </h1>
+                                @*<div class="pluso" data-background="transparent" data-options="small,square,line,horizontal,counter,theme=06" data-services="vkontakte,odnoklassniki,facebook,twitter,google,surfingbird" style="margin-left: 6px !important; margin-top: 6px !important; " data-user="1900733168"></div>*@
+
+                            </div>
+
+                            <div class="entry-meta entry-header" style="display: none;">
+                                <span class="updated">@ViewBag.Portfolio.CreationDate.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("ru-RU"))</span>
+                            </div>
+                            <div class="vcard"><span class="fn" style="display: none;">Ritaislands</span></div>
+
+                        </div>
+                        <div style="font-weight: 500; font-size: 15px; color: #AEAEAE; line-height: 24px; display: block; border-top: 1px solid #E6E6E6; border-bottom: 1px solid #E6E6E6; padding: 20px 30px;">
+
+                            @*Вывод характеристик для площадки*@
+                            @if (ViewBag.Portfolio.PlaceTypeId == 1)
+                            {
+                                <table style="width: 1110px;">
+                                    <tr>
+                                        <td>Город:  @ViewBag.Portfolio.City</td>
+
+                                        @if (ViewBag.Portfolio.CountGuests == 0)
+                                        {
+                                            <td>Кол-во гостей: неограниченно</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Кол-во гостей: @ViewBag.Portfolio.CountGuests</td>
+                                        }
+
+
+                                        @if (ViewBag.Portfolio.Panorama != "")
+                                        {
+                                            <td><a style="color: #AEAEAE;" href="@ViewBag.Portfolio.Panorama" target="_blank" rel="nofollow">Панорамный 3D-вид</a></td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <p style="color: #AEAEAE; margin: 0px;">Без панорамы</p>
+                                            </td>
+                                        }
+
+
+
+                                    </tr>
+                                    <tr>
+                                        <td>Банкет: @ViewBag.Portfolio.Banket</td>
+                                        <td>Дни: @ViewBag.Portfolio.DaysWedding</td>
+                                        <td>Вид: @ViewBag.Portfolio.PlaceView</td>
+
+
+                                    </tr>
+
+                                </table>
+                            }
+
+                            @*Вывод характеристик для ресторана*@
+                            @if (ViewBag.Portfolio.PlaceTypeId == 2)
+                            {
+                                <table style="width: 1110px;">
+                                    <tr>
+                                        <td>РЕСТОРАН</td>
+                                        @if (ViewBag.Portfolio.CountGuests == 0)
+                                        {
+                                            <td>Кол-во гостей: неограниченно</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Кол-во гостей: @ViewBag.Portfolio.CountGuests</td>
+                                        }
+                                        <td>Вид: @ViewBag.Portfolio.PlaceView</td>
+
+
+
+                                    </tr>
+                                    <tr>
+                                        <td>Город:  @ViewBag.Portfolio.City</td>
+                                        <td>Дни: @ViewBag.Portfolio.DaysWedding</td>
+
+                                        @if (ViewBag.Portfolio.Panorama != "")
+                                        {
+                                            <td><a style="color: #AEAEAE;" href="@ViewBag.Portfolio.Panorama" target="_blank" rel="nofollow">Панорамный вид</a></td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <p style="color: #AEAEAE; margin: 0px; ">Без панорамы</p>
+                                            </td>
+                                        }
+
+
+                                    </tr>
+
+                                </table>
+                            }
+
+
+
+                        </div>
+
+                        <div class="entry-content" style="text-align: justify !important;">
+                            <p>@Html.Raw(ViewBag.Portfolio.Description)</p>
+                        </div>
+
+                        <!-- Стрелки по бокам -->
+                        <div class="navigation-projects">
+                            @if (ViewBag.prevplace != null && ViewBag.nextplace != null)
+                            {
+                                <div id="go-to-back" class="prev" style="display: none;"><a href="@Url.Action("PlaceIndex", "svadba-za-granicey", new {id = ViewBag.prevplace.TrName})" rel="prev" title="@ViewBag.prevplace.PlaceType.Name @ViewBag.prevplace.Name "><i class=" font-icon-arrow-left-simple-round"></i></a></div>
+                                <div id="go-to-next" class="next" style="display: none;"><a href="@Url.Action("PlaceIndex", "svadba-za-granicey", new {id = ViewBag.nextplace.TrName})" rel="next" title="@ViewBag.nextplace.PlaceType.Name @ViewBag.nextplace.Name"><i class="font-icon-arrow-right-simple-round"></i></a></div>
+                            }
+
+                        </div>
+
+
+
+                        <div id="accordionArea-244021085101" class="accordion" style="margin-bottom: 0px;">
+                            @if (rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Places) && ViewBag.Portfolio.PlaceTypeId == 1)
+                            {
+
+                                <a class="more-link" href="@Url.Action("AddPack", "Admin", new { id = ViewBag.Portfolio.Id })">Добавить свадебный пакет</a>
+
+                                <br />
+                            }
+
+                            @if (ViewBag.Packs != null && ViewBag.Packs.Count > 0)
+                            {
+                                <div style="margin-bottom: 0px;" class="accordion-group">
+                                    <div style="background: #E9F0F4; border-top: 1px solid #E6E6E6; border-bottom: 1px solid #E6E6E6; padding-top: 0px; padding-left: 0px;" class="accordion-heading accordionize">
+                                        <a class="accordion-toggle collapsed" href="#acc-1-244021085101" data-parent="#accordionArea-244021085101" data-toggle="collapse">
+                                            <span class="font-icon-arrow-down-simple-thin-round" style="right: 0px !important; left: 10px !important;"></span>
+                                            <h3 style="margin-left: 15px; text-transform: none; margin-bottom: 0px;">Свадебные пакеты<span style="color: red; font-size: 16px; margin-right: 15px; margin-top: -15px;">кликни тут!</span></h3>
+
+
+                                        </a>
+                                    </div>
+                                    
+                                    <div style="height: 0px;" id="acc-1-244021085101" class="accordion-body collapse">
+                                        <div class="accordion-inner">
+                                            <div style="padding: 0px;">
+                                                <div class="row" style="margin-left: 0px;">
+                                                    <div style="display: block; padding: 20px 0px; margin-top: 0px; padding-top: 0px;">
+                                                        <div class="tabbable">
+                                                            <ul class="nav nav-tabs" id="myTab-8612599688">
+                                                                @{
+                                string active = "active";
+                                foreach (Pack pack in ViewBag.Packs)
+                                {
+                                    string href = "#tab" + @pack.Id;
+                                    <li class="@active"><a data-toggle="tab" href="@href">@pack.Name @(pack.Price > 0 ? " - " + pack.Places.Direction.Сurrency + " " + (int)pack.Price : "")</a></li>
+                                    active = "";
+
+
+                                }
+                                                                }
+                                                            </ul>
+                                                            <form id="formUn" class="" method="POST" action="@Url.Action("SendUslugi", "svadba-za-granicey")" style="margin: 0px; padding: 0px;">
+                                                                <input id="ch" type="hidden" name="ch" value="" />
+                                                                <input id="txt" type="hidden" name="txt" value="" />
+                                                                <input id="rd" type="hidden" name="rd" value="" />
+                                                                <input id="ssum" type="hidden" name="ssum" value="" />
+                                                            </form>
+                                                            <div class="tab-content">
+                                                                @{
+                                string active2 = "active";
+
+                                foreach (Pack pack in ViewBag.Packs)
+                                {
+                                    string href = "tab" + @pack.Id;
+                                    <div id="@href" class="tab-pane fade @active2 in">
+                                        @Html.Raw(pack.Description)
+
+                                        @if (rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Places))
+                                        {
+                                            <a class="more-link" href="@Url.Action("UpdatePack", "Admin", new { id = pack.Id })">Изменить</a>
+                                            <a class="more-link" href="@Url.Action("DelPack", "Admin", new { id = pack.Id })">Удалить</a>
+                                        }
+
+                                    </div>
+                                        active2 = "";
+                                }
+
+
+
+                                                                }
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+
+
+                            @if (ViewBag.List.Count > 0)
+                            {
+                                <div style="margin-bottom: 0px;" class="accordion-group">
+                                    <div style="background: #E9F0F4; border-top: 1px solid #E6E6E6; border-bottom: 1px solid #E6E6E6; padding-top: 0px; padding-left: 0px;" class="accordion-heading accordionize">
+                                        <a class="accordion-toggle collapsed" href="#acc-1-2440210851012" data-parent="#accordionArea-2440210851012" data-toggle="collapse">
+                                            <span class="font-icon-arrow-down-simple-thin-round" style="right: 0px !important; left: 10px !important;"></span>
+                                            <h3 style="margin-left: 15px; text-transform: none; margin-bottom: 0px;">@ViewBag.CategoryName</h3>
+
+                                        </a>
+                                    </div>
+                                    <div style="height: 0px; background-color: #F2F5F8; margin-left: 2px; margin-right: 2px;" id="acc-1-2440210851012" class="accordion-body collapse">
+                                        <div class="accordion-inner" style="background-color: #F2F5F8; padding-left: 0px; padding-right: 0px;">
+                                            <div style="padding: 0px;">
+                                                <div class="row" style="margin-left: 0px; background-color: #F2F5F8;">
+
+                                                    <div class="span12" style="margin-left: 28px; width: 1130px;">
+                                                        <div class="row masonry-blog no-sortable" style="margin-top: 0px;">
+                                                            <ul id="latest-posts" class="masonry-area">
+                                                                @foreach (rita.Models.Places partner in ViewBag.List)
+                                                                {
+                                                                    if (partner.IsEnabled == false && !rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Places))
+                                                                    {
+                                                                        continue;
+                                                                    }
+                                                                    <li class="item-blog span4" style="width: 350px;">
+                                                                        <div class="item-container-post animated-content little_bounce">
+                                                                            <article class="post">
+                                                                                <div class="post-thumb">
+                                                                                    <a title="" href="@Url.Action("PlaceIndex", "svadba-za-granicey", new { id = partner.TrName })" class="hover-wrap">
+                                                                                        <img src="@Url.Action("GetImagePlace", "svadba-za-granicey", new { id = partner.SmallImage })" width="800" height="600" alt="" />
+                                                                                        <div class="overlay"></div>
+                                                                                        <i class="font-icon-plus-3"></i>
+                                                                                    </a>
+                                                                                </div>
+                                                                                <h2 class="entry-title">
+                                                                                    <a href="@Url.Action("PlaceIndex", "svadba-za-granicey", new { id = partner.TrName })" title="">@partner.Name</a>
+                                                                                </h2>
+                                                                                <div class="entry-meta entry-header">
+                                                                                    @if (partner.PlaceType.Id == 2)
+                                                                                    {
+                                                                                        <span class="post">
+                                                                                            @partner.PlaceType.Name @(partner.Pack.Where(x => x.Price != null).Count() > 0 ? "/ от €" + ((int)partner.Pack.Where(x => x.Price != null).Min(x => x.Price)).ToString() : "") @*&nbsp; / &nbsp;*@
+
+                                                                                        </span>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <span class="post">
+                                                                                            @(partner.Pack.Where(x => x.Price != null).Count() > 0 ? "Свадебные пакеты от: €" + ((int)partner.Pack.Where(x => x.Price != null).Min(x => x.Price)).ToString() : "Свадебные пакеты в разработке") @*&nbsp; / &nbsp;*@
+
+                                                                                        </span>
+                                                                                    }
+
+                                                                                </div>
+                                                                                <div class="entry-content">
+                                                                                    <p>@partner.ShortDescription</p>
+                                                                                </div>
+                                                                                @if (rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Places))
+                                                                                {
+                                                                                    <a class="more-link" href="@Url.Action("UpdatePlace", "Admin", new { id = partner.Id })">Изменить</a>
+                                                                                    <a class="more-link" href="@Url.Action("DelPlace", "Admin", new { id = partner.Id })">Удалить</a>
+                                                                                }
+                                                                            </article>
+                                                                        </div>
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+
+
+
+                        @if (ViewBag.PartnerImages != null && ViewBag.PartnerImages.Count > 0)
+                        {
+                            <div style="padding-top: 15px;">
+                                <h3 style="margin-left: 17px;">Фотогалерея</h3>
+                            </div>
+                            <div id="portfolio-projects" class=" grid-portfolio" style="padding-top: 0px;">
+                                <ul id="projects" style="">
+                                    @foreach (PlacesImage partnerImage in ViewBag.PartnerImages)
+                                    {
+                                        string strLink = "/svadba-za-granicey/GetImagePlacePhoto?id=" + partnerImage.Image + "&amp;p=1.jpg";
+                                        if (!string.IsNullOrEmpty(partnerImage.VideoUrl))
+                                        {
+                                            strLink = partnerImage.VideoUrl;
+                                        }
+                                        <li class="item-project span3" style="margin-left: 17px;">
+                                            <div class="item-container animated-content fade_in">
+                                                <a class="hover-wrap fancybox fancybox-media" href="@strLink" data-fancybox-group="gallery2">
+                                                    <img src="@Url.Action("GetImagePlacePhoto", "svadba-za-granicey", new { id = partnerImage.Image })" alt="@ViewBag.Portfolio.Name" width="400" height="300" /><div class="overlay"></div>
+                                                    @if (!string.IsNullOrEmpty(partnerImage.VideoUrl))
+                                                    {
+                                                        <i class="icon-play-sign" style="opacity: 1;"></i>
+                                                    }
+                                                </a>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+
+
+
+                        @if (!string.IsNullOrEmpty(ViewBag.Portfolio.Map))
+                        {
+                            <div style="padding-top: -5px;">
+                                <h3 style="margin-left: 17px;">@ViewBag.Portfolio.Name на карте</h3>
+                            </div>
+                            <iframe src="@ViewBag.Portfolio.Map" width="1140" height="300" style="border:2px; border-color: black; margin-left: 15px; margin-right: 15px; margin-bottom: 10px;"></iframe>
+                        }
+
+                    </article>
+
+                    <div class="separator2" style="margin-top: 10px; width: 80px; margin-bottom: 60px;">
+                        <div class="follow-us">
+                            <p style="margin-bottom: 0px; font-size: 12px; line-height: 16px; padding-top: 9px; margin-left: 2px; font-weight: 700;">Поделиться:</p>
+                            <a style="margin-left: 20px; margin-right: 8px;" onclick="window.open(this.href, 'Опубликовать ссылку во Вконтакте', 'width=800,height=300'); return false" title="Опубликовать ссылку во Вконтакте" href="http://vk.com/share.php?url=@Request.Url.AbsoluteUri"><i class="icon-vk"></i></a>
+                            <a onclick="window.open(this.href, 'Опубликовать ссылку в Facebook', 'width=640,height=436,toolbar=0,status=0'); return false" title="Опубликовать ссылку в Facebook" href="https://www.facebook.com/sharer/sharer.php?u=@Request.Url.AbsoluteUri"><i class="icon-facebook"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End Container Span -->
+            </div>
+        </div>
+
+        <!-- Comments -->
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                        var disqus_shortname = 'ritaislands';
+                        (function () {
+                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                </div>
+            </div>
+        </div>
+        <!-- End Comments -->
+    </section>
+</div>
+
+@section js
+{
+    <script>
+
+        $('input[type="text"]').val('');
+
+        function show() {
+            //alert($('input[type="checkbox"]:checked').serialize());
+            $('#ch').val($('input[type="checkbox"]:checked').serialize());
+            $('#txt').val($('input[type="text"]').serialize());
+            $('#rd').val($('input[type="radio"]:checked').serialize());
+            $('#ssum').val($('#sum').html());
+            $('#formUn').submit();
+        }
+
+        function refresh() {
+            $('#sum').text(0);
+
+            $('input[type="text"]').each(function () {
+                var sum = $('#sum').html();
+                var inp = $(this).val();
+                if (inp == '') {
+                    inp = 0;
+                }
+                var cena = $(this).attr('suma');
+                var s = parseInt(inp) * parseInt(cena) + parseInt(sum);
+                $('#sum').text(s);
+            });
+
+            $('input[type="checkbox"]:checked').each(function () {
+                var sum = $('#sum').html();
+                var res = 0;
+                if ($(this).is(':checked')) {
+                    res = parseInt(sum) + parseInt($(this).val());
+                } else {
+                    res = parseInt(sum) - parseInt($(this).val());
+                }
+                $('#sum').text(res);
+            });
+
+            $('input[type="radio"]:checked').each(function () {
+                var sum = $('#sum').html();
+                var res = 0;
+                if ($(this).is(':checked')) {
+                    res = parseInt(sum) + parseInt($(this).val());
+                } else {
+                    res = parseInt(sum) - parseInt($(this).val());
+                }
+                $('#sum').text(res);
+            });
+
+            $('#sum2').text($('#sum').html());
+        }
+
+        $('input[type="checkbox"]:checked').removeAttr('checked');
+
+        $('input[type="text"]').keydown(function (event) {
+
+            if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+                // Allow: Ctrl+A
+                (event.keyCode == 65 && event.ctrlKey === true) ||
+                // Allow: home, end, left, right
+                (event.keyCode >= 35 && event.keyCode <= 39)) {
+                // let it happen, don't do anything
+                return;
+            } else {
+                // Ensure that it is a number and stop the keypress
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+                    event.preventDefault();
+                }
+            }
+
+            if ($(this).val().length > 2) {
+                event.preventDefault();
+            }
+
+        });
+
+        $('input[type="text"]').keyup(function () {
+            refresh();
+        });
+
+
+        $('input[type="checkbox"]').click(function () {
+            refresh();
+        });
+
+        $('input[type="radio"]').click(function () {
+            refresh();
+        });
+
+        refresh();
+
+    </script>
+}

@@ -1,0 +1,177 @@
+﻿@{
+    ViewBag.Title = "PortFolioIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    <title>@ViewBag.Portfolio.Name | RitaIslands</title>
+
+
+    <meta name="description" content="@ViewBag.Portfolio.ShortText" />
+    <meta name="keywords" content="@ViewBag.Portfolio.Tag" />
+
+    <meta property="og:url" content="@Request.Url.AbsoluteUri" />
+    <meta property="og:title" content="@ViewBag.Portfolio.Name  | RitaIslands" />
+    <meta property="og:description" content="@ViewBag.Portfolio.ShortText" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="@Url.Action("GetImageSanta","svadba-za-granicey", new {id = ViewBag.Portfolio.Image})" />
+
+    <link rel="image_src" href="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image })" />
+}
+
+<section id="slider-header">
+    <div class="">
+        <div class="flexslider">
+            <ul class="slides">
+                <li data-thumb="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image })">
+                    <img src="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image })" />
+                </li>
+                @if (ViewBag.Portfolio.Image1 != null)
+                {
+                    <li data-thumb="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image1 })">
+                        <img src="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image1 })" />
+                    </li>
+                }
+                @if (ViewBag.Portfolio.Image2 != null)
+                {
+                    <li data-thumb="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image2 })">
+                        <img src="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image2 })" />
+                    </li>
+                }
+                @if (ViewBag.Portfolio.Image3 != null)
+                {
+                    <li data-thumb="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image3 })">
+                        <img src="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image3 })" />
+                    </li>
+                }
+                @if (ViewBag.Portfolio.Image4 != null)
+                {
+                    <li data-thumb="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image4 })">
+                        <img src="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image4 })" />
+                    </li>
+                }
+                @if (ViewBag.Portfolio.Image5 != null)
+                {
+                    <li data-thumb="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image5 })">
+                        <img src="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image5 })" />
+                    </li>
+                }
+                @if (ViewBag.Portfolio.Image6 != null)
+                {
+                    <li data-thumb="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image6 })">
+                        <img src="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image6 })" />
+                    </li>
+                }
+                @if (ViewBag.Portfolio.Image7 != null)
+                {
+                    <li data-thumb="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image7 })">
+                        <img src="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image7 })" />
+                    </li>
+                }
+                @if (ViewBag.Portfolio.Image8 != null)
+                {
+                    <li data-thumb="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image8 })">
+                        <img src="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image8 })" />
+                    </li>
+                }
+                @if (ViewBag.Portfolio.Image9 != null)
+                {
+                    <li data-thumb="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image9 })">
+                        <img src="@Url.Action("GetImageSanta", "svadba-za-granicey", new { id = ViewBag.Portfolio.Image9 })" />
+                    </li>
+                }
+            </ul>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+<section style="background-color: #f88a79;" class="banner-image" id="title-page">
+    <div class="container pagize" style="padding-top: 50px; padding-bottom: 60px;">
+        <div class="row">
+            <div class="span12 textaligncenter hentry">
+                <div class="entry-title"><h1>@ViewBag.Portfolio.Name</h1></div>
+                <div class="entry-meta entry-header">
+                    <span class="updated">@ViewBag.Portfolio.CreationDate.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("ru-RU"))</span>
+                </div>
+                <div class="vcard"><span class="fn" style="display: none;">Ritaislands</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="content" style="padding: 5px; margin-top: 20px;">
+    <!-- Start Blog Single Page -->
+    <section id="blog" class="container single-post">
+        <div class="row">
+            <div class="span2"></div>
+            <div class="span8">
+                <!-- Start Post -->
+
+
+                <article class="post">
+
+                    <div class="entry-content">
+
+
+                        <p>@Html.Raw(ViewBag.Portfolio.Text)</p>
+
+                    </div>
+
+                    <div class="navigation-projects">
+                        @if (ViewBag.prevpost != null && ViewBag.nextpost != null)
+                        {
+                            <div id="go-to-back" class="prev" style="display: none;"><a href="@Url.Action("BlogIndex", "svadba-za-granicey", new {id = ViewBag.prevpost.TranslitName})" rel="prev" title="@ViewBag.prevpost.Name"><i class="font-icon-arrow-left-simple-round"></i></a></div>
+                            <div id="go-to-next" class="next" style="display: none;"><a href="@Url.Action("BlogIndex", "svadba-za-granicey", new {id = ViewBag.nextpost.TranslitName})" rel="next" title="@ViewBag.nextpost.Name"><i class="font-icon-arrow-right-simple-round"></i></a></div>
+                        }
+                    </div>
+
+                    <div class="separator2" style="margin-top: 10px; width: 80px;">
+                        <div class="follow-us">
+                            <p style="margin-bottom: 0px; font-size: 12px; line-height: 16px; padding-top: 9px; margin-left: 2px; font-weight: 700;">Поделиться:</p>
+                            <a style="margin-left: 20px; margin-right: 8px;" onclick="window.open(this.href, 'Опубликовать ссылку во Вконтакте', 'width=800,height=300'); return false" title="Опубликовать ссылку во Вконтакте" href="http://vk.com/share.php?url=@Request.Url.AbsoluteUri"><i class="icon-vk"></i></a>
+                            <a onclick="window.open(this.href, 'Опубликовать ссылку в Facebook', 'width=640,height=436,toolbar=0,status=0'); return false" title="Опубликовать ссылку в Facebook" href="https://www.facebook.com/sharer/sharer.php?u=@Request.Url.AbsoluteUri"><i class="icon-facebook"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+
+
+
+                <!-- End Post -->
+
+            </div>
+            <div class="span2"></div>
+        </div>
+
+
+        <!-- Comments -->
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                        var disqus_shortname = 'ritaislands'; // required: replace example with your forum shortname
+
+                        /* * * DON'T EDIT BELOW THIS LINE * * */
+                        (function () {
+                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                </div>
+            </div>
+        </div>
+        <!-- End Comments -->
+    </section>
+    <!-- End Blog Single Page -->
+</div>

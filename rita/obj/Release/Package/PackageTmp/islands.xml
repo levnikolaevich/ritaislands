@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<site xmlns="http://interactive-answers.webmaster.yandex.ru/schemas/site/0.0.1"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://interactive-answers.webmaster.yandex.ru/schemas/site/0.0.1  http://interactive-answers.webmaster.yandex.ru/schemas/site-0.0.1.xsd">
+
+
+    <rootUrl>http://ritaislands.ru</rootUrl>
+    <title>Подбор свадебной церемонии за границей</title>
+    
+	<description>Организация официальных, символических свадебных церемоний, венчаний в церкви, романтических туров, медового месяца. Страны: Доминикана, Санторини (Греция), Крит (Греция), Пьемонт (Италия), Чехия.
+    </description>
+	
+    <metricaCounterId>21623986</metricaCounterId>
+
+<!--Корневой элемент структуры адресов.-->
+<resource>
+
+    <!--Вторая часть URL — домен сайта, всегда один и тот же.-->
+    <fixed name="ritaislands.ru/home/index">
+
+      <!--Каталог верхнего уровня, фильтр по модели автомобиля.-->
+       <!--<placeholder name="country" />-->
+
+        <!--Вложенный каталог, фильтр по поколению модели.-->
+        <!--<placeholder name="generation" />-->
+      <!--</placeholder>-->
+  
+    </fixed>
+
+</resource>
+
+<filters>
+<!-- Значение по умолчанию задано атрибутом default.-->
+<dropDown default="svadba_na_santorini" >
+  <!--Подпись к выпадающему списку задана в значении атрибута caption.-->
+  <description caption="Страна">
+
+    <!--Имя устанавливаемого фильтром CGI-параметра задано в атрибуте name.-->
+    <setParameter name="country" />
+  </description>
+
+  <!--Каждое значение выпадающего списка оформляется как отдельный элемент dropDownValue.
+   Хотя бы один такой элемент обязателен.
+   Значением фильтра является значение атрибута key для выбранного пункта списка.-->
+  <dropDownValue key="svadba_na_santorini" caption="Санторини"/>
+  <dropDownValue key="svadba_v_italy" caption="Пьемонт (Италия)" />
+  <dropDownValue key="svadba_v_dominicana" caption="Доминикана" />
+</dropDown>
+</filters>
+
+</site>

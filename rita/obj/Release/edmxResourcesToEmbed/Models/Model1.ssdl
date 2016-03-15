@@ -1,0 +1,1607 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="user1109194_bdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ActionDirection">
+    <Key>
+      <PropertyRef Name="ActionId" />
+      <PropertyRef Name="DirectionId" />
+    </Key>
+    <Property Name="ActionId" Type="int" Nullable="false" />
+    <Property Name="DirectionId" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActionPack">
+    <Key>
+      <PropertyRef Name="ActionId" />
+      <PropertyRef Name="PackId" />
+    </Key>
+    <Property Name="ActionId" Type="int" Nullable="false" />
+    <Property Name="PackId" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActionPartner">
+    <Key>
+      <PropertyRef Name="ActionId" />
+      <PropertyRef Name="PartnerId" />
+    </Key>
+    <Property Name="ActionId" Type="int" Nullable="false" />
+    <Property Name="PartnerId" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActionPlace">
+    <Key>
+      <PropertyRef Name="ActionId" />
+      <PropertyRef Name="PlaceId" />
+    </Key>
+    <Property Name="ActionId" Type="int" Nullable="false" />
+    <Property Name="PlaceId" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Actions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="DateTo" Type="date" Nullable="false" />
+    <Property Name="DateFrom" Type="date" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ActionTypeId" Type="int" Nullable="false" />
+    <Property Name="ImageId" Type="int" />
+    <Property Name="Percent" Type="money" />
+    <Property Name="Cost" Type="money" />
+    <Property Name="Gift" Type="nvarchar(max)" />
+    <Property Name="IsVisible" Type="bit" Nullable="false" />
+    <Property Name="ActionDateTo" Type="date" Nullable="false" />
+    <Property Name="ShortDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rate" Type="int" />
+    <Property Name="TrName" Type="nvarchar" MaxLength="400" Nullable="false" />
+    <Property Name="Tag" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ActionType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cookie">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="StartPointUrl" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartPointController" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="StartPointAction" Type="nvarchar" MaxLength="350" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CookieLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Url" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="Controller" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="Action" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="Ip" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="CookieId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KursRub" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Client" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="AvaId" Type="int" Nullable="false" />
+    <Property Name="VK" Type="nvarchar(max)" />
+    <Property Name="FB" Type="nvarchar(max)" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreationDate" Type="date" Nullable="false" />
+    <Property Name="Portfolio" Type="nvarchar(max)" />
+    <Property Name="IsVisibled" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreationDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Packet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="PlaceId" Type="int" Nullable="false" />
+    <Property Name="SortNumberTab" Type="int" />
+    <Property Name="CreationDate" Type="int" Nullable="false" />
+    <Property Name="Economy" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PacketService">
+    <Key>
+      <PropertyRef Name="PacketId" />
+      <PropertyRef Name="ServiceId" />
+    </Key>
+    <Property Name="PacketId" Type="int" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
+    <Property Name="Count" Type="int" />
+  </EntityType>
+  <EntityType Name="PartnerCategorys">
+    <Key>
+      <PropertyRef Name="PartnerId" />
+      <PropertyRef Name="PartnerCategoryId" />
+    </Key>
+    <Property Name="PartnerId" Type="int" Nullable="false" />
+    <Property Name="PartnerCategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PartnersRating">
+    <Key>
+      <PropertyRef Name="PartnersId" />
+      <PropertyRef Name="Date" />
+    </Key>
+    <Property Name="PartnersId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Permission">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlaceService">
+    <Key>
+      <PropertyRef Name="PlaceId" />
+      <PropertyRef Name="ServiceId" />
+    </Key>
+    <Property Name="PlaceId" Type="int" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolePermission">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="PermissionId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="PermissionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ServiceTypeId" Type="int" Nullable="false" />
+    <Property Name="ServiceCategoryId" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServiceCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServiceType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UrlRecoveryPassword">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="DateEnd" Type="datetime" Nullable="false" />
+    <Property Name="Ip" Type="nvarchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="PartnerId" Type="int" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Wedding">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TrName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Image" Type="int" />
+    <Property Name="Avatar" Type="int" />
+    <Property Name="City" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsEnabled" Type="bit" Nullable="false" />
+    <Property Name="ImageProfile" Type="int" />
+    <Property Name="Moderated" Type="int" />
+    <Property Name="PlacesId" Type="int" />
+  </EntityType>
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ShortText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Image" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="LongText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Image2" Type="int" />
+    <Property Name="Image3" Type="int" />
+    <Property Name="Image4" Type="int" />
+    <Property Name="Image5" Type="int" />
+    <Property Name="Image6" Type="int" />
+    <Property Name="Image7" Type="int" />
+    <Property Name="Image8" Type="int" />
+    <Property Name="Image9" Type="int" />
+    <Property Name="Image1" Type="int" />
+    <Property Name="TranslitName" Type="nvarchar" MaxLength="450" Nullable="false" />
+    <Property Name="SmallImage" Type="int" />
+    <Property Name="Tag" Type="nvarchar(max)" />
+    <Property Name="IsVisible" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Direction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="TrName" Type="nvarchar" MaxLength="400" Nullable="false" />
+    <Property Name="UrlImg" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="UrlVideo" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="IsVisible" Type="bit" Nullable="false" />
+    <Property Name="Сurrency" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="ShortDescription" Type="nvarchar" MaxLength="1000" />
+    <Property Name="KeyWords" Type="nvarchar" MaxLength="500" />
+    <Property Name="Rate" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="date" Nullable="false" />
+    <Property Name="SeasonDateStart" Type="date" />
+    <Property Name="SeasonDateEnd" Type="date" />
+  </EntityType>
+  <EntityType Name="Gallery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Data" Type="varbinary(max)" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="DirectionId" Type="int" Nullable="false" />
+    <Property Name="ImageId" Type="int" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Data" Type="varbinary(max)" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="OtKuda" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Logs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MainImages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Image" Type="varbinary(max)" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="WhiteText" Type="nvarchar" MaxLength="500" />
+    <Property Name="RedText" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Pack">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="money" />
+    <Property Name="PlaceId" Type="int" Nullable="false" />
+    <Property Name="SortNumberTab" Type="int" />
+    <Property Name="CreationDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Partner_old">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TrName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Image" Type="varbinary(max)" />
+    <Property Name="Avatar" Type="varbinary(max)" />
+    <Property Name="City" Type="nvarchar" MaxLength="250" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Profession" Type="nvarchar" MaxLength="250" />
+    <Property Name="Viezd" Type="nvarchar" MaxLength="250" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="250" />
+    <Property Name="Site" Type="nvarchar" MaxLength="250" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" />
+    <Property Name="Skype" Type="nvarchar" MaxLength="250" />
+    <Property Name="Facebook" Type="nvarchar" MaxLength="500" />
+    <Property Name="Vk" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsEnabled" Type="bit" Nullable="false" />
+    <Property Name="ImageProfile" Type="varbinary(max)" />
+    <Property Name="Rate" Type="int" Nullable="false" />
+    <Property Name="Price" Type="money" />
+  </EntityType>
+  <EntityType Name="PartnerCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="TrName" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Partners">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TrName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Image" Type="int" />
+    <Property Name="Avatar" Type="int" />
+    <Property Name="City" Type="nvarchar" MaxLength="250" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Profession" Type="nvarchar" MaxLength="250" />
+    <Property Name="Viezd" Type="nvarchar" MaxLength="250" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="250" />
+    <Property Name="Site" Type="nvarchar" MaxLength="250" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" />
+    <Property Name="Skype" Type="nvarchar" MaxLength="250" />
+    <Property Name="Facebook" Type="nvarchar" MaxLength="500" />
+    <Property Name="Vk" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsEnabled" Type="bit" Nullable="false" />
+    <Property Name="ImageProfile" Type="int" />
+    <Property Name="Rate" Type="int" Nullable="false" />
+    <Property Name="Price" Type="money" />
+    <Property Name="Moderated" Type="int" />
+    <Property Name="Rating" Type="int" />
+  </EntityType>
+  <EntityType Name="PartnersImage">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PartnerId" Type="int" Nullable="false" />
+    <Property Name="Image" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="VideoUrl" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Places">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DirectionId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="ShortDescription" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CountGuests" Type="int" />
+    <Property Name="DaysWedding" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="SmallImage" Type="int" Nullable="false" />
+    <Property Name="Image" Type="int" Nullable="false" />
+    <Property Name="TrName" Type="nvarchar" MaxLength="450" Nullable="false" />
+    <Property Name="Rate" Type="int" Nullable="false" />
+    <Property Name="IsEnabled" Type="bit" Nullable="false" />
+    <Property Name="PlaceView" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="Panorama" Type="nvarchar" MaxLength="500" />
+    <Property Name="Map" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Banket" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlaceTypeId" Type="int" Nullable="false" />
+    <Property Name="IsBeach" Type="bit" />
+  </EntityType>
+  <EntityType Name="PlacesImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlaceId" Type="int" Nullable="false" />
+    <Property Name="Image" Type="int" Nullable="false" />
+    <Property Name="VideoUrl" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlaceType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Portfolio">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ShortText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Image" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="LongText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Image2" Type="int" />
+    <Property Name="Image3" Type="int" />
+    <Property Name="Image4" Type="int" />
+    <Property Name="Image5" Type="int" />
+    <Property Name="Image6" Type="int" />
+    <Property Name="Image7" Type="int" />
+    <Property Name="Image8" Type="int" />
+    <Property Name="Image9" Type="int" />
+    <Property Name="Image1" Type="int" />
+    <Property Name="TranslitName" Type="nvarchar" MaxLength="450" Nullable="false" />
+    <Property Name="DirectionId" Type="int" Nullable="false" />
+    <Property Name="SmallImage" Type="int" />
+    <Property Name="Tag" Type="nvarchar(max)" />
+    <Property Name="IsVisible" Type="bit" Nullable="false" />
+    <Property Name="PartnerId" Type="int" />
+    <Property Name="WedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Slider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HTML" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DirectionId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ActionDirection_0">
+    <End Role="Actions" Type="Self.Actions" Multiplicity="1" />
+    <End Role="ActionDirection" Type="Self.ActionDirection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActionDirection">
+        <PropertyRef Name="ActionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActionDirection_1">
+    <End Role="Direction" Type="Self.Direction" Multiplicity="1" />
+    <End Role="ActionDirection" Type="Self.ActionDirection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Direction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActionDirection">
+        <PropertyRef Name="DirectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActionPack_0">
+    <End Role="Actions" Type="Self.Actions" Multiplicity="1" />
+    <End Role="ActionPack" Type="Self.ActionPack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActionPack">
+        <PropertyRef Name="ActionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActionPack_1">
+    <End Role="Pack" Type="Self.Pack" Multiplicity="1" />
+    <End Role="ActionPack" Type="Self.ActionPack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pack">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActionPack">
+        <PropertyRef Name="PackId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActionPartner_0">
+    <End Role="Actions" Type="Self.Actions" Multiplicity="1" />
+    <End Role="ActionPartner" Type="Self.ActionPartner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActionPartner">
+        <PropertyRef Name="ActionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActionPartner_1">
+    <End Role="Partners" Type="Self.Partners" Multiplicity="1" />
+    <End Role="ActionPartner" Type="Self.ActionPartner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActionPartner">
+        <PropertyRef Name="PartnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActionPlace_0">
+    <End Role="Actions" Type="Self.Actions" Multiplicity="1" />
+    <End Role="ActionPlace" Type="Self.ActionPlace" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActionPlace">
+        <PropertyRef Name="ActionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActionPlace_1">
+    <End Role="Places" Type="Self.Places" Multiplicity="1" />
+    <End Role="ActionPlace" Type="Self.ActionPlace" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActionPlace">
+        <PropertyRef Name="PlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Actions_0">
+    <End Role="ActionType" Type="Self.ActionType" Multiplicity="1" />
+    <End Role="Actions" Type="Self.Actions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ActionType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Actions">
+        <PropertyRef Name="ActionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Actions_1">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Actions" Type="Self.Actions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Actions">
+        <PropertyRef Name="ImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blog_0">
+    <End Role="Image" Type="Self.Image" Multiplicity="1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="Image" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blog_1">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="Image2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blog_10">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="SmallImage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blog_2">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="Image3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blog_3">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="Image4" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blog_4">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="Image5" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blog_5">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="Image6" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blog_6">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="Image7" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blog_7">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="Image8" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blog_8">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="Image9" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blog_9">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="Image1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cookie_0">
+    <End Role="User" Type="Self.User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cookie" Type="Self.Cookie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cookie">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CookieLog_0">
+    <End Role="Cookie" Type="Self.Cookie" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CookieLog" Type="Self.CookieLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cookie">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CookieLog">
+        <PropertyRef Name="CookieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Direction_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Direction" Type="Self.Direction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Direction">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gallery_Direction">
+    <End Role="Direction" Type="Self.Direction" Multiplicity="1" />
+    <End Role="Gallery" Type="Self.Gallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Direction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gallery">
+        <PropertyRef Name="DirectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pack_0">
+    <End Role="Places" Type="Self.Places" Multiplicity="1" />
+    <End Role="Pack" Type="Self.Pack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pack">
+        <PropertyRef Name="PlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Packet_0">
+    <End Role="Places" Type="Self.Places" Multiplicity="1" />
+    <End Role="Packet" Type="Self.Packet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Packet">
+        <PropertyRef Name="PlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PacketService_0">
+    <End Role="Packet" Type="Self.Packet" Multiplicity="1" />
+    <End Role="PacketService" Type="Self.PacketService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Packet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PacketService">
+        <PropertyRef Name="PacketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PacketService_1">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="PacketService" Type="Self.PacketService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PacketService">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartnerCategorys_011">
+    <End Role="Partners" Type="Self.Partners" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PartnerCategorys" Type="Self.PartnerCategorys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartnerCategorys">
+        <PropertyRef Name="PartnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartnerCategorys_1">
+    <End Role="PartnerCategory" Type="Self.PartnerCategory" Multiplicity="1" />
+    <End Role="PartnerCategorys" Type="Self.PartnerCategorys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartnerCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartnerCategorys">
+        <PropertyRef Name="PartnerCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partners_0">
+    <End Role="PartnerCategory" Type="Self.PartnerCategory" Multiplicity="1" />
+    <End Role="Partners" Type="Self.Partners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartnerCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Partners">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partners_1">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Partners" Type="Self.Partners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Partners">
+        <PropertyRef Name="Image" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partners_2">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Partners" Type="Self.Partners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Partners">
+        <PropertyRef Name="Avatar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partners_3">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Partners" Type="Self.Partners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Partners">
+        <PropertyRef Name="ImageProfile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartnersRating_0">
+    <End Role="Partners" Type="Self.Partners" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PartnersRating" Type="Self.PartnersRating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PartnersRating">
+        <PropertyRef Name="PartnersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Places_0">
+    <End Role="Direction" Type="Self.Direction" Multiplicity="1" />
+    <End Role="Places" Type="Self.Places" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Direction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Places">
+        <PropertyRef Name="DirectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Places_1">
+    <End Role="Image" Type="Self.Image" Multiplicity="1" />
+    <End Role="Places" Type="Self.Places" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Places">
+        <PropertyRef Name="SmallImage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Places_2">
+    <End Role="Image" Type="Self.Image" Multiplicity="1" />
+    <End Role="Places" Type="Self.Places" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Places">
+        <PropertyRef Name="Image" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Places_3">
+    <End Role="PlaceType" Type="Self.PlaceType" Multiplicity="1" />
+    <End Role="Places" Type="Self.Places" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlaceType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Places">
+        <PropertyRef Name="PlaceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlaceService_0">
+    <End Role="Places" Type="Self.Places" Multiplicity="1" />
+    <End Role="PlaceService" Type="Self.PlaceService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlaceService">
+        <PropertyRef Name="PlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlaceService_1">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="PlaceService" Type="Self.PlaceService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlaceService">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Portfolio_0">
+    <End Role="Direction" Type="Self.Direction" Multiplicity="1" />
+    <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Direction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Portfolio">
+        <PropertyRef Name="DirectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Portfolio_1">
+    <End Role="Image" Type="Self.Image" Multiplicity="1" />
+    <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Portfolio">
+        <PropertyRef Name="Image" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Portfolio_10">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Portfolio">
+        <PropertyRef Name="Image1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Portfolio_11">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Portfolio">
+        <PropertyRef Name="SmallImage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Portfolio_12">
+    <End Role="Partner_old" Type="Self.Partner_old" Multiplicity="0..1" />
+    <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partner_old">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Portfolio">
+        <PropertyRef Name="PartnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Portfolio_2">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Portfolio">
+        <PropertyRef Name="Image2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Portfolio_3">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Portfolio">
+        <PropertyRef Name="Image3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Portfolio_4">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Portfolio">
+        <PropertyRef Name="Image4" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Portfolio_5">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Portfolio">
+        <PropertyRef Name="Image5" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Portfolio_6">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Portfolio">
+        <PropertyRef Name="Image6" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Portfolio_7">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Portfolio">
+        <PropertyRef Name="Image7" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Portfolio_8">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Portfolio">
+        <PropertyRef Name="Image8" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Portfolio_9">
+    <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+    <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Portfolio">
+        <PropertyRef Name="Image9" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePermission_0">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="RolePermission" Type="Self.RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolePermission">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePermission_1">
+    <End Role="Permission" Type="Self.Permission" Multiplicity="1" />
+    <End Role="RolePermission" Type="Self.RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permission">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolePermission">
+        <PropertyRef Name="PermissionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Service_0">
+    <End Role="ServiceType" Type="Self.ServiceType" Multiplicity="1" />
+    <End Role="Service" Type="Self.Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="ServiceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Service_1">
+    <End Role="ServiceCategory" Type="Self.ServiceCategory" Multiplicity="1" />
+    <End Role="Service" Type="Self.Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="ServiceCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Slider_Direction">
+    <End Role="Direction" Type="Self.Direction" Multiplicity="1" />
+    <End Role="Slider" Type="Self.Slider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Direction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Slider">
+        <PropertyRef Name="DirectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_0">
+    <End Role="Partners" Type="Self.Partners" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="PartnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_0">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_1">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Wedding_0">
+    <End Role="Places" Type="Self.Places" Multiplicity="0..1" />
+    <End Role="Wedding" Type="Self.Wedding" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Wedding">
+        <PropertyRef Name="PlacesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="MoveToBlob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="MoveToBlob2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="MoveToBlob3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Replace_HOME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="user1109194_bdModelStoreContainer">
+    <EntitySet Name="ActionDirection" EntityType="Self.ActionDirection" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ActionPack" EntityType="Self.ActionPack" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ActionPartner" EntityType="Self.ActionPartner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ActionPlace" EntityType="Self.ActionPlace" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Actions" EntityType="Self.Actions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ActionType" EntityType="Self.ActionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cookie" EntityType="Self.Cookie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CookieLog" EntityType="Self.CookieLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Packet" EntityType="Self.Packet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PacketService" EntityType="Self.PacketService" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartnerCategorys" EntityType="Self.PartnerCategorys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartnersRating" EntityType="Self.PartnersRating" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlaceService" EntityType="Self.PlaceService" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolePermission" EntityType="Self.RolePermission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceCategory" EntityType="Self.ServiceCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceType" EntityType="Self.ServiceType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UrlRecoveryPassword" EntityType="Self.UrlRecoveryPassword" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Wedding" EntityType="Self.Wedding" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Blog" EntityType="Self.Blog" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="Direction" EntityType="Self.Direction" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="Gallery" EntityType="Self.Gallery" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="Image" EntityType="Self.Image" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="Logs" EntityType="Self.Logs" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="MainImages" EntityType="Self.MainImages" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="Pack" EntityType="Self.Pack" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="Partner_old" EntityType="Self.Partner_old" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="PartnerCategory" EntityType="Self.PartnerCategory" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="Partners" EntityType="Self.Partners" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="PartnersImage" EntityType="Self.PartnersImage" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="Places" EntityType="Self.Places" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="PlacesImage" EntityType="Self.PlacesImage" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="PlaceType" EntityType="Self.PlaceType" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="Portfolio" EntityType="Self.Portfolio" Schema="user1109194_coolsr" store:Type="Tables" />
+    <EntitySet Name="Slider" EntityType="Self.Slider" Schema="user1109194_coolsr" store:Type="Tables" />
+    <AssociationSet Name="FK_ActionDirection_0" Association="Self.FK_ActionDirection_0">
+      <End Role="Actions" EntitySet="Actions" />
+      <End Role="ActionDirection" EntitySet="ActionDirection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActionDirection_1" Association="Self.FK_ActionDirection_1">
+      <End Role="Direction" EntitySet="Direction" />
+      <End Role="ActionDirection" EntitySet="ActionDirection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActionPack_0" Association="Self.FK_ActionPack_0">
+      <End Role="Actions" EntitySet="Actions" />
+      <End Role="ActionPack" EntitySet="ActionPack" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActionPack_1" Association="Self.FK_ActionPack_1">
+      <End Role="Pack" EntitySet="Pack" />
+      <End Role="ActionPack" EntitySet="ActionPack" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActionPartner_0" Association="Self.FK_ActionPartner_0">
+      <End Role="Actions" EntitySet="Actions" />
+      <End Role="ActionPartner" EntitySet="ActionPartner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActionPartner_1" Association="Self.FK_ActionPartner_1">
+      <End Role="Partners" EntitySet="Partners" />
+      <End Role="ActionPartner" EntitySet="ActionPartner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActionPlace_0" Association="Self.FK_ActionPlace_0">
+      <End Role="Actions" EntitySet="Actions" />
+      <End Role="ActionPlace" EntitySet="ActionPlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActionPlace_1" Association="Self.FK_ActionPlace_1">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="ActionPlace" EntitySet="ActionPlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Actions_0" Association="Self.FK_Actions_0">
+      <End Role="ActionType" EntitySet="ActionType" />
+      <End Role="Actions" EntitySet="Actions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Actions_1" Association="Self.FK_Actions_1">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Actions" EntitySet="Actions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blog_0" Association="Self.FK_Blog_0">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blog_1" Association="Self.FK_Blog_1">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blog_10" Association="Self.FK_Blog_10">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blog_2" Association="Self.FK_Blog_2">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blog_3" Association="Self.FK_Blog_3">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blog_4" Association="Self.FK_Blog_4">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blog_5" Association="Self.FK_Blog_5">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blog_6" Association="Self.FK_Blog_6">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blog_7" Association="Self.FK_Blog_7">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blog_8" Association="Self.FK_Blog_8">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blog_9" Association="Self.FK_Blog_9">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cookie_0" Association="Self.FK_Cookie_0">
+      <End Role="User" EntitySet="User" />
+      <End Role="Cookie" EntitySet="Cookie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CookieLog_0" Association="Self.FK_CookieLog_0">
+      <End Role="Cookie" EntitySet="Cookie" />
+      <End Role="CookieLog" EntitySet="CookieLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Direction_Country" Association="Self.FK_Direction_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Direction" EntitySet="Direction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gallery_Direction" Association="Self.FK_Gallery_Direction">
+      <End Role="Direction" EntitySet="Direction" />
+      <End Role="Gallery" EntitySet="Gallery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pack_0" Association="Self.FK_Pack_0">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Pack" EntitySet="Pack" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Packet_0" Association="Self.FK_Packet_0">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Packet" EntitySet="Packet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PacketService_0" Association="Self.FK_PacketService_0">
+      <End Role="Packet" EntitySet="Packet" />
+      <End Role="PacketService" EntitySet="PacketService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PacketService_1" Association="Self.FK_PacketService_1">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="PacketService" EntitySet="PacketService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartnerCategorys_011" Association="Self.FK_PartnerCategorys_011">
+      <End Role="Partners" EntitySet="Partners" />
+      <End Role="PartnerCategorys" EntitySet="PartnerCategorys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartnerCategorys_1" Association="Self.FK_PartnerCategorys_1">
+      <End Role="PartnerCategory" EntitySet="PartnerCategory" />
+      <End Role="PartnerCategorys" EntitySet="PartnerCategorys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partners_0" Association="Self.FK_Partners_0">
+      <End Role="PartnerCategory" EntitySet="PartnerCategory" />
+      <End Role="Partners" EntitySet="Partners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partners_1" Association="Self.FK_Partners_1">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Partners" EntitySet="Partners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partners_2" Association="Self.FK_Partners_2">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Partners" EntitySet="Partners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partners_3" Association="Self.FK_Partners_3">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Partners" EntitySet="Partners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartnersRating_0" Association="Self.FK_PartnersRating_0">
+      <End Role="Partners" EntitySet="Partners" />
+      <End Role="PartnersRating" EntitySet="PartnersRating" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Places_0" Association="Self.FK_Places_0">
+      <End Role="Direction" EntitySet="Direction" />
+      <End Role="Places" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Places_1" Association="Self.FK_Places_1">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Places" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Places_2" Association="Self.FK_Places_2">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Places" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Places_3" Association="Self.FK_Places_3">
+      <End Role="PlaceType" EntitySet="PlaceType" />
+      <End Role="Places" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlaceService_0" Association="Self.FK_PlaceService_0">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="PlaceService" EntitySet="PlaceService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlaceService_1" Association="Self.FK_PlaceService_1">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="PlaceService" EntitySet="PlaceService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Portfolio_0" Association="Self.FK_Portfolio_0">
+      <End Role="Direction" EntitySet="Direction" />
+      <End Role="Portfolio" EntitySet="Portfolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Portfolio_1" Association="Self.FK_Portfolio_1">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Portfolio" EntitySet="Portfolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Portfolio_10" Association="Self.FK_Portfolio_10">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Portfolio" EntitySet="Portfolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Portfolio_11" Association="Self.FK_Portfolio_11">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Portfolio" EntitySet="Portfolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Portfolio_12" Association="Self.FK_Portfolio_12">
+      <End Role="Partner_old" EntitySet="Partner_old" />
+      <End Role="Portfolio" EntitySet="Portfolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Portfolio_2" Association="Self.FK_Portfolio_2">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Portfolio" EntitySet="Portfolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Portfolio_3" Association="Self.FK_Portfolio_3">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Portfolio" EntitySet="Portfolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Portfolio_4" Association="Self.FK_Portfolio_4">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Portfolio" EntitySet="Portfolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Portfolio_5" Association="Self.FK_Portfolio_5">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Portfolio" EntitySet="Portfolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Portfolio_6" Association="Self.FK_Portfolio_6">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Portfolio" EntitySet="Portfolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Portfolio_7" Association="Self.FK_Portfolio_7">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Portfolio" EntitySet="Portfolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Portfolio_8" Association="Self.FK_Portfolio_8">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Portfolio" EntitySet="Portfolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Portfolio_9" Association="Self.FK_Portfolio_9">
+      <End Role="Image" EntitySet="Image" />
+      <End Role="Portfolio" EntitySet="Portfolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePermission_0" Association="Self.FK_RolePermission_0">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RolePermission" EntitySet="RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePermission_1" Association="Self.FK_RolePermission_1">
+      <End Role="Permission" EntitySet="Permission" />
+      <End Role="RolePermission" EntitySet="RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_0" Association="Self.FK_Service_0">
+      <End Role="ServiceType" EntitySet="ServiceType" />
+      <End Role="Service" EntitySet="Service" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_1" Association="Self.FK_Service_1">
+      <End Role="ServiceCategory" EntitySet="ServiceCategory" />
+      <End Role="Service" EntitySet="Service" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Slider_Direction" Association="Self.FK_Slider_Direction">
+      <End Role="Direction" EntitySet="Direction" />
+      <End Role="Slider" EntitySet="Slider" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_0" Association="Self.FK_User_0">
+      <End Role="Partners" EntitySet="Partners" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_0" Association="Self.FK_UserRole_0">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_1" Association="Self.FK_UserRole_1">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Wedding_0" Association="Self.FK_Wedding_0">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Wedding" EntitySet="Wedding" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

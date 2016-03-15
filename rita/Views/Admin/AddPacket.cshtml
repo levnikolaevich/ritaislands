@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "AddPacket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+<div class="container">
+    <h2>AddPacket</h2>
+    <form method="POST" action="AddPacket">
+        <label>Имя</label>
+        <input name="name" type="text" value="" />
+
+        <label>Описание</label>
+        <input name="description" type="text" value="" />
+
+        <label>Цена</label>
+        <input name="price" type="text" value="" />
+
+        <input name="placeId" type="hidden" value="@ViewBag.PlaceId" />
+
+        <label>SortNumberTab</label>
+        <input name="sortNumberTab" type="text" value="" />
+
+        <label>Economy</label>
+        <input name="economy" type="text" value="" />
+        
+        <br />
+        <input type="submit" value="Добавить" />
+    </form>
+</div>

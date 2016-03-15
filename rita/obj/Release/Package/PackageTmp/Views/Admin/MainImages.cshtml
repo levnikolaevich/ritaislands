@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "MainImages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+<!-- Start Section Title -->
+<section id="title-page">
+	<h2>Изменение картинок на главной</h2>
+    <span class="arrow"></span>
+</section>
+<!-- End Section Ttile -->
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <br/>
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span9">
+            
+                <form id="contact-form" class="contact-form" action="/Admin/UpdateMainImages" method="POST" enctype="multipart/form-data">
+                    
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="ID" value="" name="id" />
+                    </p>
+                    
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Белый текст" value="" name="wtext" />
+                    </p>
+                    
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Красный текст" value="" name="rtext" />
+                    </p>
+
+                    <p class="contact-email">
+                        <label>Картинка </label>
+                        <input id="contact_email" type="file" name="file" />
+                    </p>
+
+                    <button class="submit" type="submit">Изменить</button>
+                </form>
+             
+            </div>
+           
+            
+        </div>
+        <!-- End Contact Form -->
+	</div>
+</section>
+<!-- End Contact Section -->

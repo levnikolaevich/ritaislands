@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>System.ServiceModel</id>
+    <version>1.0.0</version>
+    <title>System.ServiceModel</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://msdn.microsoft.com/en-us/library/system.servicemodel%28v=vs.110%29.aspx</licenseUrl>
+    <projectUrl>http://msdn.microsoft.com/en-us/library/system.servicemodel%28v=vs.110%29.aspx</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides classes related to the service model.</description>
+    <releaseNotes>First version.</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <language />
+    <tags>service model servicemodel</tags>
+  </metadata>
+</package>

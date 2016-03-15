@@ -1,0 +1,74 @@
+﻿@using rita.Models
+@{
+    ViewBag.Title = "ServicePlace";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+<!-- Start Section Title -->
+<section style="border: 0px; height: 300px; background-position: center top; background-repeat: no-repeat; background-size: cover; background-image:url('@Url.Content("../../img/fon/UsFon.jpg")');" class="banner-image" id="title-page">
+    <div class="container pagize" style="padding: 96px; margin: 0px;">
+        <div class="row" style="margin-left: 0px;">
+            <div class="span12 textaligncenter levh1" style="padding: 0px; margin-left: 0px; margin-top: 13px;">
+                <h1>Редактирование услуг</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Section Ttile -->
+<!-- Action Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Action Form -->
+        <div class="row margin-50">
+            <div class="span12">
+                <h2>Изменение услуг в месте @ViewBag.Place.Name</h2>
+                    
+                <form id="formUn" class="" method="POST" action="@Url.Action("ServicePlaceEdit", "Admin")" style="margin: 0px; padding: 0px;">
+                    <input id="txt" type="hidden" name="txt" value="" />
+                    <input type="hidden" name="id" value="@ViewBag.Place.Id" />
+                </form>
+                
+                <form id="form1">
+                    @foreach (Service service in ViewBag.Service)
+                    {
+                        if (service.PlaceService.Count(x => x.PlaceId == ViewBag.Place.Id) > 0)
+                        {
+                            <label><input name="serv_@service.Id" type="checkbox" value="" checked /> @service.Name</label>
+                            <input name="txt_@service.Id" value="@((int)service.PlaceService.First(x => x.PlaceId == ViewBag.Place.Id).Price)" />
+                        }
+                        else
+                        {
+                            <label><input name="serv_@service.Id" type="checkbox" value="" /> @service.Name</label>
+                            <input name="txt_@service.Id" value="0" />
+                        }
+                        <br />
+                        <br />
+                    }
+
+                    <a class="button" onclick="show()">Сохранить</a>
+                </form>
+            </div>
+        </div>
+        <!-- End Action Form -->
+    </div>
+</section>
+<!-- End Action Section -->
+
+@section js
+{
+    <script>
+        $('input[type="text"]').val('');
+
+        function show() {
+            $('#txt').val($('#form1').serialize());
+            $('#formUn').submit();
+        }
+
+</script>
+
+}

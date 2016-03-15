@@ -1,0 +1,73 @@
+﻿@using rita.Models
+@{
+    ViewBag.Title = "UpdateGallery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+
+<!-- Start Section Title -->
+<section style="border: 0px; height: 300px; background-position: center top; background-repeat: no-repeat; background-size: cover; background-image:url('@Url.Content("../../img/fon/UsFon.jpg")');" class="banner-image" id="title-page">
+    <div class="container pagize" style="padding: 96px; margin: 0px;" ;>
+        <div class="row" style="margin-left: 0px;">
+            <div class="span12 textaligncenter levh1" style="padding: 0px; margin-left: 0px; margin-top: 13px;">
+                <h1>Изменение фотографии</h1>
+            </div>
+        </div>
+        </div>
+</section>
+<!-- End Section Ttile -->
+<!-- Gallery Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <br />
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        <!-- Gallery Form -->
+        <div class="row margin-50">
+            <div class="span9">
+
+                <form id="contact-form" class="contact-form" action="/Admin/UpdateGallery" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="@ViewBag.Gallery.Id" />
+
+
+
+                    <p>Название фотографии</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Имя" value="@ViewBag.Gallery.Name" name="name" />
+                    </p>
+
+                    <p>Выбери файл</p>
+                    <p class="contact-email">
+                        <input id="contact_email" type="file" name="file" />
+                    </p>
+
+                    <p>Выбери ID направления</p>
+                    <select name="directionId">
+                        @foreach (Direction dir in ViewBag.Directions)
+                        {
+                            <option value="@dir.Id">@dir.Name</option>
+                        }
+                    </select>
+                    <br /><br />
+
+                    <button class="submit" type="submit">Изменить</button>
+                </form>
+
+            </div>
+
+
+        </div>
+        <!-- End Gallery Form -->
+    </div>
+</section>
+<!-- End Gallery Section -->

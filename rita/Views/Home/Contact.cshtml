@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+
+    <title>Контакты - свадьба за границей | RitaIslands</title>
+
+    <meta name="description" content="Напишите нам, и мы будем рады рассказать Вам всё, что сами знаем о свадьбах за границей. Наши контакты тут =)" />
+
+    <meta property="og:url" content="http://ritaislands.ru/svadba-za-granicey/contact" />
+    <meta property="og:title" content="Контакты - свадьба за границей | RitaIslands" />
+    <meta property="og:description" content="Напишите нам, и мы будем рады рассказать Вам всё, что сами знаем о свадьбах за границей. Наши контакты тут =)" />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+
+    <meta name="keywords" content="контакты, свадьба за границей, Греция, официальная свадьба, символическая свадьба, Рита" />
+}
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+
+        <div class="row margin-10">
+            <div class="span12">
+                <br />
+                <h3></h3>
+            </div>
+        </div>
+
+        <div class="row margin-20">
+           <!--   <div class="span6">
+               VK Widget 
+                <div id="vk_groups"></div>
+                <script type="text/javascript">
+                    VK.Widgets.Group("vk_groups", { mode: 0, width: "570", height: "200", color1: 'FFFFFF', color2: '56646F', color3: 'F88A79' }, 9588569);
+                </script>
+            </div>
+            <div class="span6">
+
+                <div class="fb-like-box" data-href="https://www.facebook.com/ritaislands.ru" data-width="570" data-height="216" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+            </div>
+       -->
+
+
+        
+        
+        
+         </div>
+
+
+        <!-- End Title Page -->
+        <!-- Contact Form -->
+
+        <div class="row margin-50">
+            <div class="span6">
+                <h4>Оставьте свои контакты</h4>
+                <div id="wpcf7-f507-p308-o1" class="wpcf7">
+                    <form id="contact-form" class="contact-form" method="POST" action="/Admin/SendPacket">
+                        <p>
+                            <b>Email или телефон</b><br>
+                            <span class="wpcf7-form-control-wrap your-name">
+                                <input type="text" aria-required="true" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" size="40" value="" name="contact">
+                            </span>
+                        </p>
+                        <p>
+                            <b>Комментарий</b> <br>
+                            <span class="wpcf7-form-control-wrap your-message">
+                                <textarea class="wpcf7-form-control wpcf7-textarea" rows="13" cols="40" name="comment"></textarea>
+                            </span>
+                        </p>
+                        <p>
+                            <input type="submit" onclick="yaCounter21623986.reachGoal('ORDER'); return true;" class="wpcf7-form-control wpcf7-submit" value="Отправить">
+                        </p>
+                    </form>
+                </div>
+            </div>
+            <!-- Contact Details -->
+            <div class="span6" style="margin-left: 30px;">
+                <div class="contact-details">
+                    <h4 style="margin-bottom: 7px;">...или свяжитесь с нами сами!</h4>
+                    <ul>
+                        <li><b>E-mail:</b> <a href="mailto:rita@ritaislands.ru">rita@ritaislands.ru</a></li>
+                        <li><b>Телефон:</b> +7-926-176-86-60</li>
+                        <li><b>Адрес:</b> ул. Ленинская Слобода д.19, БЦ "Омега-Плаза"</li>
+                    </ul>
+                </div>
+                <h4>Схема проезда</h4>
+                <img src="~/img/mediaelement/we.png" />
+
+
+            </div>
+            <!-- End Contact Details -->
+
+        </div>
+        <!-- End Contact Form -->
+    </div>
+</section>
+<!-- End Contact Section -->

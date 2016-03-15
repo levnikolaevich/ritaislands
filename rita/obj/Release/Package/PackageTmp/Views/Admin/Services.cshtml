@@ -1,0 +1,89 @@
+﻿@using rita.Models
+@{
+    ViewBag.Title = "ServiceAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+<!-- Start Section Title -->
+<section style="border: 0px; height: 300px; background-position: center top; background-repeat: no-repeat; background-size: cover; background-image:url('@Url.Content("../../img/fon/UsFon.jpg")');" class="banner-image" id="title-page">
+    <div class="container pagize" style="padding: 96px; margin: 0px;">
+        <div class="row" style="margin-left: 0px;">
+            <div class="span12 textaligncenter levh1" style="padding: 0px; margin-left: 0px; margin-top: 13px;">
+                <h1>Редактирование услуг</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Section Ttile -->
+<!-- Action Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <h2>Список услуг</h2>
+                <table class="table">
+                    <tr>
+                        <td>Название услуги</td>
+                        <td>Описани</td>
+                        <td>Тип</td>
+                        <td>Категория</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    @foreach (Service service in ViewBag.List)
+                    {
+                        <tr>
+                            <td>@service.Name</td>
+                            <td>@service.Description</td>
+                            <td>@service.ServiceType.Name</td>
+                            <td>@service.ServiceCategory.Name</td>
+                            <td><a href="/admin/serviceedit/@service.Id">Изменить</a></td>
+                            <td><a href="/admin/servicedel/@service.Id">Удалить</a></td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        <!-- Action Form -->
+        <div class="row margin-50">
+            <div class="span12">
+                <h2>Добавление услуги</h2>
+                <form method="POST" action="@Url.Action("ServiceAdd","Admin")">
+                    <label>Имя</label>
+                    <input name="name" value="" />
+
+                    <label>Описание</label>
+                    <input name="description" value="" />
+                    
+                    <label>Тип услуги</label>
+                    <select name="serviceTypeId">
+                        @foreach (ServiceType dir in ViewBag.Types)
+                        {
+                            <option value="@dir.Id">@dir.Name</option>
+                        }
+                    </select>
+                    
+                    <label>Категория услуги</label>
+                    <select name="serviceCategoryId">
+                        @foreach (ServiceCategory dir in ViewBag.Categories)
+                        {
+                            <option value="@dir.Id">@dir.Name</option>
+                        }
+                    </select>
+
+                    <br/>
+                    <button type="submit">Добавить</button>
+                </form>
+            </div>
+        </div>
+        <!-- End Action Form -->
+    </div>
+</section>
+<!-- End Action Section -->

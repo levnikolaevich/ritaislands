@@ -1,0 +1,15 @@
+﻿
+Host: ritaislands.ru
+
+User-agent: *
+Disallow: /Views/Admin
+Disallow: /*?*
+Allow: /
+Sitemap: http://ritaislands.ru/sitemap
+
+
+User-agent: Yandex
+Disallow: /Views/Admin
+Disallow: /*?*
+Allow: /
+Sitemap: http://ritaislands.ru/sitemap

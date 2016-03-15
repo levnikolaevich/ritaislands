@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Res";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    
+}
+
+<section class="main-content   large-padding shadow-off" style="background-color: #F2F5F8; padding: 0px;">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <form method="GET" action="@Url.Action("Res","Home")">
+                    <label>Страна</label>
+                    <input name="countryId" value="@ViewBag.CountryId" />
+                    <label>Количество гостей</label>
+                    <input name="countGuests" value="@ViewBag.CountGuests" />
+                    <label>Деньги до</label>
+                    <input name="money" value="@ViewBag.Money" />
+                    <label>Наличие акций?</label>
+                    <input name="isAction" value="@ViewBag.IsAction.ToString()" />
+                    <label>Что ищем? (1. Места, 2. Рестораны)</label>
+                    <input name="type" value="@ViewBag.Type" />
+                    <input type="submit" value="Поиск"/>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <div class="row masonry-blog no-sortable" style="margin-top: 0px;">
+                    <ul id="latest-posts" class="masonry-area">
+                        @foreach (rita.Models.Places partner in ViewBag.List)
+                        {
+                            if (partner.IsEnabled == false && !rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Places))
+                            {
+                                continue;
+                            }
+                            <li class="item-blog span4">
+                                <div class="item-container-post animated-content little_bounce hentry">
+                                    <article class="post">
+                                        <div class="post-thumb">
+                                            <a title="" href="@Url.Action("PlaceIndex", "Home", new { id = partner.TrName })" class="hover-wrap">
+                                                <img src="@Url.Action("GetImagePlace", "Home", new { id = partner.SmallImage })" width="800" height="600" alt="" />
+                                                <div class="overlay"></div>
+                                                <i class="font-icon-plus-3"></i>
+                                            </a>
+                                        </div>
+                                        <h2 class="entry-title">
+                                            <a href="@Url.Action("PlaceIndex", "Home", new { id = partner.TrName })" title="">@partner.Name</a>
+                                        </h2>
+                                        <div class="entry-meta entry-header">
+
+                                            <span class="updated">
+                                                @partner.PlaceType.Name @(partner.Pack.Where(x => x.Price != null).Count() > 0 ? "/ от " + partner.Direction.Сurrency + " " + ((int)partner.Pack.Where(x => x.Price != null).Min(x => x.Price)).ToString() : "") @*&nbsp; / &nbsp;*@
+
+                                            </span>
+                                            <div class="vcard"><span class="fn" style="display: none;">Ritaislands</span></div>
+
+
+                                        </div>
+                                        <div class="entry-content">
+                                            <p>@partner.ShortDescription</p>
+                                        </div>
+                                        @if (rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Places))
+                                        {
+                                            <a class="more-link" href="@Url.Action("UpdatePlace", "Admin", new { id = partner.Id })">Изменить</a>
+                                            <a class="more-link" href="@Url.Action("DelPlace", "Admin", new { id = partner.Id })">Удалить</a>
+                                        }
+                                        @if (partner.ActionPlace.Where(x => x.Actions.IsVisible == true).Count() > 0)
+                                        {
+                                            <div class="partner_in1" style="left: -5px;">
+                                                <a class="link_in1" href="@Url.Action("ActionPlace", "Home", new {id = partner.TrName})">
+                                                    <span class="short-tag_in1" style="display: block;">Акция</span>
+                                                    <span style="display: none;" class="long-description_in1">Получи скидку</span>
+                                                </a>
+                                            </div>
+                                        }
+                                        else if (partner.Direction.ActionDirection.Where(x => x.Actions.IsVisible == true).Count() > 0)
+                                        {
+                                            <div class="partner_in1" style="left: -5px;">
+                                                <a class="link_in1" href="@Url.Action("Action", "Home", new {id = partner.Direction.TrName})">
+                                                    <span class="short-tag_in1" style="display: block;">Акция</span>
+                                                    <span style="display: none;" class="long-description_in1">Получи скидку</span>
+                                                </a>
+                                            </div>
+                                        }
+                                    </article>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+

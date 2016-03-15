@@ -1,0 +1,248 @@
+﻿@{
+    ViewBag.Title = "UpdateAction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+<!-- Start Section Title -->
+<section style="border: 0px; height: 300px; background-position: center top; background-repeat: no-repeat; background-size: cover; background-image:url('@Url.Content("../../img/fon/UsFon.jpg")');" class="banner-image" id="title-page">
+    <div class="container pagize" style="padding: 96px; margin: 0px;" ;>
+        <div class="row" style="margin-left: 0px;">
+            <div class="span12 textaligncenter levh1" style="padding: 0px; margin-left: 0px; margin-top: 13px;">
+                <h1>Изменение Акции</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Section Ttile -->
+<!-- Gallery Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <br />
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        <!-- Gallery Form -->
+
+        <div class="accordion" id="toggleArea-17483424609">
+            <div class="accordion-group">
+                <div class="accordion-heading togglize">
+                    <a data-toggle="collapse" data-parent="#" href="#tgl-1-17483424609" class="accordion-toggle inactive collapsed">Изменение акции<span class="font-icon-plus-3"></span><span class="font-icon-minus-3"></span></a>
+                </div>
+                <div class="accordion-body collapse" id="tgl-1-17483424609" style="height: 0px;">
+                    <div class="row margin-50">
+                        <div class="span9">
+                            <form id="contact-form" class="contact-form" action="/Admin/UpdateAction" method="POST" enctype="multipart/form-data">
+
+                                <input type="hidden" placeholder="" value="@ViewBag.Action.Id" name="id" />
+
+                                <p>Название</p>
+                                <p class="contact-name">
+                                    <input id="contact_name" type="text" placeholder="Название" value="@ViewBag.Action.Name" name="name" />
+                                </p>
+
+                                <p>Название</p>
+                                <p class="contact-name">
+                                    <input id="contact_name" type="text" placeholder="Название" value="@ViewBag.Action.TrName" name="trname" />
+                                </p>
+
+                                <p>Короткое описание</p>
+                                <p class="contact-name lev">
+                                    <textarea placeholder="Описание" name="shortdescription">@ViewBag.Action.ShortDescription</textarea>
+                                </p>
+
+                                <p>Описание</p>
+                                @*<p class="contact-name lev">
+                                    <textarea placeholder="Описание" name="description">@ViewBag.Action.Description</textarea>
+                                </p>*@
+
+
+                                <p>
+                                    <textarea id="textRed" name="description">@ViewBag.Action.Description</textarea>
+                                </p>
+
+                                <p>Дата от</p>
+                                <p class="contact-name">
+                                    <input id="contact_name" type="text" placeholder="Дата от" value="@ViewBag.Action.DateFrom" name="dateFrom" />
+                                </p>
+
+                                <p>Дата до</p>
+                                <p class="contact-name">
+                                    <input id="contact_name" type="text" placeholder="Дата до" value="@ViewBag.Action.DateTo" name="dateTo" />
+                                </p>
+
+                                <p>Дата окончания действия акции</p>
+                                <p class="contact-name">
+                                    <input id="contact_name" type="text" placeholder="Дата окончания дествия акции" value="@ViewBag.Action.ActionDateTo" name="actionDateTo" />
+                                </p>
+
+                                <p>Выбери файл</p>
+                                <p class="contact-email">
+                                    <input id="contact_email" type="file" name="file" />
+                                </p>
+
+                                <p>Выбери тип акции</p>
+                                <select name="actionType">
+                                    @foreach (rita.Models.ActionType dir in ViewBag.ActionTypes)
+                                    {
+                                        if (ViewBag.Action.ActionTypeId == dir.Id)
+                                        {
+                                            <option value="@dir.Id" selected>@dir.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@dir.Id">@dir.Name</option>
+                                        }
+
+                                    }
+                                </select>
+
+                                <p>% скидки</p>
+                                <p class="contact-name">
+                                    <input id="contact_name" type="text" placeholder="% скидки" value="@ViewBag.Action.Percent" name="perc" />
+                                </p>
+
+                                <p>Скидка в рублях</p>
+                                <p class="contact-name">
+                                    <input id="contact_name" type="text" placeholder="Скидка в рублях" value="@ViewBag.Action.Cost" name="cost" />
+                                </p>
+
+                                <p>Подарок</p>
+                                <p class="contact-name">
+                                    <input id="contact_name" type="text" placeholder="Подарок" value="@ViewBag.Action.Gift" name="gift" />
+                                </p>
+
+                                <p>Тэги</p>
+                                <p class="contact-name">
+                                    <input id="contact_name" type="text" placeholder="Тэги" value="@ViewBag.Action.Tag" name="tag" />
+                                </p>
+
+                                <label>Отображать?<input style="width: 50px;" type="checkbox" name="isEnabled" @(ViewBag.Action.IsVisible == true ? "checked" : "") /></label>
+
+                                <br /><br />
+
+                                <button class="submit" type="submit">Изменить</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <h3>Добавление направления</h3>
+        <form id="contact-form" class="contact-form" action="/Admin/AddActionDirection" method="POST" enctype="multipart/form-data">
+
+            <input type="hidden" placeholder="" value="@ViewBag.Action.Id" name="actionId" />
+
+            <p>Выбери направление</p>
+            <select name="directionId">
+                @foreach (rita.Models.Direction dir in ViewBag.Directions)
+                {
+                    <option value="@dir.Id">@dir.Name</option>
+                }
+            </select>
+
+            <br /><br />
+
+            <button class="submit" type="submit">Добавить</button>
+
+        </form>
+        <hr />
+
+        <h3>
+            Направления:
+        </h3>
+
+        <div class="accordion" id="toggleArea-17483424609">
+            @foreach (rita.Models.ActionDirection action in ViewBag.ActionDirections)
+            {
+
+                <div class="accordion-group">
+                    <div class="accordion-heading togglize">
+                        <a data-toggle="collapse" data-parent="#" href="@("#tgl-2-17483424609" + action.Direction.Id)" class="accordion-toggle inactive collapsed">@action.Direction.Name<span class="font-icon-plus-3"></span><span class="font-icon-minus-3"></span></a>
+                    </div>
+                    <div class="accordion-body collapse" id="@("tgl-2-17483424609" + action.Direction.Id)" style="height: 0px;">
+                        <div class="row margin-50">
+                            <div class="span9">
+                                <a href="@Url.Action("DelActionDirection", "Admin", new { actionId = action.ActionId, packId = action.DirectionId })">Удалить направление</a>
+                                <p><b>Добавление места:</b></p>
+
+                                <form id="contact-form" class="contact-form" action="/Admin/AddActionPlace" method="POST" enctype="multipart/form-data">
+
+                                    <input type="hidden" placeholder="" value="@ViewBag.Action.Id" name="actionId" />
+
+                                    <p>Выбери место</p>
+                                    <select name="placeId">
+                                        @foreach (rita.Models.Places dir in action.Direction.Places)
+                                        {
+                                            if (!ViewBag.Places.ContainsKey(dir.Id))
+                                            {
+                                                <option value="@dir.Id">@dir.Name</option>
+                                            }
+                                        }
+                                    </select>
+
+                                    <br /><br />
+
+                                    <button class="submit" type="submit">Добавить</button>
+
+                                </form>
+                                <hr/>
+
+                                <p><b>Уже добавленные места:</b></p>
+                                @foreach (rita.Models.Places dir in action.Direction.Places)
+                                {
+                                    if (ViewBag.Places.ContainsKey(dir.Id))
+                                    {
+                                        <p>
+                                            @dir.Name <a href="@Url.Action("DelActionPlace", "Admin", new { actionId = action.ActionId, packId = dir.Id })">Удалить место</a>
+                                        </p>
+                                        <p style="margin-left: 50px;">
+                                            <form action="/Admin/AddActionPack" method="POST" style="margin-bottom: 0px;">
+                                                <input type="hidden" placeholder="" value="@ViewBag.Action.Id" name="actionId" />
+                                                <select name="packId">
+                                                    @foreach (rita.Models.Pack pack in dir.Pack)
+                                                    {
+                                                        if (!ViewBag.Packs.ContainsKey(pack.Id))
+                                                        {
+                                                            <option value="@pack.Id">@pack.Name</option>
+                                                        }
+                                                    }
+                                                </select>
+                                                <button class="submit" type="submit">Добавить</button>
+                                            </form>
+                                        </p>
+
+                                        foreach (rita.Models.ActionPack actionPack in action.Actions.ActionPack)
+                                        {
+                                            if (actionPack.Pack.PlaceId == dir.Id)
+                                            {
+                                                <p style="margin-left: 50px; margin-top: 0px;">
+                                                    @actionPack.Pack.Name <a href="@Url.Action("DelActionPack", "Admin", new { actionId = action.ActionId, packId = actionPack.PackId })">Удалить пакет</a>
+                                                </p>
+                                            }
+                                        }
+                                        <hr/>
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- End Gallery Form -->
+    </div>
+</section>
+<!-- End Gallery Section -->

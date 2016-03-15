@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "AddPlace";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+
+<!-- Start Section Title -->
+ <section style="border: 0px; height: 300px; background-position: center top; background-repeat: no-repeat; background-size: cover; background-image:url('@Url.Content("../../img/fon/UsFon.jpg")');" class="banner-image" id="title-page">
+     <div class="container pagize" style="padding: 96px; margin: 0px;">
+         <div class="row" style="margin-left: 0px;">
+             <div class="span12 textaligncenter levh1" style="padding: 0px; margin-left: 0px; margin-top: 13px;">
+                 <h1>Добавление места</h1>
+             </div>
+         </div>
+     </div>
+    </section>
+<!-- End Section Ttile -->
+
+
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <br/>
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span9">
+            
+                <form id="contact-form" class="contact-form" action="/Admin/AddPlace" method="POST" enctype="multipart/form-data">
+                    
+                    <p>Имя</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Название места" value="" name="name" />
+                    </p>
+                    
+                    <p>Кол-во гостей</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Кол-во гостей" value="" name="countGuests" />
+                    </p>
+                    
+                    <p>Дни проведения</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Дни свадьбы" value="" name="daysWedding" />
+                    </p>
+                    
+                    <p>Вид с площадки</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Вид с площадки" value="" name="PlaceView" />
+                    </p>
+
+                    <p>Банкет</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Банкет" value="" name="Banket" />
+                    </p>
+                    
+                    <p>Ближайший город</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Ближайший город" value="" name="City" />
+                    </p>
+                    
+                    <p>Ссылка на карту Google</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Ссылка на карту Google" value="" name="Map" />
+                    </p>
+                    
+                    <p>Ссылка на панораму</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Ссылка на панораму" value="" name="Panorama" />
+                    </p>
+                    
+                    <p>Тип места <br/>
+                        1. Место проведения церемонии<br/>
+                        2. Ресторан
+                    </p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Тип места" value="1" name="Type" />
+                    </p>
+
+
+                    <p class="contact-name lev">
+                        <textarea name="shortText" placeholder="Короткий текст"></textarea>
+                    </p>
+                    
+
+                    <p>Основной текст. Картинки вставлять 800 X 600 px </p>
+                    <p>
+                        <textarea style="height: 200px;" id="textRed" name="text" style="display: inline-block; height: 220px !important;"></textarea>
+                    </p>
+                    
+                    @foreach (rita.Models.Direction pr in ViewBag.PartnerCategories)
+                    {
+                        <p>
+                            @pr.Id @pr.Name
+                        </p>
+                    }
+
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="id направления" value="" name="dirId" />
+                    </p>
+
+                    <p class="contact-email">
+                        <label>Картинка отображается в профиле "места". 1170 x 430</label>
+                        <input id="contact_email" type="file" name="file" />
+                    </p>
+                    <p class="contact-email">
+                        <label>Картинка отображается в закладке "услуги". 640 x 480</label>
+                        <input id="contact_email" type="file" name="file1" />
+                    </p>
+                    
+                   @* <label>Отображать пакеты<input style="width: 50px;" type="checkbox" name="PacketsEnable" /></label>*@
+
+                    <label>Отображать профиль места<input style="width: 50px;" type="checkbox" name="isEnabled" /></label>
+
+                    <button class="submit" type="submit">Добавить</button>
+                </form>
+             
+            </div>
+           
+            
+        </div>
+        <!-- End Contact Form -->
+	</div>
+</section>
+<!-- End Contact Section -->

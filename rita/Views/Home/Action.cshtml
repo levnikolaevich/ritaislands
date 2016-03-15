@@ -1,0 +1,222 @@
+﻿@using rita.Models
+@{
+    ViewBag.Title = "Action";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    <title>Акции - @(ViewBag.CurrentDirection != null ? ViewBag.CurrentDirection.Name.ToLower() : "все акции") - свадьба за границей | RitaIslands</title>
+
+    <meta name="description" content="Действующие акции от свадебного агентства RitaIslands! Скидки, подарки, выгодные предложения и многое другое!" />
+
+    <meta property="og:url" content="http://ritaislands.ru/svadba-za-granicey/action" />
+    <meta property="og:title" content="Акции - свадьба за границей | RitaIslands" />
+    <meta property="og:description" content="Действующие акции от свадебного агентства RitaIslands! Скидки, подарки, выгодные предложения и многое другое!" />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+    <meta name="keywords" content="акции, скидки на свадебные пакеты, свадебные подарки, выгодные предложения от Ritaislands" />
+}
+
+<div id="content">
+    <section class="main-content   large-padding shadow-off" style="background-color: #F2F5F8; padding: 0px;">
+        <div class="container">
+
+            <div id="portfolio-filter" class="row">
+
+                <p style="margin: 5px;"></p>
+
+                <div class="span2" style="margin-bottom: 30px; margin-top: 30px;">
+                    <a href="@Url.Action("ContactServices", "svadba-za-granicey", new { packet = "" })" class="button-main button-small">Заказать звонок</a>
+
+                </div>
+
+
+                <div class="span8" style="margin-left: 10px;">
+                    <p style="margin-bottom: 30px; margin-top: 27px; margin-right: 50px;" align="center">
+                        Скидки, акции, подарки - ищите выгодные предложения от свадебного агентства RitaIslands!
+                        <br />
+                        <strong>Пишите нам на <a href="mailto:rita@ritaislands.ru">rita@ritaislands.ru</a></strong> или <strong>звоните 8-926-176-86-60</strong>
+                    </p>
+
+                </div>
+
+                <div class="span2">
+                    <div class="dropdown" style="left: 20px;">
+                        <div class="dropmenu">
+                            <p class="selected">@(ViewBag.CurrentDirection != null ? ViewBag.CurrentDirection.Name : "Все")</p>
+                            <i class="font-icon-arrow-down-simple-thin-round"></i>
+                        </div>
+                        <div class="dropmenu-active">
+                            <ul class="option-set" data-option-key="filter">
+                                <li><a onclick="document.location.href = '/svadba-za-granicey/action';">Все</a></li>
+                                @foreach (rita.Models.Direction pr in ViewBag.ListDiresctions)
+                                {
+                                    <li><a onclick="document.location.href = '/svadba-za-granicey/action/@pr.TrName';">@pr.Name</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span12">
+                    @*<div class="special-heading textalignleft default no-animation-effectsd-content move_left" style="padding-bottom: 0px;">
+                            <h2>Акции</h2>
+                        </div>*@
+                    <div class="row masonry-blog no-sortable" style="margin-top: 0px; ">
+                        <ul id="latest-posts" class="masonry-area">
+
+
+
+                            @foreach (rita.Models.Actions actions in ViewBag.List)
+                            {
+
+                                if (actions.ActionTypeId == 3)
+                                {
+                                    <li class="row" style="margin-bottom: 30px; width: 1170px; height:278px; margin-left: 30px; background-color: #FFFFFF; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; box-shadow: #888888 1px 1px 2px 0px;">
+
+
+                                        <div class="span4" style="margin-left: 0px;">
+                                            <a href="/svadba-za-granicey/actionindex/@actions.TrName" class="hover-wrap fancybox-media">
+                                                <img src="@Url.Action("GetImage", "svadba-za-granicey", new { id = actions.ImageId })" />
+                                            </a>
+
+                                        </div>
+
+
+                                        <div class="span8" style="margin: 0px;  text-align: justify; width: 800px; ">
+
+
+                                            <a href="/svadba-za-granicey/actionindex/@actions.TrName" style="font-weight: normal;">
+                                                <p style="font-size: 20px; font-family: 'Montserrat', sans-serif; transition: color 0.15s ease-in-out 0s; color: #f88a79; margin: 10px 25px;">@actions.Name</p>
+                                            </a>
+                                            <a href="/svadba-za-granicey/actionindex/@actions.TrName" class="project-name" style="cursor: auto; font-weight: normal; color: #56646F; ">
+                                                <table style="font-weight: 500; font-size: 15px; color: #AEAEAE !important; line-height: 24px; display: block; border-top: 1px solid #E6E6E6; border-bottom: 1px solid #E6E6E6;">
+                                                    <tr>
+                                                        <td style="padding-left: 40px; padding-right: 25px; padding-top: 15px;">Получи в подарок <b>@actions.Gift</b> !</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding-left: 40px; padding-right: 25px;">
+                                                            Распространяется на церемонии: <b>
+                                                                @foreach (ActionDirection dir in actions.ActionDirection)
+                                                                {
+                                                                    <a href="/svadba-za-granicey/index/@dir.Direction.TrName" style="color: #979292 !important; ">@(dir.Direction.Name + ",")</a>
+                                                                }
+                                                            </b> организованные <b>с @actions.DateFrom.ToString("dd.MM.yy", new System.Globalization.CultureInfo("ru-RU")) по @actions.DateTo.ToString("dd.MM.yy", new System.Globalization.CultureInfo("ru-RU")) года</b>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding-left: 40px; padding-right: 25px; padding-bottom: 15px; ">Успей заключить контракт до <b>@actions.ActionDateTo.ToString("dd.MM.yy", new System.Globalization.CultureInfo("ru-RU")) г</b></td>
+                                                    </tr>
+
+                                                </table>
+
+                                                <div class="entry-content" style="padding: 10px 25px; ">
+                                                    <p style="margin: 0px 0px; ">
+                                                        @actions.ShortDescription
+                                                    </p>
+                                                </div>
+                                            </a>
+
+                                        </div>
+
+
+
+                                    </li>
+
+                                    <li style="margin-bottom: 25px; margin-left:30px; margin-top: -25px;">
+                                        @if (rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Action))
+                                        {
+
+                                            <a class="more-link" href="@Url.Action("UpdateAction", "Admin", new { id = actions.Id })">Изменить</a>
+                                            <a class="more-link" href="@Url.Action("DelAction", "Admin", new { id = actions.Id })">Удалить</a>
+
+                                        }
+                                    </li>
+
+                                }
+
+                                if (actions.ActionTypeId == 1 || actions.ActionTypeId == 2)
+                                {
+                                    <li class="row" style="margin-bottom: 30px; width: 1170px; height:278px; margin-left: 30px; background-color: #FFFFFF; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; box-shadow: #888888 1px 1px 2px 0px;">
+                                        <div class="span4" style="margin-left: 0px;">
+                                            <a href="/svadba-za-granicey/actionindex/@actions.TrName" class="hover-wrap fancybox-media">
+                                                <img src="@Url.Action("GetImage", "svadba-za-granicey", new { id = actions.ImageId })" />
+                                            </a>
+                                        </div>
+                                        <div class="span8" style="margin: 0px; text-align: justify; width: 800px; ">
+                                            <a href="/svadba-za-granicey/actionindex/@actions.TrName" style="font-weight: normal;">
+                                                <p style="font-size: 20px; font-family: 'Montserrat', sans-serif; transition: color 0.15s ease-in-out 0s; color: #f88a79; margin: 10px 25px;">@actions.Name</p>
+                                            </a>
+
+                                            <a href="/svadba-za-granicey/actionindex/@actions.TrName" style="cursor: auto; font-weight: normal; color: #56646F; ">
+                                                <table style="font-weight: 500; font-size: 15px; color: #AEAEAE !important; line-height: 24px; display: block; border-top: 1px solid #E6E6E6; border-bottom: 1px solid #E6E6E6;">
+                                                    <tr>
+                                                        <td style="padding-left: 40px; padding-right: 25px; padding-top: 15px;">
+                                                            Получи скидку на
+                                                            @try
+                                                            {
+
+                                                                if (actions.ActionTypeId == 1)
+                                                                {
+                                                                    <b>@Math.Round((decimal)actions.Percent) %</b>
+                                                                }
+                                                                else if (actions.ActionTypeId == 2)
+                                                                {
+                                                                    <b>@Math.Round((decimal)actions.Cost) рублей</b>
+                                                                }
+                                                            }
+                                                            catch { }
+
+                                                            !
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding-left: 40px; padding-right: 25px;">
+                                                            Распространяется на церемонии: <b>
+                                                                @foreach (ActionDirection dir in actions.ActionDirection)
+                                                                {
+                                                                    <a href="/svadba-za-granicey/index/@dir.Direction.TrName" style="color: #979292 !important; ">@(dir.Direction.Name + ",")</a>
+                                                                }
+                                                            </b> организованные <b>с @actions.DateFrom.ToString("dd.MM.yy", new System.Globalization.CultureInfo("ru-RU")) по @actions.DateTo.ToString("dd.MM.yy", new System.Globalization.CultureInfo("ru-RU")) года</b>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding-left: 40px; padding-right: 25px; padding-bottom: 15px; ">Успей заключить контракт до <b>@actions.ActionDateTo.ToString("dd.MM.yy", new System.Globalization.CultureInfo("ru-RU")) г</b></td>
+                                                    </tr>
+
+                                                </table>
+
+                                                <div class="entry-content" style="padding: 10px 25px; ">
+                                                    <p style="margin: 0px 0px; ">
+                                                        @actions.ShortDescription
+                                                    </p>
+                                                </div>
+                                            </a>
+
+                                        </div>
+                                    </li>
+
+                                    <li style="margin-bottom: 25px; margin-left:30px; margin-top: -25px;">
+                                        @if (rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Action))
+                                        {
+
+                                            <a class="more-link" href="@Url.Action("UpdateAction", "Admin", new { id = actions.Id })">Изменить</a>
+                                            <a class="more-link" href="@Url.Action("DelAction", "Admin", new { id = actions.Id })">Удалить</a>
+
+                                        }
+                                    </li>
+
+                                }
+                            }
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

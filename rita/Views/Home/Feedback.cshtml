@@ -1,0 +1,238 @@
+﻿@using rita.Models
+@using System.Globalization;
+
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    <title>Отзывы - свадьба за границей | RitaIslands</title>
+
+    <meta name="description" content="Отзывы клиентов о свадебном агентстве Ritaislands" />
+
+    <meta property="og:url" content="http://ritaislands.ru/" />
+    <meta property="og:title" content="Отзывы - свадьба за границей | RitaIslands" />
+    <meta property="og:description" content="Отзывы клиентов о свадебном агентстве Ritaislands" />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+    <meta name="keywords" content="отзывы клиентов, свадьба за границей, обратная связь" />
+
+}
+<section id="contact">
+    <div class="container">
+
+        <div class="row" style="margin-top: 20px;">
+            <div class="span6">
+                <h1 style="margin-bottom: 0px;">Отзывы</h1>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="span12">
+                <div class="row masonry-blog no-sortable" style="margin-top: 0px;">
+                    <ul id="latest-posts" class="masonry-area">
+                        @foreach (Feedback feedback in ViewBag.Feedbacks)
+                        {
+                            if (feedback.IsVisibled == true)
+                            {
+                                <li class="item-blog span12">
+                                    <div class="item-container-post animated-content little_bounce hentry">
+                                        <article class="post" style=" margin-top: 30px; margin-bottom: 0px;">
+
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <div class="span2" style="margin-top: 15px; margin-bottom: 15px; margin-left: 15px; margin-right: 10px; width: 160px; border: 4px solid #fff; outline: 1px #000000; -webkit-border-radius: 10px;">
+                                                            <img width="160" height="160" src="@Url.Action("GetImage", "Home", new { id = feedback.AvaId })" alt="@feedback.Client" />
+                                                        </div>
+                                                    </td>
+                                                    <td style="width: 170px;">
+                                                        <table>
+                                                            <tr>
+                                                                <td>
+                                                                    <h2 class="entry-title" style="padding-left: 0px; padding-right: 0px; padding-bottom: 0px;">
+                                                                        @feedback.Client                                                                 
+                                                                    </h2>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <p style="margin-top: 0px; margin-bottom: 0px;">@feedback.CreationDate.ToString("D", new CultureInfo("ru-RU"))</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="icon">
+                                                                        @if (feedback.VK != null && feedback.VK != "")
+                                                                        {
+                                                                            <a href="@feedback.VK" target="_blank" rel="nofollow"><i class="icon-vk"></i></a>
+                                                                        }
+                                                                        @if (feedback.FB != null && feedback.FB != "")
+                                                                        {
+                                                                            <a href="@feedback.FB" target="_blank" style="margin-left:5px;" rel="nofollow"><i class="icon-facebook"></i></a>
+                                                                        }
+                                                                        
+                                                                        @if (feedback.Portfolio != null && feedback.Portfolio != "")
+                                                                        {
+                                                                            <a style="margin-left: 5px;" href="@feedback.Portfolio" target="_blank" title="Свадьба за границей @feedback.Client">Портфолио</a>
+                                                                        }
+                                                                    
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+
+                                                    <td>
+                                                        <blockquote style="margin-top: 10px; margin-bottom: 10px; padding: 0px; border: 0px;">
+                                                            <p style="text-align:justify; padding-bottom: 0px; color: rgb(86, 100, 111); padding-top: 0px; font-family: 'Open Sans', sans-serif; font-size: 15px; font-weight: normal; line-height: 24px; text-transform: none; text-indent: 50px;">
+                                                                @Html.Raw(feedback.Text)
+
+                                                            </p>
+                                                        </blockquote>
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+
+
+                                            @if (rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Places))
+                                            {
+                                                <div style="margin-left: 20px;">
+                                                    <a class="more-link" href="@Url.Action("UpdateFeedback", "Admin", new { idFeedback = feedback.Id })">Изменить</a>
+                                                    <a class="more-link" href="@Url.Action("DelFeedback", "Admin", new { idFeedback = feedback.Id })">Удалить</a>
+                                                </div>
+                                            }
+                                            <div class=""><span class="updated" style="display: none;">@feedback.CreationDate</span></div>
+                                            <div class="vcard"><span class="fn" style="display: none;">Ritaislands</span></div>
+
+                                        </article>
+                                    </div>
+                                </li>
+
+                            }
+                            else
+                            {
+                                if (rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Places))
+                                {
+                                    <li class="item-blog span12">
+                                        <div class="item-container-post animated-content little_bounce hentry">
+                                            <article class="post" style=" margin-top: 30px; margin-bottom: 0px;">
+                                                <div>
+                                                    <p>@feedback.Client</p>
+
+                                                </div>
+                                                <div style="margin-left: 20px;">
+                                                    <a class="more-link" href="@Url.Action("UpdateFeedback", "Admin", new { idFeedback = feedback.Id })">Изменить</a>
+                                                    <a class="more-link" href="@Url.Action("DelFeedback", "Admin", new { idFeedback = feedback.Id })">Удалить</a>
+                                                </div>
+                                                </article>
+                                        </div>
+                                    </li>
+                                }
+
+
+                            }
+
+                        }
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="pagination" style="margin-bottom: 40px;">
+            @if (ViewBag.PageCount > 1)
+            {
+                double sum = 0;
+                System.Text.StringBuilder html = new System.Text.StringBuilder();
+
+                if (ViewBag.SelectPage > 1)
+                {
+                    html.Append(@"
+        <li><a href=""" + Url.Action("feedback", "Home", new { page = 1 }) + @"""> &lt;&lt; </a></li>
+        <li><a href=""" + Url.Action("feedback", "Home", new { page = ViewBag.SelectPage - 1 }) + @"""> &lt; </a></li>");
+                }
+                for (int i = 1; i <= ViewBag.PageCount; i++)
+                {
+                    if (i == ViewBag.SelectPage)
+                    {
+                        html.Append(@"<li><a style=""background-color: #F5F5F5;"" href=""" + Url.Action("feedback", "Home", new { page = i }) + @""">" + i + @"</a></li>");
+                        if (ViewBag.SelectPage >= 5 && (ViewBag.SelectPage + 1) != ViewBag.PageCount)
+                        {
+                            if (ViewBag.SelectPage != ViewBag.PageCount)
+                            {
+                                html.Append(@"<li><span style=""background-color: #F5F5F5; color: #323A45;"" href="""">...</span></li>");
+                            }
+                        }
+                    }
+                    else if (i == ViewBag.PageCount)
+                    {
+                        html.Append(@"<li><a href=""" + Url.Action("feedback", "Home", new { page = i }) + @""">" + i + @"</a></li>");
+                    }
+                    else
+                    {
+                        if (i > 4)
+                        {
+                            if (i == 5)
+                            {
+                                html.Append(@"<li><span style=""background-color: #F5F5F5; color: #323A45;"" href="""">...</span></li>");
+                            }
+                            continue;
+                        }
+                        else
+                        {
+                            html.Append(@"<li><a href=""" + Url.Action("feedback", "Home", new { page = i }) + @""">" + i + @"</a></li>");
+                        }
+                    }
+
+                }
+                if (ViewBag.PageCount > ViewBag.SelectPage)
+                {
+                    html.Append(@"<li><a href=""" + Url.Action("feedback", "Home", new { page = ViewBag.SelectPage + 1 }) + @"""> &gt; </a></li>
+        <li><a href=""" + Url.Action("feedback", "Home", new { page = ViewBag.PageCount }) + @"""> &gt;&gt; </a></li>");
+                }
+
+                string Input = html.ToString();
+                string search = "<li>";
+                int length = search.Length;
+                int howmanytimes = Input.Length - length;
+                int result = 0;
+                for (int index = 0; index < howmanytimes; index++)
+                {
+                    string theSubString = Input.Substring(index, length);
+                    if (theSubString.ToLower() == search.ToLower())
+                    {
+                        result++;
+                    }
+                }
+
+                sum = result * 50 + 40;
+                int pad = 20;
+                if (ViewBag.SelectPage == 1)
+                {
+                    pad = 50;
+                }
+                if (ViewBag.SelectPage > 1)
+                {
+                    pad = 40;
+                }
+
+                <div class="text-center">
+                    <ul class="pagination">
+
+                        @Html.Raw(html.ToString())
+
+                    </ul>
+                </div>
+            }
+
+
+
+        </div>
+
+    </div>
+</section>

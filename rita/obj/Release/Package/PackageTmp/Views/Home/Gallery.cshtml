@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Gallery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    <title>Фотогалерея - @ViewBag.Direction.Name - свадьба за границей | RitaIslands</title>
+   
+    <meta name="description" content="Сотни красочных фотографий со свадебных церемоний Санторини, Крита, Италии, Чехии и десятков других мест." />
+
+    <meta property="og:url" content="http://ritaislands.ru/svadba-za-granicey/gallery" />
+    <meta property="og:title" content="Фотогалерея - свадьба за границей | RitaIslands" />
+    <meta property="og:description" content="Сотни красочных фотографий со свадебных церемоний Санторини, Крита, Италии, Чехии и десятков других мест." />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+    <meta name="keywords" content="свадебная фотогалерея, фотографии с Санторини, фотография с Крита, фотографии из Италии, фотографии со свадебной церемонии" />
+}
+
+
+<div id="content">
+    <section class="main-content   default-padding shadow-off" style="padding: 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div id="portfolio-filter" class="row">
+                        <div class="span12">
+                            <div class="dropdown">
+                                <div class="dropmenu">
+                                    <p class="selected">@ViewBag.Direction.Name</p>
+                                    <i class="font-icon-arrow-down-simple-thin-round"></i>
+                                </div>
+                                <div class="dropmenu-active">
+                                    <ul class="option-set" data-option-key="filter">
+                                        @foreach (rita.Models.Direction dir in ViewBag.Directions)
+                                        {
+                                            <li><a onclick="document.location.href = '/home/gallery/@dir.TrName';" >@dir.Name</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row ">
+                        
+                        @if (ViewBag.List == null || ViewBag.List.Count == 0)
+                        {
+                            <p>
+                                Фотографии не найдены
+                            </p>
+                            <br/>
+                            <br/>
+                        }
+
+                        <div id="portfolio-projects" class=" grid-portfolio">
+                            <ul id="projects">
+                                @foreach (rita.Models.Gallery gallery in ViewBag.List)
+                                {
+                                    string str = "cat" + gallery.CategoryId;
+                                    <li class="item-project span4 @str hentry">
+                                        <div class="item-container animated-content fade_in">
+                                            <a class="hover-wrap fancybox" href="/Home/GetImageGallery?id=@gallery.Id&p=1.jpg" title="@gallery.Name" data-fancybox-group="gallery">
+                                                <img src="/Home/GetImageGallery3/@gallery.Id" width="400" height="300" alt="@gallery.Name" /><div class="overlay"></div>
+                                                <i class="font-icon-plus-3"></i>
+                                            </a>
+                                            <a class="project-name fancybox" href="/Home/GetImageGallery?id=@gallery.Id&p=1.jpg" title="@gallery.Name">
+                                                <div class="entry-title"><h3>@gallery.Name</h3></div>
+                                                <div class="updated"><h4>@gallery.CreationDate.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("ru-RU"))</h4></div>
+                                                <div class="vcard"><span class="fn" style="display: none;">Ritaislands</span></div>
+                                                @if (rita.Helpers.RoleUserAttribute.IsInPerm(User, (int)rita.Helpers.Permissions.AddEditDel_Gallery))
+                                                {
+                                                    <a href="@Url.Action("UpdateGallery", "Admin", new { id = @gallery.Id })">Изменить</a>
+                                                    <a href="@Url.Action("DelPhoto", "Admin", new { id = @gallery.Id })">Удалить</a>
+                                                }
+                                            </a>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,159 @@
+﻿@using rita.Models
+
+@{
+    ViewBag.Title = "RitaislandsMap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    <title>Карта сайта - свадьба за границей | Ritaislands</title>
+
+    
+    <meta name="description" content="Карта сайта позволяет увидеть все разделы сайты: все площадки для свадебных церемоний за границей, рестораны, портфолио, блог, партнеры." />
+    <meta name="keywords" content="карта сайта, разделы сайта, свадьба за границей, карта ritaislands, партнеры" />
+
+    <meta property="og:url" content="http://ritaislands.ru/ritaislandsmap" />
+    <meta property="og:title" content="Карта сайта - свадьба за границей | Ritaislands" />
+    <meta property="og:description" content="Карта сайта позволяет увидеть все разделы сайты: все площадки для свадебных церемоний за границей, рестораны, портфолио, блог, партнеры." />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="~/img/direct/Santorin.jpg" />
+}
+
+<div style="background-color: #F2F5F8;">
+    <div class="container ritaislandsmap">
+        <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+
+            <h1>Карта сайта</h1>
+
+            <div class="span6">
+                <a href="@Url.Action("Main", "Home")"><b>Главная:</b></a>
+                @{
+                                
+                    foreach (Direction direction in ViewBag.Directions)
+                    {
+                    <ul>
+                        <li><a href="@Url.Action("Index", "Home", new { id = direction.TrName })">@direction.Title</a></li>
+
+
+
+                        @foreach (Places place in ViewBag.Places)
+                        {
+
+                            if (direction.Id == place.DirectionId && place.PlaceTypeId == 1)
+                            {       
+                            <li style="margin-left: 15px;"><a href="@Url.Action("PlaceIndex", "Home", new { id = place.TrName })">Площадка для свадебной церемонии @place.Name</a></li>
+                            }
+
+                        }
+
+
+                        @foreach (Places place in ViewBag.Places)
+                        {
+
+                            if (direction.Id == place.DirectionId && place.PlaceTypeId == 2)
+                            {       
+                            <li style="margin-left: 15px;"><a href="@Url.Action("PlaceIndex", "Home", new { id = place.TrName })">Ресторан @place.Name</a></li>
+                            }
+
+                        }
+
+
+
+                    </ul>  
+                    }
+                                
+                }
+
+            </div>
+
+            <div class="span6">
+
+                <p><a href="@Url.Action("Portfolio", "Home")"><b>Портфолио </b></a>(организовано свадеб - @ViewBag.b):</p>
+
+                <ul>
+                    @foreach (Portfolio portfolio in ViewBag.Portfolio)
+                    {
+                        
+                        <li style="margin-left: 15px;"><a href="@Url.Action("PortfolioIndex", "Home", new { id = portfolio.TranslitName })">@portfolio.Name </a>Дата публикации: @portfolio.CreationDate.ToShortDateString()</li>
+                    }
+                </ul>
+
+
+            </div>
+
+
+        </div>
+        <hr />
+        <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+
+            <div class="span6">
+                <a href="@Url.Action("Partners", "Home")"><b>Партнёры:</b></a>
+
+                <ul>
+                    @foreach (Partners partner in ViewBag.Partners)
+                    {
+                        
+                        <li style="margin-left: 15px;"><a href="@Url.Action("PartnerIndex", "Home", new { id = partner.TrName })">@partner.PartnerCategory.Name @partner.FirstName @partner.LastName</a></li>
+                    }
+                </ul>
+
+
+            </div>
+
+
+
+            <div class="span6">
+
+                <p><a href="@Url.Action("Blog", "Home")"><b>Блог </b></a>(публикаций - @ViewBag.a):</p>
+
+                <ul>
+                    @foreach (Blog blog in ViewBag.Blog)
+                    {
+                       
+                        <li style="margin-left: 15px;"><a href="@Url.Action("BlogIndex", "Home", new { id = blog.TranslitName })">@blog.Name </a>Дата публикации: @blog.CreationDate.ToShortDateString()</li>
+                    }
+                </ul>
+
+                
+            </div>
+            
+            <a href="http://linkdir.ru/" target="_blank">Каталог сайтов LinkDir</a>
+        </div>
+     
+        <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+
+            <div class="span6">
+                <p><b>Сайты-партнёры:</b></p>
+
+                <ul>
+                 
+                        <li style="margin-left: 15px;"><a href="http://linkdir.ru/" target="_blank">Каталог сайтов LinkDir</a></li>
+                    <li style="margin-left: 15px;"><a href="http://www.opencatalog.ru/" target="_blank">Каталог сайтов Opencatalog</a></li>
+</ul>
+
+
+            </div>
+
+
+
+            <div class="span6">
+
+                @*<p><a href="@Url.Action("Blog", "Home")"><b>Блог </b></a>(публикаций - @ViewBag.a):</p>
+
+                <ul>
+                    @foreach (Blog blog in ViewBag.Blog)
+                    {
+
+                        <li style="margin-left: 15px;"><a href="@Url.Action("BlogIndex", "Home", new { id = blog.TranslitName })">@blog.Name </a>Дата публикации: @blog.CreationDate.ToShortDateString()</li>
+                    }
+                </ul>*@
+
+
+            </div>
+
+           
+        </div>
+
+    </div>
+</div>

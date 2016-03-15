@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "UpdateFeedback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+<!-- Start Section Title -->
+<section style="border: 0px; height: 300px; background-position: center top; background-repeat: no-repeat; background-size: cover; background-image:url('@Url.Content("../../img/fon/UsFon.jpg")');" class="banner-image" id="title-page">
+    <div class="container pagize" style="padding: 96px; margin: 0px;" ;>
+        <div class="row" style="margin-left: 0px;">
+            <div class="span12 textaligncenter levh1" style="padding: 0px; margin-left: 0px; margin-top: 13px;">
+                <h1>Редактирование ОТЗЫВА</h1>
+            </div>
+        </div>
+</section>
+<!-- End Section Ttile -->
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <br />
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span9">
+
+                <form id="contact-form" class="contact-form" action="/Admin/UpdateFeedback" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="@ViewBag.Feedback.Id" />
+
+                    <p>Имя клиента</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Имя" value="@ViewBag.Feedback.Client" name="name" />
+                    </p>
+
+                    <p>Ссылка на портфолио</p>
+                    <p class="contact-name">
+                        <input type="text" name="PortfolioS" value="@ViewBag.Feedback.Portfolio">
+                    </p>
+
+  
+                    <p>Вконтакте</p>
+                    <p class="contact-name">
+                        <input type="text" name="VK" value="@ViewBag.Feedback.VK">
+                    </p>
+
+                    <p>Фейсбук</p>
+                    <p class="contact-name">
+                        <input type="text" name="FB" value="@ViewBag.Feedback.FB">
+                    </p>
+                          
+                    <p>Дата отзыва</p>
+                    <p class="contact-name">
+                        <input type="text" name="dateFeedback" value="@ViewBag.Feedback.CreationDate.ToString("dd.MM.yyyy", new System.Globalization.CultureInfo("ru-RU"))">
+                    </p>         
+
+                    <p>Короткое описание на страницу "услуги"</p>
+                    <p class="contact-name">
+                        <textarea name="text">@ViewBag.Feedback.Text</textarea>
+                    </p>
+                    
+                    <p class="contact-name">
+                        <label>Отображать ОТЗЫВ<input style="width: 50px;" type="checkbox" name="IsVisibled" @(ViewBag.Feedback.IsVisibled == true ? "checked" : "") /></label>
+                    </p>
+
+                    <p class="contact-email">
+                        <label>Картинка отображается в ОТЗЫВЕ. 160 x 160</label>
+                        <input id="contact_email" type="file" name="file" />
+                    </p>
+
+                    <button class="submit" type="submit">Изменить</button>
+                </form>
+                
+          
+            </div>
+            
+        </div>
+        <!-- End Contact Form -->
+    </div>
+</section>
+<!-- End Contact Section -->

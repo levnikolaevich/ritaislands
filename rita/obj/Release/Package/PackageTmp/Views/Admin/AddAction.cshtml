@@ -1,0 +1,124 @@
+﻿@using rita.Models
+@{
+    ViewBag.Title = "AddAction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+<!-- Start Section Title -->
+<section style="border: 0px; height: 300px; background-position: center top; background-repeat: no-repeat; background-size: cover; background-image:url('@Url.Content("../../img/fon/UsFon.jpg")');" class="banner-image" id="title-page">
+    <div class="container pagize" style="padding: 96px; margin: 0px;">
+        <div class="row" style="margin-left: 0px;">
+            <div class="span12 textaligncenter levh1" style="padding: 0px; margin-left: 0px; margin-top: 13px;">
+                <h1>Добавление Акции</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Section Ttile -->
+
+<!-- Action Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <br />
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        <!-- Action Form -->
+        <div class="row margin-50">
+            <div class="span9">
+
+                <form id="contact-form" class="contact-form" action="/Admin/AddAction" method="POST" enctype="multipart/form-data">
+
+                    <p>Название</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Название" value="" style="width: 850px;" name="name" />
+                    </p>
+
+                    <p>Короткое описание</p>
+                    <p class="contact-name lev">
+                        <textarea placeholder="Описание" name="shortdescription"></textarea>
+                    </p>
+                    
+                    <p>Описание</p>
+                    @*<p class="contact-name lev">
+                        <textarea placeholder="Описание" name="description"></textarea>
+                    </p>*@
+
+                    <p>
+                        <textarea id="textRed" name="description" style="display: inline-block; height: 220px !important;" required></textarea>
+                    </p>
+
+
+                    <p>Дата от</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Дата от" value="@DateTime.Now.ToString(new System.Globalization.CultureInfo("ru-RU"))" name="dateFrom" />
+                    </p>
+
+                    <p>Дата до</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Дата до" value="@DateTime.Now.AddDays(7).ToString(new System.Globalization.CultureInfo("ru-RU"))" name="dateTo" />
+                    </p>
+
+                    <p>Дата окончания действия акции</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Дата окончания дествия акции" value="@DateTime.Now.AddDays(7).ToString(new System.Globalization.CultureInfo("ru-RU"))" name="actionDateTo" />
+                    </p>
+
+                    <p>Выбери файл</p>
+                    <p class="contact-email">
+                        <input id="contact_email" type="file" name="file" />
+                    </p>
+
+                    <p>Выбери тип акции</p>
+                    <select name="actionType">
+                        @foreach (ActionType dir in ViewBag.ActionTypes)
+                        {
+                            <option value="@dir.Id">@dir.Name</option>
+                        }
+                    </select>
+
+                    <p>% скидки</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="% скидки" value="" name="perc" />
+                    </p>
+
+                    <p>Скидка в рублях</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Скидка в рублях" value="" name="cost" />
+                    </p>
+
+                    <p>Подарок</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Подарок" value="" name="gift" />
+                    </p>
+
+                    <p>Тэги</p>
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Тэги" value="" name="tag"/>
+                    </p>
+                    
+                    <label>Отображать?<input style="width: 50px;" type="checkbox" name="isEnabled" /></label>
+
+                    <br /><br />
+
+                    <button class="submit" type="submit">Далее</button>
+
+                </form>
+
+            </div>
+
+
+        </div>
+        <!-- End Action Form -->
+    </div>
+</section>
+<!-- End Action Section -->

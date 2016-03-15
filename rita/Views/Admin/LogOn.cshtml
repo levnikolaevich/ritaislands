@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "LogOn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+<!-- Start Section Title -->
+ <section style="border: 0px; height: 300px; background-position: center top; background-repeat: no-repeat; background-size: cover; background-image:url('@Url.Content("../../img/fon/UsFon.jpg")');" class="banner-image" id="title-page">
+        <div class="container pagize" style="padding: 96px; margin: 0px;";>
+            <div class="row" style="margin-left: 0px;">
+                <div class="span12 textaligncenter levh1" style="padding: 0px; margin-top: 13px; text-align: center;">
+                    <h1>Авторизация</h1>
+                    </div>
+            </div>
+        </div>
+    </section>
+<!-- End Section Ttile -->
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <br/>
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span9">
+            
+                <form id="contact-form" class="contact-form" action="/Admin/LogOn" method="POST">
+                    
+                    <p class="contact-name">
+                        <input id="contact-name" type="text" placeholder="Email" value="" name="email" />
+                    </p>
+
+                    <p class="contact-email">
+                        <input id="contact_email" type="password" placeholder="Пароль" value="" name="password" />
+                    </p>
+
+                    <button class="submit" type="submit">ok</button>
+                </form>
+             
+            </div>
+           
+            
+        </div>
+        <!-- End Contact Form -->
+	</div>
+</section>
+<!-- End Contact Section -->

@@ -1,0 +1,410 @@
+﻿@using rita.Models
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    <title>@ViewBag.Portfolio.FirstName @ViewBag.Portfolio.LastName - @ViewBag.Portfolio.PartnerCategory.Name.ToLower() | RitaIslands</title>
+
+    <meta name="description" content="@ViewBag.Portfolio.ShortDescription" />
+    <meta property="og:url" content="@Request.Url.AbsoluteUri" />
+    <meta property="og:title" content="@ViewBag.Portfolio.FirstName @ViewBag.Portfolio.LastName / @ViewBag.Portfolio.PartnerCategory.Name | RitaIslands" />
+    <meta property="og:description" content="@ViewBag.Portfolio.ShortDescription" />
+    <meta property="og:site_name" content="RitaIslands - свадьба за границей" />
+    <meta property="og:image" content="@Url.Action("GetImagePartner", "svadba-za-granicey", new { id = ViewBag.Portfolio.Avatar }, this.Request.Url.Scheme)" />
+    <meta name="keywords" content="свадьба  за границей, свадебный фотограф, ведущий на свадьбу, свадебное платье, декоратор, модельер, дизайнер" />
+    <link rel="image_src" href="@Url.Action("GetImagePartner", "svadba-za-granicey", new { id = ViewBag.Portfolio.Avatar }, this.Request.Url.Scheme)" />
+    <span class="updated" style="display: none;">@ViewBag.Portfolio.CreationDate.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("ru-RU"))</span>
+    <div class="vcard"><span class="fn" style="display: none;">@ViewBag.Portfolio.FirstName @ViewBag.Portfolio.LastName</span></div>
+}
+
+<div id="content">
+    <section id="blog" class="large-padding standard-blog" style="padding-bottom: 10px; padding-top: 50px;">
+        <div class="container">
+            <div class="row">
+
+                <div id="post-area" class="span12">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (Session["User"] == null)
+                        {
+                            Session["User"] = new BdData().GetUser(User.Identity.Name);
+                        }
+                        rita.Models.User user = (rita.Models.User)Session["User"];
+
+                        //&& ViewBag.OwnPartner.Id == user.Id
+                        if (user.PartnerId != null && ViewBag.OwnPartner != null)
+                        {
+                            <div class="row" style="margin-bottom: 6px !important; margin-left: 0px;">
+                                @if (ViewBag.OwnPartner.IsEnabled)
+                                {
+                                    <div class="row" style="margin: 0px;">
+                                        <div class="span12" style="text-align: justify;  font-weight: 500; font-size: 15px; line-height: 24px; display: block; padding: 0px; margin: 0px;">
+                                            <p><b style="color: red; ">Внимание!</b> Чем выше Ваш рейтинг - тем выше Вы в разделе "Партнеры". Ваш рейтинг зависит от количества полученных баллов: больше переходов на профиль - больше баллов - выше рейтинг (один переход равен одному баллу). <b>Размещайте ссылку на профиль в социальных сетях и поднимайтесь в рейтинге!</b> Рейтинг пересчитывается раз в сутки.</p>
+                                        </div>
+
+                                        <div class="span12" style="  text-align: justify; float: right; border-top: solid 1px #E6E6E6; border-bottom: solid 1px #E6E6E6; margin-bottom: 6px; ">
+                                            <p style="margin-bottom: 0px; margin-left: 300px;">Вы находитесь на <b>@ViewBag.Mesto</b> месте</p>
+
+                                            @if (ViewBag.Mesto > 1)
+                                            {
+                                                <p style="margin-bottom: 0px; margin-top: 0px; margin-left: 300px;">Для перехода на ступень выше Вам осталось набрать баллов: <b>@ViewBag.toNextRate</b></p>
+                                            }
+                                            else if (ViewBag.Mesto == 1)
+                                            {
+                                                <p style="margin-bottom: 0px; margin-top: 0px; margin-left: 300px;"><b>Поздравляем! Вы находитесь на ПЕРВОМ месте!!!</b></p>
+                                            }
+
+                                            <p style="margin-top: 0px; margin-left: 300px;">Вашему ближайшему конкуренту, чтобы обогнать Вас, осталось набрать баллов: <b>@ViewBag.toLastRate</b></p>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="span9 alert alert-success " style="margin: 0px !important; padding: 3px !important; padding-left: 17px !important;"><b>Ваш профиль опубликован на сайте</b></div>
+                                    <div class="span3" style="margin-left: 10px; float: right; "><a href="/svadba-za-granicey/PublicatedOff" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 59px; padding-right: 59px; ">Снять с публикации</a></div>
+                                }
+                                else
+                                {
+
+                                    if (ViewBag.OwnPartner.Moderated == 0)
+                                    {
+                                        <div class="row">
+                                            <div class="span6 alert alert-warning" style="margin-bottom: 0px !important; padding: 3px !important; padding-left: 17px !important; width: 640px !important;"><b>Ваш профиль требует проверки перед публикацией на сайте</b></div>
+                                            @*<div class="span3" style="margin-left: 10px; float: right;"><a href="/svadba-za-granicey/EmailModeration" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 37px; padding-right: 37px;">Отправить на модерацию</a></div>*@
+                                            <div class="span3" style="margin-left: 10px; float: right; width: 250px !important;"><a href="/svadba-za-granicey/EmailModeration" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 25px; padding-right: 25px; margin-right: 0px;">Отправить на модерацию</a></div>
+                                            <div class="span3" style="margin-left: 10px; float: right; width: 240px !important;"><a href="@Url.Action("UpdatePartner", "svadba-za-granicey")" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 25px; padding-right: 25px;">Редактировать профиль</a></div>
+
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="span12 alert alert-info" style="margin: 0px !important; padding-left: 0px !important; padding-right: 0px !important; padding-top: 3px !important; padding-bottom: 3px !important; "><b style="padding-left: 17px !important;">Ваш профиль находится на модерации</b></div>
+                                        @*<div class="span3" style="margin-left: 10px; float: right;"><a href="/svadba-za-granicey/EmailModeration" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 37px; padding-right: 37px;">Отправить на модерацию</a></div>*@
+                                    }
+
+                                }
+
+                            </div>
+
+                        }
+                        else if (user.PartnerId == null)
+                        {
+                            <div class="row" style="margin-bottom: 6px !important; margin-left: 0px;">
+
+                                @*<div class="span3" style="margin-left: 10px; float: right; "><a href="@Url.Action("UpdatePartner", "Admin", new { id = ViewBag.Portfolio.Id })" class=" button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 59px; padding-right: 59px;">Изменить профиль</a></div>*@
+
+                                @if (ViewBag.Portfolio.IsEnabled)
+                                {
+                                    <div class="row" style="margin: 0px;">
+                                        <div class="span12" style="text-align: justify;  font-weight: 500; font-size: 15px; line-height: 24px; display: block; padding: 0px; margin: 0px;">
+                                            <p><b style="color: red; ">Внимание!</b> Чем выше Ваш рейтинг - тем выше Вы в разделе "Партнеры". Ваш рейтинг зависит от количества полученных баллов: больше переходов на Ваш профиль - больше баллов - выше рейтинг (один переход равен одному баллу). <b>Размещайте ссылку на профиль в социальных сетях и поднимайтесь в рейтинге!</b> Рейтинг пересчитывается раз в сутки.</p>
+                                        </div>
+
+                                        <div class="span12" style="  text-align: justify; float: right; border-top: solid 1px #E6E6E6; border-bottom: solid 1px #E6E6E6; margin-bottom: 6px; ">
+                                            <p style="margin-bottom: 0px; margin-left: 300px;">Рейтинг пользователя <b>@ViewBag.Portfolio.Rating</b></p>
+                                            <p style="margin-bottom: 0px; margin-top: 0px; margin-left: 300px;">Место партнера: <b>@ViewBag.Mesto</b></p>
+                                            @if (ViewBag.Mesto > 1)
+                                            {
+                                                <p style="margin-bottom: 0px; margin-top: 0px; margin-left: 300px;">Для перехода на ступень выше Вам осталось набрать баллов: <b>@ViewBag.toNextRate</b></p>
+                                            }
+                                            else if (ViewBag.Mesto == 1)
+                                            {
+                                                <p style="margin-bottom: 0px; margin-top: 0px; margin-left: 300px;"><b>Партнёр находится на ПЕРВОМ месте!</b></p>
+                                            }
+
+                                            <p style="margin-top: 0px; margin-left: 300px;">Вашему ближайшему конкуренту, чтобы обогнать Вас, осталось набрать баллов: <b>@ViewBag.toLastRate</b></p>
+                                        </div>
+                                    </div>
+
+                                    @*<div class="span9 alert alert-success " style="margin: 0px !important; padding: 3px !important; padding-left: 17px !important;"><b>Профиль пользователя опубликован на сайте</b></div>
+                                    <div class="span3" style="margin-left: 10px; float: right; "><a href="@Url.Action("PublicatedAdminOff", "svadba-za-granicey", new { id = ViewBag.Portfolio.Email })" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 59px; padding-right: 59px; ">Снять с публикации</a></div>*@
+
+                                     <div class="row">
+                                         <div class="span6 alert alert-success" style="margin-bottom: 0px !important; padding: 3px !important; padding-left: 17px !important; width: 690px !important;"><b>Профиль пользователя опубликован на сайте</b></div>
+                                         <div class="span3" style="margin-left: 10px; float: right; width: 200px !important; "><a href="@Url.Action("PublicatedAdminOff", "svadba-za-granicey", new { id = ViewBag.Portfolio.Email })" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 20px; padding-right: 20px; ">Снять с публикации</a></div>
+                                            <div class="span3" style="margin-left: 10px; float: right; width: 240px !important;"><a href="@Url.Action("UpdatePartner", "Admin", new { id = ViewBag.Portfolio.Id })" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 25px; padding-right: 25px;">Редактировать профиль</a></div>
+                                     </div>
+                                    
+                                }
+                                else
+                                {
+
+                                    if (ViewBag.Portfolio.Moderated == 0)
+                                    {
+                                        <div class="row">
+                                            <div class="span6 alert alert-warning" style="margin-bottom: 0px !important; padding: 3px !important; padding-left: 17px !important; width: 700px !important;"><b>Профиль находится на стадии оформления</b></div>
+                                            <div class="span3" style="margin-left: 10px; float: right; width: 190px !important;"><a href="@Url.Action("DelPartner", "Admin", new { id = ViewBag.Portfolio.Id })" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 25px; padding-right: 25px; margin-right: 0px;">Удалить профиль</a></div>
+                                            <div class="span3" style="margin-left: 10px; float: right; width: 240px !important;"><a href="@Url.Action("UpdatePartner", "Admin", new { id = ViewBag.Portfolio.Id })" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 25px; padding-right: 25px;">Редактировать профиль</a></div>
+                                         </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="span8 alert alert-info" style="margin: 0px !important; padding-left: 0px !important; padding-right: 0px !important; padding-top: 3px !important; padding-bottom: 3px !important; "><b style="padding-left: 17px !important;">Профиль находится на модерации</b></div>
+                                        <div class="span2" style="margin-left: 10px; float: right;"><a href="@Url.Action("ModerationOn", "svadba-za-granicey", new { id = ViewBag.Portfolio.Email })" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 42px; padding-right: 42px;">Опубликовать</a></div>
+                                        <div class="span2" style="margin-left: 10px; float: right;"><a href="@Url.Action("ModerationOff", "svadba-za-granicey", new { id = ViewBag.Portfolio.Email })" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 55px; padding-right: 55px; margin-right: 20px;">Отклонить</a></div>
+                                    }
+
+                                }
+
+                            </div>
+                        }
+
+                    }
+
+                    <article class="post-358 post type-post status-publish format-standard hentry category-standard tag-sketch item-blog hentry" id="post-358">
+
+
+                        <div class="post-thumb">
+
+                            <img src="@Url.Action("GetImagePartner", "svadba-za-granicey", new { id = ViewBag.Portfolio.ImageProfile })" class="attachment-post-thumbnail wp-post-image" alt="@ViewBag.Portfolio.FirstName @ViewBag.Portfolio.LastName / @ViewBag.Portfolio.PartnerCategory.Name" />
+                            <div class="overlay"></div>
+                            <i class="font-icon-plus-3"></i>
+
+                        </div>
+
+                        <div class="row" style="padding-bottom: 0px; padding-left: 30px; padding-right: 30px; padding-top: 20px; margin: 0px;">
+
+
+                            <div class="span2" style="position: relative; margin-top: -100px; margin-left: 0px; width: 200px; border: 4px solid #fff; outline: 1px #000000; -webkit-border-radius: 2px;">
+                                <img src="@Url.Action("GetImagePartner", "svadba-za-granicey", new { id = ViewBag.Portfolio.Avatar })" />
+                                <div class="pluso" data-background="transparent" data-options="small,square,line,horizontal,counter,theme=06" data-services="vkontakte,odnoklassniki,facebook,twitter,google,surfingbird" style="margin-left: 6px !important; margin-top: 6px !important; " data-user="1900733168"></div>
+
+                            </div>
+
+
+                            <div class="vcard"><span class="fn" style="display: none;"> @ViewBag.Portfolio.FirstName @ViewBag.Portfolio.LastName</span></div>
+                            <div class=""><span class="updated" style="display: none;"> @ViewBag.Portfolio.CreationDate</span></div>
+
+                            <div class="span9 partnerindexh1 entry-title" style="width: 840px; padding-top: 0px;">
+                                <h1>@ViewBag.Portfolio.FirstName @ViewBag.Portfolio.LastName</h1>
+
+                                @if (ViewBag.Portfolio.Name == "" || ViewBag.Portfolio.Name == null)
+                                {
+
+                                    if (ViewBag.Portfolio.Price == null)
+                                    {
+                                        <p style="margin-left: 2px; margin-top: 0px; margin-bottom: 0px; font-weight: 500; font-size: 15px; color: #AEAEAE;">@ViewBag.Portfolio.PartnerCategory.Name</p>
+                                    }
+                                    else
+                                    {
+                                        <p style="margin-left: 2px; margin-top: 0px; margin-bottom: 0px; font-weight: 500; font-size: 15px; color: #AEAEAE;">@ViewBag.Portfolio.PartnerCategory.Name | @ViewBag.Portfolio.Price € в день</p>
+                                    }
+
+
+                                }
+
+                                else
+                                {
+                                    if (ViewBag.Portfolio.Price == null)
+                                    {
+                                        <p style="margin-left: 2px; margin-top: 0px; font-weight: 500; font-size: 15px; color: #AEAEAE;">@ViewBag.Portfolio.PartnerCategory.Name <span style="text-transform: lowercase; ">из компании</span> "@ViewBag.Portfolio.Name"</p>
+                                    }
+
+                                    else
+                                    {
+                                        <p style="margin-left: 2px; margin-top: 0px; font-weight: 500; font-size: 15px; color: #AEAEAE;">@ViewBag.Portfolio.PartnerCategory.Name <span style="text-transform: lowercase; ">из компании</span> "@ViewBag.Portfolio.Name" | @ViewBag.Portfolio.Price € в день</p>
+                                    }
+                                }
+
+
+
+                            </div>
+                        </div>
+
+                        <div style="font-weight: 500; font-size: 15px; color: #AEAEAE; line-height: 24px; display: block; border-top: 1px solid #E6E6E6; border-bottom: 1px solid #E6E6E6; padding: 20px 30px;">
+
+
+                            <table style="width: 1090px; margin-left: 20px !important;">
+                                <tr>
+
+                                    @if (ViewBag.Portfolio.City != "" && ViewBag.Portfolio.City != null)
+                                    {
+                                        <td style="width: 300px !important;">Город:  @ViewBag.Portfolio.City</td>
+                                    }
+                                    else
+                                    {
+                                        <td style="width: 300px !important;">Россия</td>
+                                    }
+
+                                    @if (ViewBag.Portfolio.Phone != "" && ViewBag.Portfolio.Phone != null)
+                                    {
+                                        <td style="width: 230px !important;">@ViewBag.Portfolio.Phone</td>
+                                    }
+                                    else
+                                    {
+                                        <td style="width: 230px !important;">Телефонный номер по запросу</td>
+                                    }
+
+                                    @if (ViewBag.Portfolio.Site != "" && ViewBag.Portfolio.Site != null)
+                                    {
+                                        <td style="width: 270px !important;"><a style="color: #AEAEAE; height: 24px;" href="http:\\@ViewBag.Portfolio.Site" rel="nofollow">@ViewBag.Portfolio.Site</a></td>
+                                    }
+                                    else
+                                    {
+                                        <td style="width: 270px !important;">Сайт в разработке</td>
+                                    }
+
+                                    @if (ViewBag.Portfolio.Vk != "" && ViewBag.Portfolio.Vk != null)
+                                    {
+                                        <td style="width: 270px !important;"><a style="color: #AEAEAE; height: 24px;" href="http:\\vk.com\@ViewBag.Portfolio.Vk" rel="nofollow">Вконтакте</a></td>
+                                    }
+                                    else
+                                    {
+                                        <td style="width: 270px !important;">В контакте нет</td>
+                                    }
+
+                                <tr>
+
+                                    @if (ViewBag.Portfolio.Viezd != "" && ViewBag.Portfolio.Viezd != null)
+                                    {
+                                        <td style="width: 300px !important;">Выезд: @ViewBag.Portfolio.Viezd</td>
+                                    }
+                                    else
+                                    {
+                                        <td style="width: 300px !important;">Города выезда по запросу</td>
+                                    }
+
+                                    @if (ViewBag.Portfolio.Skype != "" && ViewBag.Portfolio.Skype != null)
+                                    {
+                                        <td style="width: 230px !important;">Скайп: @ViewBag.Portfolio.Skype</td>
+                                    }
+                                    else
+                                    {
+                                        <td style="width: 230px !important;">Скайп по запросу</td>
+                                    }
+
+
+                                    <td style="width: 270px !important;"><a style="color: #AEAEAE; height: 24px;" href="mailto:@ViewBag.Portfolio.Email">@ViewBag.Portfolio.Email</a></td>
+
+                                    @if (ViewBag.Portfolio.Facebook != "" && ViewBag.Portfolio.Facebook != null)
+                                    {
+                                        <td style="width: 270px !important;"><a style="color:  #AEAEAE;" href="http:\\facebook.com\@ViewBag.Portfolio.Facebook" rel="nofollow">Фейсбук</a></td>
+                                    }
+                                    else
+                                    {
+                                        <td style="color: #AEAEAE; width: 270px !important;">В фейсбуке нет</td>
+                                    }
+                                </tr>
+
+                            </table>
+                            @*  </span>*@
+                        </div>
+
+                        <div class="entry-content" style="text-align: justify; padding-top: 5px; padding-bottom: 5px; ">
+                            @Html.Raw(ViewBag.Portfolio.Description)
+                        </div>
+
+                        <!-- Стрелки по бокам -->
+                        <div class="navigation-projects">
+                            @if (ViewBag.prevpartner != null && ViewBag.nextpartner != null)
+                            {
+                                <div id="go-to-back" class="prev" style="display: none;"><a href="@Url.Action("PartnerIndex", "svadba-za-granicey", new {id = ViewBag.prevpartner.TrName})" rel="prev" title="@ViewBag.prevpartner.PartnerCategory.Name @ViewBag.prevpartner.FirstName @ViewBag.prevpartner.LastName"><i class=" font-icon-arrow-left-simple-round"></i></a></div>
+                                <div id="go-to-next" class="next" style="display: none;"><a href="@Url.Action("PartnerIndex", "svadba-za-granicey", new {id = ViewBag.nextpartner.TrName})" rel="next" title="@ViewBag.nextpartner.PartnerCategory.Name @ViewBag.nextpartner.FirstName @ViewBag.nextpartner.LastName"><i class="font-icon-arrow-right-simple-round"></i></a></div>
+                            }
+
+                        </div>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            rita.Models.User user = (rita.Models.User)Session["User"];
+
+                            if (user.PartnerId == null)
+                            {
+                                <a href="@Url.Action("UpdatePartnerPhoto", "Admin", new { id = ViewBag.Portfolio.Id })" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 25px; padding-right: 25px; ">Редактировать фотоленту</a>
+                            }
+
+                            else if (ViewBag.OwnPartner != null)
+                            {
+                                <a href="@Url.Action("UpdatePartnerPhoto", "svadba-za-granicey")" class="button-main button-small" style="padding-bottom: 1px; padding-top: 1px; float: right; padding-left: 25px; padding-right: 25px; ">Редактировать фотоленту</a>
+                            }
+                        }
+
+                        @if (ViewBag.PartnerImages != null && ViewBag.PartnerImages.Count > 0)
+                        {
+                            <div style="border-top: 1px solid #E6E6E6; padding-top: 15px;">
+                                <h3 style="margin-left: 17px;">Фотолента</h3>
+
+
+                            </div>
+                            <div id="portfolio-projects" class=" grid-portfolio" style="padding-top: 0px;">
+                                <ul id="projects" style="">
+                                    @foreach (PartnersImage partnerImage in ViewBag.PartnerImages)
+                                    {
+                                        string strLink = "/svadba-za-granicey/GetImagePartnerPhoto?id=" + partnerImage.Image + "&amp;p=1.jpg";
+                                        if (!string.IsNullOrEmpty(partnerImage.VideoUrl))
+                                        {
+                                            strLink = partnerImage.VideoUrl;
+                                        }
+                                        <li class="item-project span3" style="margin-left: 17px;">
+                                            <div class="item-container animated-content fade_in">
+                                                <a class="hover-wrap fancybox fancybox-media" href="@strLink" data-fancybox-group="gallery2">
+                                                    <img src="@Url.Action("GetImagePartnerPhoto", "svadba-za-granicey", new { id = partnerImage.Image })" alt="@ViewBag.Portfolio.FirstName @ViewBag.Portfolio.LastName / @ViewBag.Portfolio.PartnerCategory.Name" width="400" height="300" /><div class="overlay"></div>
+                                                    @if (!string.IsNullOrEmpty(partnerImage.VideoUrl))
+                                                    {
+                                                        <i class="icon-play-sign" style="opacity: 1;"></i>
+                                                    }
+                                                </a>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                    </article>
+
+
+
+                    <div class="separator2" style="margin-top: 10px; width: 80px; margin-bottom: 60px;">
+                        <div class="follow-us">
+                            <p style="margin-bottom: 0px; font-size: 12px; line-height: 16px; padding-top: 9px; margin-left: 2px; font-weight: 700;">Поделиться:</p>
+                            <a style="margin-left: 20px; margin-right: 8px;" onclick="window.open(this.href, 'Опубликовать ссылку во Вконтакте', 'width=800,height=300'); return false" title="Опубликовать ссылку во Вконтакте" href="http://vk.com/share.php?url=@Request.Url.AbsoluteUri" rel="nofollow"><i class="icon-vk"></i></a>
+                            <a onclick="window.open(this.href, 'Опубликовать ссылку в Facebook', 'width=640,height=436,toolbar=0,status=0'); return false" title="Опубликовать ссылку в Facebook" href="https://www.facebook.com/sharer/sharer.php?u=@Request.Url.AbsoluteUri" rel="nofollow"><i class="icon-facebook"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- End Container Span -->
+            </div>
+        </div>
+
+
+        <!-- Comments -->
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                        var disqus_shortname = 'ritaislands'; // required: replace example with your forum shortname
+
+                        /* * * DON'T EDIT BELOW THIS LINE * * */
+                        (function () {
+                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                </div>
+            </div>
+        </div>
+        <!-- End Comments -->
+    </section>
+</div>
+
+<script type="text/javascript">
+    (function () {
+        if (window.pluso) if (typeof window.pluso.start == "function") return;
+        if (window.ifpluso == undefined) {
+            window.ifpluso = 1;
+            var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+            s.type = 'text/javascript'; s.charset = 'UTF-8'; s.async = true;
+            s.src = ('https:' == window.location.protocol ? 'https' : 'http') + '://share.pluso.ru/pluso-like.js';
+            var h = d[g]('body')[0];
+            h.appendChild(s);
+        }
+    })();</script>

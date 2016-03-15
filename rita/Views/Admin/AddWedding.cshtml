@@ -1,0 +1,99 @@
+﻿@using rita.Models
+@{
+    ViewBag.Title = "AddWedding";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title
+{
+    @Html.Partial("_title")
+}
+
+<!-- Start Section Title -->
+<section style="border: 0px; height: 300px; background-position: center top; background-repeat: no-repeat; background-size: cover; background-image:url('@Url.Content("../../img/fon/UsFon.jpg")');" class="banner-image" id="title-page">
+    <div class="container pagize" style="padding: 96px; margin: 0px;">
+        <div class="row" style="margin-left: 0px;">
+            <div class="span12 textaligncenter levh1" style="padding: 0px; margin-left: 0px; margin-top: 13px;">
+                <h1>Добавление свадьбы</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Section Ttile -->
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <!-- Title Page -->
+        <div class="row margin-20">
+            <div class="span12">
+                <br />
+                <h3></h3>
+            </div>
+        </div>
+        <!-- End Title Page -->
+        <!-- Contact Form -->
+        <div class="row margin-50">
+            <div class="span9">
+
+                <form id="contact-form" class="contact-form" action="/Admin/AddWedding" method="POST" enctype="multipart/form-data">
+
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Название партнера" value="" name="name" />
+                    </p>
+
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Город" value="" name="city" />
+                    </p>
+
+                    <p class="contact-name lev">
+                        <textarea name="shortText" placeholder="Короткий текст"></textarea>
+                    </p>
+
+                    <p>Основной текст. Картинки вставлять 800 X 600 px </p>
+                    <p>
+                        <textarea id="textRed" name="longText" style="display: inline-block; height: 220px !important;"></textarea>
+                    </p>
+
+                    <p class="contact-email">
+                        <label>Картинка отображается в закладке "партнеры". 640 x 480</label>
+                        <input id="contact_email" type="file" name="file" required />
+                    </p>
+
+                    <p class="contact-email">
+                        <label>Картинка аватарка пользователя или логотип компании. 200 x 200</label>
+                        <input id="contact_email" type="file" name="file1" required />
+                    </p>
+
+                    <p class="contact-email">
+                        <label>Картинка внутри профиля партнера. 1170 x 430</label>
+                        <input id="contact_email" type="file" name="file2" required />
+                    </p>
+                    
+                    <h2>Список мест</h2>
+                    @foreach (Direction dir in ViewBag.List)
+                    {
+                        foreach (Places place in dir.Places)
+                        {
+                            <p>@place.Id @place.Name (@dir.Name)</p>
+                        }
+                    }
+
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Id места" value="" name="placeId" />
+                    </p>
+                    
+                    <p class="contact-name">
+                        <input id="contact_name" type="text" placeholder="Дата свадьбы" value="@DateTime.Now.ToString("dd.MM.yyyy")" name="date" />
+                    </p>
+
+                    <label style="display: none;">Отображать <input style="width: 50px;" type="checkbox" name="isEnabled" /></label>
+
+                    <button class="submit" type="submit">Добавить</button>
+
+                </form>
+
+            </div>
+        </div>
+        <!-- End Contact Form -->
+    </div>
+</section>
+<!-- End Contact Section -->

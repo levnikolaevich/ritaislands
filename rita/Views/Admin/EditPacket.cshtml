@@ -1,0 +1,61 @@
+﻿@using System.Web.Services.Description
+@{
+    ViewBag.Title = "EditPacket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section title
+{
+    @Html.Partial("_title")
+}
+<div class="container">
+    <h2>EditPacket</h2>
+    <form method="POST" action="EditPacket">
+        <label>Имя</label>
+        <input name="name" type="text" value="@ViewBag.Packet.Name" />
+
+        <label>Описание</label>
+        <input name="description" type="text" value="@ViewBag.Packet.Description" />
+
+        <label>Цена</label>
+        <input name="price" type="text" value="@ViewBag.Packet.Price" />
+
+        <input name="placeId" type="hidden" value="@ViewBag.Packet.PlaceId" />
+        <input name="id" type="hidden" value="@ViewBag.Packet.Id" />
+
+        <label>SortNumberTab</label>
+        <input name="sortNumberTab" type="text" value="@ViewBag.Packet.SortNumberTab" />
+
+        <label>Economy</label>
+        <input name="economy" type="text" value="@ViewBag.Packet.Economy" />
+        
+        <br/>
+        <input type="submit" value="Изменить" />
+    </form>
+    
+    <h3>Добавленные услуги</h3>
+    @foreach (rita.Models.PacketService service in ViewBag.Packet.PacketService)
+    {
+        <p>
+            @service.Service.Name (@service.Count) <a href="@Url.Action("DelPacketService", "Admin", new { packetId = service.Packet.Id, serviceId = service.Service.Id })">Удалить</a>
+        </p>
+    }
+
+    <br />
+    <br />
+
+    <h3>Доступные услуги</h3>
+    @foreach (rita.Models.PlaceService service in ViewBag.Service)
+    {
+        <p>
+            <form action="@Url.Action("AddPacketService", "Admin")" method="POST">
+                <input name="packetId" type="hidden" value="@ViewBag.Packet.Id" />
+                <input name="serviceId" type="hidden" value="@service.Service.Id" />
+                @if (service.Service.ServiceTypeId == 2)
+                {
+                    <input style="width: 50px;" name="count" type="text" value="" placeholder="Кол-во" />
+                }
+                @service.Service.Name <button type="submit">Добавить</button>
+            </form>
+        </p>
+    }
+</div>

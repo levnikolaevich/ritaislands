@@ -1,0 +1,178 @@
+﻿@using System.Web.UI.WebControls
+@using rita.Models
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section title
+{
+    @Html.Partial("_title")
+}
+
+<div id="main">
+    <section id="title-page">
+        <div class="container pagize">
+            <div class="row">
+                <div class="span12 textaligncenter">
+                    <h2>Поиск пакетов</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="content">
+        <section class="large-padding standard-blog" id="blog">
+            <div class="container">
+                <div class="row">
+
+                    <div class="span9 left_side" id="post-area">
+
+                        <div class="row masonry-blog no-sortable" style="margin-top: 0px;">
+                            <ul id="latest-posts" class="masonry-area">
+                                @foreach (rita.Models.Packet packet in ViewBag.List)
+                                {
+                                    rita.Models.Places partner = packet.Places;
+                                    if (partner.IsEnabled == false)
+                                    {
+                                        continue;
+                                    }
+                                    if (ViewBag.Count_guest != null && partner.CountGuests != null && partner.CountGuests.Value < ViewBag.Count_guest)
+                                    {
+                                        continue;
+                                    }
+                                    if (ViewBag.MinMoney != null && packet.Price < ViewBag.MinMoney)
+                                    {
+                                        continue;
+                                    }
+                                    if (ViewBag.MaxMoney != null && packet.Price > ViewBag.MaxMoney)
+                                    {
+                                        continue;
+                                    }
+                                    if (ViewBag.Dir != null && partner.DirectionId != ViewBag.Dir)
+                                    {
+                                        continue;
+                                    }
+                                    if (ViewBag.IsBeach != null && ViewBag.IsBeach != partner.IsBeach)
+                                    {
+                                        continue;
+                                    }
+                                    <li class="item-blog span4">
+                                        <div class="item-container-post animated-content little_bounce hentry">
+                                            <article class="post">
+                                                <div class="post-thumb">
+                                                    <a title="" href="@Url.Action("PlaceIndex", "Home", new { id = partner.TrName })" class="hover-wrap">
+                                                        <img src="@Url.Action("GetImagePlace", "Home", new { id = partner.SmallImage })" width="800" height="600" alt="" />
+                                                        <div class="overlay"></div>
+                                                        <i class="font-icon-plus-3"></i>
+                                                    </a>
+                                                </div>
+                                                <h2 class="entry-title">
+                                                    <a href="@Url.Action("PlaceIndex", "Home", new { id = partner.TrName })" title="">@packet.Name @(((int)packet.Price) + partner.Direction.Сurrency)</a>
+                                                </h2>
+                                                <div class="entry-meta entry-header">
+
+                                                    <span class="updated">
+                                                        @partner.Direction.Name @(string.IsNullOrEmpty(partner.Direction.Country.Name) ? "" : "(" + partner.Direction.Country.Name + ")") / @partner.Name
+
+                                                    </span>
+                                                    <div class="vcard"><span class="fn" style="display: none;">Ritaislands</span></div>
+
+
+                                                </div>
+                                                <div class="entry-content">
+                                                    @foreach (PacketService packetService in packet.PacketService)
+                                                    {
+                                                        <p>@packetService.Service.Name @packetService.Count.ToString()</p>
+                                                    }
+                                                </div>
+
+                                                @if (partner.ActionPlace.Where(x => x.Actions.IsVisible == true).Count() > 0)
+                                                {
+                                                    <div class="partner_in1" style="left: -5px;">
+                                                        <a class="link_in1" href="@Url.Action("ActionPlace", "Home", new {id = partner.TrName})">
+                                                            <span class="short-tag_in1" style="display: block;">Акция</span>
+                                                            <span style="display: none;" class="long-description_in1">Получи скидку</span>
+                                                        </a>
+                                                    </div>
+                                                }
+                                                else if (partner.Direction.ActionDirection.Where(x => x.Actions.IsVisible == true).Count() > 0)
+                                                {
+                                                    <div class="partner_in1" style="left: -5px;">
+                                                        <a class="link_in1" href="@Url.Action("Action", "Home", new {id = partner.Direction.TrName})">
+                                                            <span class="short-tag_in1" style="display: block;">Акция</span>
+                                                            <span style="display: none;" class="long-description_in1">Получи скидку</span>
+                                                        </a>
+                                                    </div>
+                                                }
+                                            </article>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                    </div><!-- End Container Span -->
+
+
+
+                    <div class="span3 right_side">
+                        <aside id="sidebar">
+                            <div class="widget widget_search" id="search-2">
+                                <form action="@Url.Action("Search","Home")" id="searchform" method="get">
+                                    <fieldset>
+                                        
+                                        <h3 class="widget-title">Параметры поиска</h3>
+                                        <ul>
+                                            <li class="cat-item cat-item-2">
+                                                <input type="text" placeholder="Кол-во гостей" value="@ViewBag.InputCountGuest" name="countGuest">
+                                                <br/>
+                                            </li>
+                                            <li class="cat-item cat-item-2">
+                                                <input type="text" placeholder="Мин бюджет" value="@ViewBag.InputMinMoney" name="minMoney">
+                                                <br />
+                                            </li>
+                                            <li class="cat-item cat-item-2">
+                                                <input type="text" placeholder="Макс бюджет" value="@ViewBag.InputMaxMoney" name="maxMoney">
+                                                <br />
+                                            </li>
+                                            <li class="cat-item cat-item-2">
+                                                <input type="text" placeholder="Дата свадьбы" value="@DateTime.Now.ToString(new System.Globalization.CultureInfo("ru-RU"))" name="dateWed" />
+                                                <br />
+                                            </li>
+                                            <li class="cat-item cat-item-2">
+                                                <select name="dir">
+                                                    <option value="0">Все направления</option>
+                                                    @foreach (Direction dir in ViewBag.ListDirection)
+                                                    {
+                                                        if (ViewBag.Dir != null && dir.Id == ViewBag.Dir)
+                                                        {
+                                                            <option value="@dir.Id" selected="">@dir.Name</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@dir.Id">@dir.Name @(string.IsNullOrEmpty(dir.Country.Name) ? "" : "("+ dir.Country.Name + ")")</option>
+                                                        }
+                                                    }
+                                                </select>
+                                                <br />
+                                            </li>
+                                            <li class="cat-item cat-item-2">
+                                                <input type="checkbox" @(ViewBag.IsBeach != null && ViewBag.IsBeach == true ? "checked" : "") name="isBeach"> Наличие пляжа
+                                                <br />
+                                            </li>
+                                        </ul>
+                                        
+                                        <button class="button-main button-medium" type="submit">Поиск</button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </aside>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
